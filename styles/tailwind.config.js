@@ -7,7 +7,6 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     extend: {
-      fontFamily: "'Roboto'",
       colors: {
         "primary-blue": "#0078d4",
       },
