@@ -1,6 +1,12 @@
+import type { ENV } from "~/models/session/types";
+
 export {};
 
 declare global {
+  interface Window {
+    ENV: ENV;
+  }
+
   interface BlogMetadata {
     title: string;
     alt: string;

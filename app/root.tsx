@@ -1,6 +1,7 @@
-import { Links, Outlet, useLoaderData } from "@remix-run/react";
+import { Links, Outlet } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { detectSessionValues } from "./models/session/session.server";
+import { withSentry } from "@sentry/remix";
+import { getSessionValues } from "./models/session/session.server";
 import NotFound from "./components/notFound";
 import Error from "./components/error";
 import Base from "./base";
@@ -14,7 +15,6 @@ import type {
   LinksFunction,
   LoaderFunction,
 } from "@remix-run/node";
-import type { SessionData } from "~/models/session/types";
 
 export const ErrorBoundary = ({ error }) => (
   <html lang="en" className="h-full">
@@ -69,17 +69,16 @@ export const meta: MetaFunction = () => ({
 });
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const data = detectSessionValues(request);
+  const data = getSessionValues(request);
   return json(data);
 };
 
 const App: React.FC = () => {
-  const data = useLoaderData<SessionData>();
   return (
-    <Base data={data}>
+    <Base>
       <Outlet />
     </Base>
   );
 };
 
-export default App;
+export default withSentry(App);

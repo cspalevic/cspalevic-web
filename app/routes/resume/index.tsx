@@ -26,8 +26,11 @@ const Resume: FC = () => {
       <Section header="Summary">
         <p>
           Distinguished Software Engineer who excels at coding, testing, and
-          troubleshooting. Scrum lead that pushes for best practices and
-          team collaboration. Team player who is always willing to help guide teammates to solve their problems and provide clean coding solutions. Interested in building amazing customer experiences and designing architectural solutions that scale.
+          troubleshooting. Scrum lead that pushes for best practices and team
+          collaboration. Team player who is always willing to help guide
+          teammates to solve their problems and provide clean coding solutions.
+          Interested in building amazing customer experiences and designing
+          architectural solutions that scale.
         </p>
       </Section>
       <Section header="Education">

@@ -4,11 +4,13 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import Header from "./header";
 import { useTheme } from "~/providers/theme";
 import { Theme } from "~/models/session/types";
 
+import type { SessionData } from "~/models/session/types";
 import type { FC, ReactNode } from "react";
 
 interface Props {
@@ -18,6 +20,7 @@ interface Props {
 const classes = "h-full";
 
 const Page: FC<Props> = ({ children }) => {
+  const data = useLoaderData<SessionData>();
   const theme = useTheme();
 
   // Adding dark mode class to toggle dark mode for tailwindcss
@@ -41,6 +44,11 @@ const Page: FC<Props> = ({ children }) => {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data?.env)}`,
+          }}
+        />
       </body>
     </html>
   );
