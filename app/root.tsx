@@ -1,5 +1,6 @@
 import { Links, Outlet, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
+import { withSentry } from "@sentry/remix";
 import { detectSessionValues } from "./models/session/session.server";
 import NotFound from "./components/notFound";
 import Error from "./components/error";
@@ -82,4 +83,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default withSentry(App, { wrapWithErrorBoundary: false });
