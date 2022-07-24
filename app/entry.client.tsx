@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/remix";
 import { BrowserTracing } from "@sentry/tracing";
 
 Sentry.init({
-  dsn: "https://555c80dac37f43129e727f19814f0890@o1332590.ingest.sentry.io/6597316",
+  dsn: process.env.SENTRY_DSN,
   integrations: [
     new BrowserTracing({
       routingInstrumentation: Sentry.remixRouterInstrumentation(
@@ -15,7 +15,7 @@ Sentry.init({
       ),
     }),
   ],
-  tracesSampleRate: 1.0,
+  tracesSampleRate: process.env.NODE_ENV === "development" ? 1.0 : 0.2,
 });
 
 hydrate(<RemixBrowser />, document);

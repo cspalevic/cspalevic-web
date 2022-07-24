@@ -5,8 +5,8 @@ import * as Sentry from "@sentry/remix";
 import type { EntryContext } from "@remix-run/node";
 
 Sentry.init({
-  dsn: "https://555c80dac37f43129e727f19814f0890@o1332590.ingest.sentry.io/6597316",
-  tracesSampleRate: 1,
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: process.env.NODE_ENV === "development" ? 1.0 : 0.2,
 });
 
 const handleRequest = (
