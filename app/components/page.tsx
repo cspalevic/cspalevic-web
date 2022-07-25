@@ -43,12 +43,12 @@ const Page: FC<Props> = ({ children }) => {
         </div>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.ENV = ${JSON.stringify(data?.env)}`,
           }}
         />
+        {data.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
