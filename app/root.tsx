@@ -66,6 +66,7 @@ export const meta: MetaFunction = () => ({
   // Favicon related meta tags
   "msapplication-TileColor": "#da532c",
   "theme-color": "#ffffff",
+  description: "Charlie Spalevic's personal website",
 });
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -73,12 +74,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json(data);
 };
 
-const App: React.FC = () => {
-  return (
-    <Base>
-      <Outlet />
-    </Base>
-  );
-};
+const App: React.FC = () => (
+  <Base>
+    <Outlet />
+  </Base>
+);
 
 export default withSentry(App);

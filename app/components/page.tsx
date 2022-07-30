@@ -48,7 +48,7 @@ const Page: FC<Props> = ({ children }) => {
             __html: `window.ENV = ${JSON.stringify(data?.env)}`,
           }}
         />
-        {data.env.NODE_ENV === "development" && <LiveReload />}
+        {data?.env?.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
