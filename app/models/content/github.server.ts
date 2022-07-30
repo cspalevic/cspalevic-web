@@ -13,7 +13,7 @@ type GetContentParams =
   RestEndpointMethodTypes["repos"]["getContent"]["parameters"];
 const defaultParams: GetContentParams = {
   owner: "cedomir-spalevic",
-  repo: "cedomir.tech",
+  repo: "cspalevic",
   ref: "main",
   path: "",
 };
