@@ -1,3 +1,4 @@
+import { useLoaderData } from "@remix-run/react";
 import Page from "./components/page";
 import ThemeProvider from "./providers/theme";
 import MarkdownProvider from "./providers/markdown";
@@ -7,15 +8,17 @@ import type { SessionData } from "~/models/session/types";
 
 interface Props {
   children?: ReactNode;
-  data?: SessionData;
 }
 
-const Base: FC<Props> = ({ children, data }) => (
-  <ThemeProvider theme={data?.theme}>
-    <MarkdownProvider>
-      <Page>{children}</Page>
-    </MarkdownProvider>
-  </ThemeProvider>
-);
+const Base: FC<Props> = ({ children }) => {
+  const data = useLoaderData<SessionData>();
+  return (
+    <ThemeProvider theme={data?.theme}>
+      <MarkdownProvider>
+        <Page>{children}</Page>
+      </MarkdownProvider>
+    </ThemeProvider>
+  );
+};
 
 export default Base;

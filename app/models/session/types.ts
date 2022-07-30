@@ -9,6 +9,6 @@ export interface ENV {
 }
 
 export interface SessionData {
-  theme: Theme;
-  env: ENV;
+  theme?: Theme;
+  env?: ENV;
 }

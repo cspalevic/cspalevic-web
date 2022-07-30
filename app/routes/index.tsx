@@ -18,6 +18,9 @@ const Index: FC = () => {
             width: "325",
           }}
           className="max-w-325 h-auto w-[15rem] rounded-full border-2 border-sky-500"
+          width="325"
+          height="auto"
+          loading="eager"
         />
         <div className="space-y-3 pt-5">
           {[

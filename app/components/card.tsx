@@ -24,8 +24,8 @@ const Card: FC<Props> = ({ to, image, alt, title, subTitle }) => (
         height: "450",
       }}
       className="card-img bg-gray-200 border-2 border-gray-200 rounded"
-      width="450px"
-      height="450px"
+      width="450"
+      height="450"
     />
     <div className="card-body flex flex-col p-1 space-y-1 border-2 border-transparent">
       <h3>{title}</h3>
