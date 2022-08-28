@@ -18,13 +18,18 @@ const invalidateCache = async (changedFiles: string[] = []) => {
 
   const blogsChanged = changedFiles
     .filter((file) => file.startsWith("content/blog/"))
-    .map((file) => {
+    .map(async (file) => {
       const [, folder] = file.split("content/blog/");
       const [slug] = folder.split("/index.md");
-      return client.del(slug);
+      const res = await client.del(slug);
+      console.log(`Invalidated cache for ${slug}: ${res}`);
+      return res;
     });
   await Promise.all(blogsChanged);
-  if (blogsChanged.length > 0) await client.del("all");
+  if (blogsChanged.length > 0) {
+    const res = await client.del("all");
+    console.log(`Invalidated cache for all: ${res}`);
+  }
   process.exit(0);
 };
 
@@ -45,5 +50,3 @@ const run = () => {
 };
 
 run();
-
-export {};

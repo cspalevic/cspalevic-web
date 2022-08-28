@@ -20,4 +20,4 @@ jobs:
       - name: Run cache invalidate script
         env:
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
-        run: npx ts-node scripts/invalidateCache
+        run: npx ts-node --project tsconfig.json scripts/invalidateCache
