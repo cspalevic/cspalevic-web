@@ -16,11 +16,11 @@ jobs:
         id: changed-files
         uses: jitterbit/get-changed-files@v1
         with:
-         format: 'json'
+         format: 'csv'
       - name: List all added files
         uses: actions/github-script@v1
         env:
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
         with:
           script: |
-            console.log(typeof process.env.CHANGED_FILES)
+            console.log(process.env.CHANGED_FILES)
