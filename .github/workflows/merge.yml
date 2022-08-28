@@ -23,4 +23,4 @@ jobs:
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
         with:
           script: |
-            console.log(process.env.CHANGED_FILES)
+            console.log(typeof process.env.CHANGED_FILES)
