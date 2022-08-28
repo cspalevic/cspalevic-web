@@ -19,5 +19,8 @@ jobs:
          format: 'csv'
       - name: Run cache invalidate script
         env:
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
         run: npx ts-node scripts/invalidateCache
