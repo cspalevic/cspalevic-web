@@ -30,7 +30,6 @@ const invalidateCache = async (changedFiles: string[] = []) => {
     const res = await client.del("all");
     console.log(`Invalidated cache for all: ${res}`);
   }
-  process.exit(0);
 };
 
 const transformInput = (): string[] => {
@@ -45,8 +44,9 @@ const transformInput = (): string[] => {
 const run = () => {
   // Try to transform input to an array of changed files
   const changedFiles = transformInput();
-  console.log(changedFiles);
+
   // Try to invalidate the redis cache of changed blogs
+  invalidateCache(changedFiles);
 };
 
 run();
