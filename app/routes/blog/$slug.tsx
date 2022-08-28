@@ -1,5 +1,5 @@
 import { useLoaderData } from "@remix-run/react";
-import { json, Response } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import contentServer from "~/models/content/content.server";
 import Markdown from "~/components/markdown";
 

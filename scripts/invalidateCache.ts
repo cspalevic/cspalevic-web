@@ -45,3 +45,5 @@ const run = () => {
 };
 
 run();
+
+export {};
