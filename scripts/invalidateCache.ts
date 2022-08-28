@@ -22,14 +22,15 @@ const invalidateCache = async (changedFiles: string[] = []) => {
       const [, folder] = file.split("content/blog/");
       const [slug] = folder.split("/index.md");
       const res = await client.del(slug);
-      console.log(`Invalidated cache for ${slug}: ${res}`);
+      console.log(`Invalidated cache for ${slug}: ${res ? "OK" : "FAIL"}`);
       return res;
     });
   await Promise.all(blogsChanged);
   if (blogsChanged.length > 0) {
     const res = await client.del("all");
-    console.log(`Invalidated cache for all: ${res}`);
+    console.log(`Invalidated cache for all: ${res ? "OK" : "FAIL"}`);
   }
+  await client.disconnect();
 };
 
 const transformInput = (): string[] => {
@@ -47,6 +48,7 @@ const run = () => {
 
   // Try to invalidate the redis cache of changed blogs
   invalidateCache(changedFiles);
+  process.exit(0);
 };
 
 run();
