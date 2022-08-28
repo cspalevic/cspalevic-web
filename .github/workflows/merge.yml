@@ -12,13 +12,15 @@ jobs:
         run: npm ci
       - name: Build app
         run: npm run build
-      - id: changed-files
-        name: Get changed files
+      - name: Get changed files
+        id: changed-files
         uses: jitterbit/get-changed-files@v1
         with:
          format: 'json'
       - name: List all added files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all }}; do
-            echo "$file was added"
-          done
+        uses: actions/github-script@v1
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
+        with:
+          script: |
+            console.log(process.env.CHANGED_FILES)
