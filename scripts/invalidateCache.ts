@@ -13,7 +13,7 @@ client.on("error", (error) => {
   process.exit(1);
 });
 
-const run = async (changedFiles: string[] = []) => {
+const invalidateCache = async (changedFiles: string[] = []) => {
   await client.connect();
 
   const blogsChanged = changedFiles
@@ -28,5 +28,20 @@ const run = async (changedFiles: string[] = []) => {
   process.exit(0);
 };
 
-console.log(process.argv[2]);
+const transformInput = (): string[] => {
+  if (process.env.CHANGED_FILES) return process.env.CHANGED_FILES.split(",");
+
+  const args = process.argv.slice(2);
+  if (args.length === 0) return [];
+
+  return args[0].split(",");
+};
+
+const run = () => {
+  // Try to transform input to an array of changed files
+  const changedFiles = transformInput();
+  console.log(changedFiles);
+  // Try to invalidate the redis cache of changed blogs
+};
+
 run();

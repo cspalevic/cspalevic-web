@@ -1,4 +1,4 @@
-name: Update cache test
+name: Invalidate cache
 
 on: pull_request
 
@@ -17,10 +17,7 @@ jobs:
         uses: jitterbit/get-changed-files@v1
         with:
          format: 'csv'
-      - name: List all added files
-        uses: actions/github-script@v1
+      - name: Run cache invalidate script
         env:
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
-        with:
-          script: |
-            console.log(process.env.CHANGED_FILES)
+        run: ts-node scripts/invalidateCache
