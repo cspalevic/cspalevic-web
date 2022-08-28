@@ -1,14 +1,15 @@
 {
-  "include": ["app/**/*.ts", "app/**/*.tsx"],
+  "include": ["app/**/*.ts", "app/**/*.tsx", "scripts/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "isolatedModules": true,
+    "isolatedModules": false,
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "target": "ES2019",
+    "module": "ESNext",
+    "target": "ESNext",
     "strict": false,
     "noImplicitAny": false,
     "allowJs": true,

@@ -1,23 +1,28 @@
+export interface BlogMetadata {
+  title: string;
+  alt: string;
+  slug: string;
+  date: string;
+  image?: string;
+}
+
+export interface Blog {
+  metadata: BlogMetadata;
+  content: string;
+}
+
 /**
  * Interface to plug and play blog serving
- * Choices to choose from:
- * - file system (for fast local development)
- * - github (for production content)
- *
- * Future use case (for better pagination, sorting and searching support):
- * - faunadb
- * - mongodb
- * - algolia
  */
 export interface IContent {
   /**
    * Get a blog's content given its slug name
    * @returns blog content
    */
-  getContent: (slug: string) => Promise<string>;
+  getContent: (slug: string) => Promise<Blog | null>;
   /**
    * Get all blogs available
    * @returns all blogs
    */
-  getAllContent: () => Promise<string[]>;
+  getAllContent: () => Promise<BlogMetadata[]>;
 }

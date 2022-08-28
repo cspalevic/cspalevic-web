@@ -1,27 +1,19 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Card from "~/components/card";
-import contentServer from "~/models/content/index.server";
-import { extractData } from "~/models/markdown.server";
-import { parse, parseAndFormat } from "~/utils/date";
+import contentServer from "~/models/content/content.server";
+import { parseAndFormat } from "~/utils/date";
+
+import type { LoaderFunction } from "@remix-run/server-runtime";
+import type { BlogMetadata } from "~/models/content/types";
 
 interface LoaderData {
   blogs: BlogMetadata[];
 }
 
-export const loader = async () => {
+export const loader: LoaderFunction = async () => {
   const contentList = await contentServer.getAllContent();
-  let metadataList = await Promise.all(
-    contentList.map(async (content) => {
-      const { metadata } = await extractData(content);
-      return metadata;
-    })
-  );
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-  metadataList = metadataList.sort((prev, curr) =>
-    parse(prev.date).isAfter(parse(curr.date)) ? -1 : 1
-  );
-  return json<LoaderData>({ blogs: metadataList });
+  return json<LoaderData>({ blogs: contentList });
 };
 
 const BlogList: React.FC = () => {
