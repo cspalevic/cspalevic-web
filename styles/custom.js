@@ -47,14 +47,29 @@ const custom = () => {
       h4: {
         fontSize: theme("fontSize.xl"),
       },
+      code: {
+        backgroundColor: theme("colors.gray[200]"),
+        color: theme("colors.pink[600]"),
+        borderRadius: "2px",
+        padding: "0 2px",
+      },
     });
     addComponents({
       html: {
         fontFamily: "Noto Sans, sans-serif",
         fontSize: "16px",
       },
+      ".dark code": {
+        backgroundColor: theme("colors.gray[800]"),
+        color: theme("colors.pink[400]"),
+      },
       ".dark blockquote": {
         backgroundColor: theme("colors.gray[800]"),
+      },
+      ".md-content": {
+        a: {
+          color: theme("colors.blue[500]"),
+        },
       },
       // Tailwind seems to break down when you want to apply
       // styles to child elements during an event

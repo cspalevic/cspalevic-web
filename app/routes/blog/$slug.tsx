@@ -27,11 +27,11 @@ const BlogSlug: React.FC = () => {
 
   return (
     <div className="flex w-full h-full flex-col">
-      <h1 className="text-center">{metadata.title}</h1>
-      <h4 className="text-center">{metadata.date}</h4>
+      <h1 className="md:text-center">{metadata.title}</h1>
+      <h4 className="md:text-center">{metadata.date}</h4>
       <Markdown
         content={content}
-        className="mt-5 grid grid-rows-1 gap-y-6 w-full flex-col"
+        className="mt-5 grid grid-rows-1 gap-y-6 w-full flex-col md-content"
       />
     </div>
   );
