@@ -5,7 +5,6 @@ const logger = createLogger({
   level: "info",
   format: combine(prettyPrint(), simple()),
   transports: [
-    // We are using a
     new transports.Console({
       format: simple(),
     }),

@@ -11,7 +11,7 @@ const Index: FC = () => {
     <div className="flex h-full flex-col md:flex-row md:items-center md:justify-center">
       <div className="relative flex-row pb-10 pt-5">
         <Image
-          filename="me.jpg"
+          path="me.jpg"
           alt="Me, smiling in Hawaii"
           transformations={{
             crop: true,
@@ -27,7 +27,7 @@ const Index: FC = () => {
             { text: "Chicago, IL", iconName: IconName.Place },
             { text: "Illinois State University", iconName: IconName.School },
             { text: "Software Engineer, PayPal", iconName: IconName.Office },
-            { text: "cedomir.spalevic@gmail.com", iconName: IconName.Email },
+            { text: "hey@cspalevic.com", iconName: IconName.Email },
           ].map(({ text, iconName }) => (
             <div key={text} className="flex flex-row items-center">
               <Icon as={iconName} />

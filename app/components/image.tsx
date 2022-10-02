@@ -13,7 +13,7 @@ interface Transformations {
 }
 
 interface Props extends ImgHTMLAttributes<HTMLImageElement> {
-  filename: string;
+  path: string;
   // Adding alt as prop to suppress alt-text eslint rule
   // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/alt-text.md
   alt: string;
@@ -21,13 +21,11 @@ interface Props extends ImgHTMLAttributes<HTMLImageElement> {
   transformations?: Transformations;
 }
 
-const BASE_URL = "https://cedomir.mo.cloudinary.net/images";
+const BASE_URL = "https://cedomir.mo.cloudinary.net/assets";
 const ERROR_IMAGE = "error.png";
 
-const buildImageUrl = (
-  filename: string,
-  transformations: Transformations = {}
-) => {
+const buildImageUrl = (path: string, transformations: Transformations = {}) => {
+  if (path.startsWith("/")) path = path.substring(1);
   const {
     quality = "auto",
     format = "auto",
@@ -39,11 +37,11 @@ const buildImageUrl = (
   if (crop) txQuery += `,c_crop`;
   if (width) txQuery += `,w_${width}`;
   if (height) txQuery += `,h_${height}`;
-  return `${BASE_URL}/${filename}?${txQuery}`;
+  return `${BASE_URL}/${path}?${txQuery}`;
 };
 
 const Image: FC<Props> = ({
-  filename,
+  path,
   hideOnError = false,
   alt = "",
   transformations = {},
@@ -51,7 +49,7 @@ const Image: FC<Props> = ({
 }) => {
   const [hidden, setHidden] = useState<boolean>(false);
   const [image, setImage] = useState<string>(
-    buildImageUrl(filename, transformations)
+    buildImageUrl(path, transformations)
   );
 
   const onError = () => {

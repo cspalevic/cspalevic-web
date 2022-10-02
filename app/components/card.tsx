@@ -5,7 +5,7 @@ import type { FC } from "react";
 
 interface Props {
   to: string;
-  image: string;
+  imagePath: string;
   alt: string;
   title: string;
   subTitle: string;
@@ -13,10 +13,10 @@ interface Props {
 
 // Extra card styles are applied as tailwindcss custom components
 // found in styles/custom.js
-const Card: FC<Props> = ({ to, image, alt, title, subTitle }) => (
+const Card: FC<Props> = ({ to, imagePath, alt, title, subTitle }) => (
   <Link to={to} className="card flex flex-col max-w-[450px]">
     <Image
-      filename={image}
+      path={imagePath}
       alt={alt}
       transformations={{
         crop: true,
