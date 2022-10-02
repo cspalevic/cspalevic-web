@@ -1,6 +1,5 @@
 ---
 title: First Blog Post
-slug: he-was-number-one
 date: 07-16-2022
 image: first.jpg
 alt: A picture of the number one

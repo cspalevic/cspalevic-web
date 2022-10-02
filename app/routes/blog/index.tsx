@@ -27,7 +27,7 @@ const BlogList: React.FC = () => {
           <Card
             key={blog.slug}
             to={`/blog/${blog.slug}`}
-            image={blog.image}
+            imagePath={`/${blog.slug}/${blog.image}`}
             alt={blog.alt}
             title={blog.title}
             subTitle={parseAndFormat(blog.date)}

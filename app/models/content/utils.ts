@@ -48,6 +48,7 @@ export const getAllBlogsMetadata = async (): Promise<BlogMetadata[]> => {
     .filter(({ type }) => type === "dir")
     .map(async ({ name }) => {
       const { metadata } = await getBlogFromGithub(name);
+      metadata.slug = name;
       return metadata;
     });
   return Promise.all(blogContents);

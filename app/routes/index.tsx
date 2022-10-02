@@ -11,7 +11,7 @@ const Index: FC = () => {
     <div className="flex h-full flex-col md:flex-row md:items-center md:justify-center">
       <div className="relative flex-row pb-10 pt-5">
         <Image
-          filename="me.jpg"
+          path="me.jpg"
           alt="Me, smiling in Hawaii"
           transformations={{
             crop: true,

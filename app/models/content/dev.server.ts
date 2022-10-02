@@ -20,6 +20,7 @@ const getAllContent: IContent["getAllContent"] = async () => {
     .filter((folderName) => isDirectory(`${BASE_PATH}/${folderName}`))
     .map(async (folderName) => {
       const { metadata } = await getContent(folderName);
+      metadata.slug = folderName;
       return metadata;
     });
   return Promise.all(blogContents);

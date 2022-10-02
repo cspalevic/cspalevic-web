@@ -8,6 +8,11 @@ const custom = () => {
         margin: "0 20px",
         listStyle: "disc",
       },
+      ol: {
+        padding: "0 20px",
+        margin: "0 20px",
+        listStyle: "decimal",
+      },
       li: {
         paddingTop: "5px",
       },
