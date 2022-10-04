@@ -1,6 +1,9 @@
 name: Invalidate cache
 
-on: pull_request
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,4 +26,4 @@ jobs:
           REDIS_PORT: ${{ secrets.REDIS_PORT }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
           CHANGED_FILES: ${{ steps.changed-files.outputs.all }}
-        run: tsx scripts/invalidateCache
+        run: npx tsx scripts/invalidateCache
