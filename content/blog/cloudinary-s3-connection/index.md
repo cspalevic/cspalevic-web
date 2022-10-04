@@ -13,15 +13,6 @@ Before jumping in, here's a bit of background:
 
 [Cloudinary Media Optimizer](https://cloudinary.com/documentation/media_optimizer) is a service that allows you to transform and optimize media on the fly. It works by setting up a storage location (such as [AWS S3](https://aws.amazon.com/s3/)) and then setting up a connection between your Cloudinary account and that storage location. Cloudinary will then read from that storage location and serve the media to your site.
 
-```mermaid
-flowchart LR
-    browser[Browser]
-    cloudinary[Cloudinary]
-    s3[AWS S3]
-    browser <--> cloudinary
-    cloudinary <--> s3
-```
-
 ## Set up
 
 In order to follow this tutorial, you need the following:

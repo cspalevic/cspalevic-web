@@ -1,19 +1,19 @@
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import contentServer from "~/models/content/content.server";
-import Markdown from "~/components/markdown";
 
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { Blog } from "~/models/content/types";
 
 interface LoaderData {
-  blog?: Blog;
+  blog: Blog;
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
   const blog = await contentServer.getContent(params.slug);
 
-  // TODO: handle 404. Below does not seem to work
+  // TODO
+  // Running the below gives me: TypeError: body used already for:
   // https://remix.run/docs/en/v1/guides/not-found
   //if (!blog) throw new Response("Not found", { status: 404 });
 
@@ -22,16 +22,21 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const BlogSlug: React.FC = () => {
   const {
-    blog: { metadata, content },
+    blog: {
+      metadata: { title, date },
+      html,
+    },
   } = useLoaderData<LoaderData>();
 
   return (
     <div className="flex w-full h-full flex-col">
-      <h1 className="md:text-center">{metadata.title}</h1>
-      <h4 className="md:text-center">{metadata.date}</h4>
-      <Markdown
-        content={content}
+      <h1 className="md:text-center">{title}</h1>
+      <h4 className="md:text-center">{date}</h4>
+      <div
         className="mt-5 grid grid-rows-1 gap-y-6 w-full flex-col md-content"
+        dangerouslySetInnerHTML={{
+          __html: html,
+        }}
       />
     </div>
   );

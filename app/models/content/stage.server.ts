@@ -1,10 +1,10 @@
-import { getAllBlogsMetadata, getBlogFromGithub } from "./utils";
+import { getBlogMetadataList, getBlog } from "./utils";
 
 import type { IContent } from "./types";
 
 const contentServer: IContent = {
-  getContent: getBlogFromGithub,
-  getAllContent: getAllBlogsMetadata,
+  getContent: getBlog,
+  getAllContent: getBlogMetadataList,
 };
 
 export default contentServer;
