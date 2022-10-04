@@ -1,8 +1,8 @@
 {
-  "include": ["app/**/*.ts", "app/**/*.tsx"],
+  "include": ["app/**/*.ts", "app/**/*.tsx", "scripts/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -20,9 +20,4 @@
     },
     "noEmit": true
   },
-  "ts-node": {
-    "compilerOptions": {
-      "isolatedModules": false
-    }
-  }
 }

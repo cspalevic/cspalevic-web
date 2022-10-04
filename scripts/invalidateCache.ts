@@ -1,4 +1,9 @@
-const redis = require("redis");
+import * as redis from "redis";
+import * as dotenv from "dotenv";
+
+dotenv.config({
+  override: false,
+});
 
 const client = redis.createClient({
   socket: {
@@ -8,12 +13,17 @@ const client = redis.createClient({
   password: process.env.REDIS_PASSWORD,
 });
 
+client.on("connect", () => {
+  console.log("Connected to Redis...");
+});
+
 client.on("error", (error) => {
   console.error("Redis error: ", error);
   process.exit(1);
 });
 
 const invalidateCache = async (changedFiles: string[] = []) => {
+  console.log(`${changedFiles.length} files changed`);
   await client.connect();
 
   const blogsChanged = changedFiles
@@ -42,13 +52,19 @@ const transformInput = (): string[] => {
   return args[0].split(",");
 };
 
-const run = () => {
+const run = async () => {
   // Try to transform input to an array of changed files
   const changedFiles = transformInput();
 
   // Try to invalidate the redis cache of changed blogs
-  invalidateCache(changedFiles);
-  process.exit(0);
+  try {
+    await invalidateCache(changedFiles);
+  } catch (error) {
+    console.error("Error while invalidating Redis cache...");
+    console.error(error);
+  } finally {
+    process.exit(0);
+  }
 };
 
 run();
