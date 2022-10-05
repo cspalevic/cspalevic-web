@@ -3,12 +3,13 @@ import {
   getRepositoryFileContent,
   getRepositoryFolderContent,
 } from "~/services/github.server";
+import { convertToHtml } from "~/utils/markdown";
 
-import type { Blog, BlogMetadata } from "./types";
+import type { Blog, BlogMetadata, MarkdownContent } from "./types";
 
-export const extractData = (markdown: string): Blog => {
+export const extractData = (markdown: string): MarkdownContent => {
   const { data, content } = frontmatter(markdown);
-  return { metadata: data, content };
+  return { metadata: data, markdown: content };
 };
 
 const PATH_PREFIX = "content/blog";
@@ -18,38 +19,52 @@ const REPO_OWNER = process.env.VERCEL_GIT_REPO_OWNER;
 const REPO_NAME = process.env.VERCEL_GIT_REPO_SLUG;
 const REPO_BRANCH = process.env.VERCEL_GIT_COMMIT_REF;
 
-export const getBlogFromGithub = async (
-  folderName: string
-): Promise<Blog | null> => {
+const getFileContent = async (folderName: string): Promise<string> => {
   try {
-    const data = await getRepositoryFileContent({
+    const response = await getRepositoryFileContent({
       owner: REPO_OWNER,
       repo: REPO_NAME,
       ref: REPO_BRANCH,
       path: `${PATH_PREFIX}/${folderName}/${BLOG_FILENAME}`,
     });
-    const content = Buffer.from(data.content, "base64").toString();
-    return extractData(content);
+    return Buffer.from(response.content, "base64").toString();
   } catch (error) {
-    // TODO: handle 404s
-    //if (error.name === "HttpError" && error.status === 404) return null;
+    // TODO
+    // 404 Handling - return null to indicate that we should show a not found page
+    // if (error.name === "HttpError" && error.status === 404) return null;
     throw error;
   }
 };
 
-export const getAllBlogsMetadata = async (): Promise<BlogMetadata[]> => {
-  const data = await getRepositoryFolderContent({
+export const getBlog = async (folderName: string): Promise<Blog> => {
+  const fileContent = await getFileContent(folderName);
+  const { metadata, markdown } = extractData(fileContent);
+  const html = convertToHtml(markdown);
+  return {
+    metadata: {
+      ...metadata,
+      slug: folderName,
+    },
+    html,
+  };
+};
+
+export const getBlogMetadataList = async (): Promise<BlogMetadata[]> => {
+  const folderContent = await getRepositoryFolderContent({
     owner: REPO_OWNER,
     repo: REPO_NAME,
     ref: REPO_BRANCH,
     path: PATH_PREFIX,
   });
-  const blogContents = data
+  const blogContents = folderContent
     .filter(({ type }) => type === "dir")
     .map(async ({ name }) => {
-      const { metadata } = await getBlogFromGithub(name);
-      metadata.slug = name;
-      return metadata;
+      const fileContent = await getFileContent(name);
+      const { metadata } = extractData(fileContent);
+      return {
+        ...metadata,
+        slug: name,
+      };
     });
   return Promise.all(blogContents);
 };
