@@ -9,8 +9,13 @@ renderer.code = (code: string, language: string) => {
   }</blockquote>`;
 };
 
+// .img-lightbox class will trigger the image lightbox component and styles
+renderer.image = (href: string, title: string, text: string) => {
+  return `<img src="${href}" class="img-lightbox" alt="${text}" />`;
+};
+
 renderer.link = (href: string, title: string, text: string) => {
-  return `<a target="_blank" href="${href}" title="${title}">${text}</a>`;
+  return `<a target="_blank" href="${href}">${text}</a>`;
 };
 
 marked.use({ renderer, async: true });

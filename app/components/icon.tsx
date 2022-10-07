@@ -10,58 +10,51 @@ import {
   DownloadIcon,
   PencilIcon,
   PlusIcon,
+  XIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
 } from "@heroicons/react/outline";
 
-import type { FC, ElementType } from "react";
+import type { FC } from "react";
 
-export enum IconName {
-  Sun,
-  Moon,
-  Place,
-  School,
-  Office,
-  Email,
-  Code,
-  ExternalLink,
-  Download,
-  Pencil,
-  Add,
-}
+const iconMap = {
+  sun: SunIcon,
+  moon: MoonIcon,
+  place: LocationMarkerIcon,
+  school: AcademicCapIcon,
+  office: OfficeBuildingIcon,
+  email: AtSymbolIcon,
+  code: CodeIcon,
+  link: ExternalLinkIcon,
+  download: DownloadIcon,
+  pencil: PencilIcon,
+  add: PlusIcon,
+  close: XIcon,
+  zoomIn: ZoomInIcon,
+  zoomOut: ZoomOutIcon,
+};
 
-type IconSize = "sm" | "lg";
+const iconSize = {
+  sm: "w-8",
+  lg: "w-10",
+};
+
+export type IconType = keyof typeof iconMap;
+export type IconSize = keyof typeof iconSize;
 
 interface Props {
-  as: IconName;
+  type: IconType;
   size?: IconSize;
   className?: string;
   [rest: string]: any;
 }
 
-const iconMap: { [key in IconName]: ElementType } = {
-  [IconName.Sun]: SunIcon,
-  [IconName.Moon]: MoonIcon,
-  [IconName.Place]: LocationMarkerIcon,
-  [IconName.School]: AcademicCapIcon,
-  [IconName.Office]: OfficeBuildingIcon,
-  [IconName.Email]: AtSymbolIcon,
-  [IconName.Code]: CodeIcon,
-  [IconName.ExternalLink]: ExternalLinkIcon,
-  [IconName.Download]: DownloadIcon,
-  [IconName.Pencil]: PencilIcon,
-  [IconName.Add]: PlusIcon,
-};
-
-const iconSize: { [key in IconSize]: string } = {
-  sm: "w-8",
-  lg: "w-10",
-};
-
 const classes = "text-gray-800 dark:text-gray-50";
 
-const Icon: FC<Props> = ({ as, size = "sm", className, ...rest }) => {
-  if (!(as in iconMap)) return null;
+const Icon: FC<Props> = ({ type, size = "sm", className, ...rest }) => {
+  if (!(type in iconMap)) return null;
 
-  const Component = iconMap[as];
+  const Component = iconMap[type];
   let componentClassNames = `${iconSize[size]} ${classes}`;
   if (className) componentClassNames += ` ${className}`;
   return <Component className={componentClassNames} {...rest} />;

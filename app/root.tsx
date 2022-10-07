@@ -9,6 +9,7 @@ import Base from "./base";
 import baseStyles from "./styles/base.css";
 import highLightStyles from "./styles/materialdark.css";
 import fontStyles from "./styles/fonts.css";
+import lightboxStyles from "react-18-image-lightbox/style.css";
 
 import type {
   MetaFunction,
@@ -38,6 +39,7 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: baseStyles },
     { rel: "stylesheet", href: highLightStyles },
     { rel: "stylesheet", href: fontStyles },
+    { rel: "stylesheet", href: lightboxStyles },
     {
       rel: "apple-touch-icon",
       sizes: "180x180",

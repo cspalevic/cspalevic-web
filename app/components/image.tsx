@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import type { FC, ImgHTMLAttributes } from "react";
+import React, { forwardRef, useState } from "react";
 
 interface Transformations {
   // https://cloudinary.com/documentation/media_optimizer_transformation_reference#q_quality
@@ -12,13 +10,14 @@ interface Transformations {
   crop?: boolean;
 }
 
-interface Props extends ImgHTMLAttributes<HTMLImageElement> {
-  path: string;
+interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
+  path?: string;
   // Adding alt as prop to suppress alt-text eslint rule
   // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/alt-text.md
   alt: string;
   hideOnError?: boolean;
   transformations?: Transformations;
+  ref?: React.ForwardedRef<HTMLImageElement>;
 }
 
 const BASE_URL = "https://cedomir.mo.cloudinary.net/assets";
@@ -40,7 +39,8 @@ const buildImageUrl = (path: string, transformations: Transformations = {}) => {
   return `${BASE_URL}/${path}?${txQuery}`;
 };
 
-const Image: FC<Props> = ({
+const Image: React.FC<Props> = ({
+  src,
   path,
   hideOnError = false,
   alt = "",
@@ -49,7 +49,7 @@ const Image: FC<Props> = ({
 }) => {
   const [hidden, setHidden] = useState<boolean>(false);
   const [image, setImage] = useState<string>(
-    buildImageUrl(path, transformations)
+    !src ? buildImageUrl(path, transformations) : src
   );
 
   const onError = () => {
@@ -73,4 +73,9 @@ const Image: FC<Props> = ({
   );
 };
 
-export default Image;
+// eslint-disable-next-line react/display-name
+const ForwardImage = forwardRef<HTMLImageElement, Props>((props, ref) => (
+  <Image {...props} ref={ref} />
+));
+
+export default ForwardImage;

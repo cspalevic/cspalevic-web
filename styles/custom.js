@@ -75,6 +75,9 @@ const custom = () => {
         a: {
           color: theme("colors.blue[500]"),
         },
+        ".img-lightbox": {
+          cursor: "pointer",
+        },
       },
       // Tailwind seems to break down when you want to apply
       // styles to child elements during an event

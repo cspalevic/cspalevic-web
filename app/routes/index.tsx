@@ -1,10 +1,23 @@
-import Icon, { IconName } from "~/components/icon";
+import Icon from "~/components/icon";
 import Image from "~/components/image";
 import Error from "~/components/error";
 
 import type { FC } from "react";
+import type { IconType } from "~/components/icon";
 
 export const ErrorBoundary = ({ error }) => <Error error={error} />;
+
+interface Info {
+  text: string;
+  iconType: IconType;
+}
+
+const info: Info[] = [
+  { text: "Chicago, IL", iconType: "place" },
+  { text: "Illinois State University", iconType: "school" },
+  { text: "Software Engineer, PayPal", iconType: "office" },
+  { text: "hey@cspalevic.com", iconType: "email" },
+];
 
 const Index: FC = () => {
   return (
@@ -23,14 +36,9 @@ const Index: FC = () => {
           loading="eager"
         />
         <div className="space-y-3 pt-5">
-          {[
-            { text: "Chicago, IL", iconName: IconName.Place },
-            { text: "Illinois State University", iconName: IconName.School },
-            { text: "Software Engineer, PayPal", iconName: IconName.Office },
-            { text: "hey@cspalevic.com", iconName: IconName.Email },
-          ].map(({ text, iconName }) => (
+          {info.map(({ text, iconType }) => (
             <div key={text} className="flex flex-row items-center">
-              <Icon as={iconName} />
+              <Icon type={iconType} />
               <span className="pl-3">{text}</span>
             </div>
           ))}
