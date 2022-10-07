@@ -36,7 +36,7 @@ If you haven't already, let's navigate over to the AWS Console and search for S3
 
 When creating a new `Bucket`, make sure that the `Block all public access` box is checked and save it.
 
-![The create S3 Bucket form with emphasis on blocking public access](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/create-s3-bucket.png?tx=q_auto,f_auto,w_550)
+![The create S3 Bucket form with emphasis on blocking public access](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/create-s3-bucket.png?tx=q_auto,f_auto,w_350)
 
 ### Secure Access through IAM
 
@@ -78,13 +78,13 @@ In the AWS IAM console, select `Policies` and create a new policy. For this new 
 
 Your policy form should look like this:
 
-![The create policy form](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/aws-new-policy.png?tx=q_auto,f_auto,w_350)
+![The create policy form](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/aws-new-policy.png?tx=q_auto,f_auto)
 
 #### Create a new user
 
 Back in the IAM console, go to `Access Management`, select `Users` and let's add a new User. Name it whatever you want and ensure you have the `Access key - Programmatic access` box checked. Hit `Next` to move on to permissions.
 
-![The create new user form with emphasis on selecting programmatic access](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/new-aws-user.png?tx=q_auto,f_auto,w_350)
+![The create new user form with emphasis on selecting programmatic access](https://cedomir.mo.cloudinary.net/assets/cloudinary-s3-connection/new-aws-user.png?tx=q_auto,f_auto)
 
 For permissions, select `Attach existing policies directly` and add the policy we just created above.
 
