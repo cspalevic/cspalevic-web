@@ -1,5 +1,7 @@
 import { marked } from "marked";
 import hljs from "highlight.js";
+import { JSDOM } from "jsdom";
+import DOMPurify from "dompurify";
 
 const renderer = new marked.Renderer();
 renderer.code = (code: string, language: string) => {
@@ -20,4 +22,9 @@ renderer.link = (href: string, title: string, text: string) => {
 
 marked.use({ renderer, async: true });
 
-export const convertToHtml = (markdown: string) => marked.parse(markdown);
+export const convertToHtml = (markdown: string) => {
+  const html = marked.parse(markdown);
+  const window = new JSDOM("").window;
+  const purify = DOMPurify(window);
+  return purify.sanitize(html);
+};
