@@ -1,7 +1,7 @@
-import { marked } from "marked";
+import DOMPurify from "dompurify";
 import hljs from "highlight.js";
 import { JSDOM } from "jsdom";
-import DOMPurify from "dompurify";
+import { marked } from "marked";
 
 const renderer = new marked.Renderer();
 renderer.code = (code: string, language: string) => {

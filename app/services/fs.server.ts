@@ -6,6 +6,8 @@ const readFile = util.promisify(fs.readFile);
 
 export const isDirectory = (path: string) => fs.lstatSync(path).isDirectory();
 
+export const doesExist = (path: string) => fs.existsSync(path);
+
 export const getFileContents = async (path: string) => readFile(path, "utf-8");
 
 export const getDirectoryContents = async (path: string) => readDir(path);

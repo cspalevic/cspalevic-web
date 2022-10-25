@@ -1,6 +1,5 @@
-import { generateRobotsTxt, generateSitemap } from "@balavishnuvj/remix-seo";
-
 import type { EntryContext } from "@remix-run/node";
+import { generateRobotsTxt, generateSitemap } from "@balavishnuvj/remix-seo";
 
 type Handler = (
   request: Request,

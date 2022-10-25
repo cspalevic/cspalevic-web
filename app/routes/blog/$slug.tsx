@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/node";
-import contentServer from "~/models/content/content.server";
-import Lightbox from "react-18-image-lightbox";
-
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { Blog } from "~/models/content/types";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { useState } from "react";
+import Lightbox from "react-18-image-lightbox";
+import contentServer from "~/models/content/content.server";
 
 interface LoaderData {
   blog: Blog;
@@ -14,10 +13,10 @@ interface LoaderData {
 export const loader: LoaderFunction = async ({ params }) => {
   const blog = await contentServer.getContent(params.slug);
 
-  // TODO
+  // TODO: Still not working :/
   // Running the below gives me: TypeError: body used already for:
   // https://remix.run/docs/en/v1/guides/not-found
-  //if (!blog) throw new Response("Not found", { status: 404 });
+  // if (!blog) throw new Response("Not found", { status: 404 });
 
   return json<LoaderData>({ blog });
 };

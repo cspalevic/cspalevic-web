@@ -1,15 +1,13 @@
+import type { SessionData } from "~/models/session/types";
 import { useLoaderData } from "@remix-run/react";
 import Page from "./components/page";
 import ThemeProvider from "./providers/theme";
 
-import type { FC, ReactNode } from "react";
-import type { SessionData } from "~/models/session/types";
-
 interface Props {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
-const Base: FC<Props> = ({ children }) => {
+const Base: React.FC<Props> = ({ children }) => {
   const data = useLoaderData<SessionData>();
   return (
     <ThemeProvider theme={data?.theme}>

@@ -1,9 +1,7 @@
+import type { IconType } from "~/components/icon";
+import Error from "~/components/error";
 import Icon from "~/components/icon";
 import Image from "~/components/image";
-import Error from "~/components/error";
-
-import type { FC } from "react";
-import type { IconType } from "~/components/icon";
 
 export const ErrorBoundary = ({ error }) => <Error error={error} />;
 
@@ -19,7 +17,7 @@ const info: Info[] = [
   { text: "hey@cspalevic.com", iconType: "email" },
 ];
 
-const Index: FC = () => {
+const Index: React.FC = () => {
   return (
     <div className="flex h-full flex-col md:flex-row md:items-center md:justify-center">
       <div className="relative flex-row pb-10 pt-5">

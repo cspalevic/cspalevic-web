@@ -1,6 +1,5 @@
-import { getBlogMetadataList, getBlog } from "./utils";
-
 import type { IContent } from "./types";
+import { getBlogMetadataList, getBlog } from "./utils";
 
 const contentServer: IContent = {
   getContent: getBlog,

@@ -1,11 +1,9 @@
 import { Link } from "@remix-run/react";
-import { useTheme } from "~/providers/theme";
 import { Theme } from "~/models/session/types";
+import { useTheme } from "~/providers/theme";
 import Icon from "./icon";
 
-import type { FC } from "react";
-
-const Header: FC = () => {
+const Header: React.FC = () => {
   const theme = useTheme();
 
   return (

@@ -12,7 +12,7 @@ export interface Blog {
 }
 
 export interface MarkdownContent {
-  metadata: Pick<BlogMetadata, "title" | "date" | "image" | "alt">;
+  metadata: Omit<BlogMetadata, "slug">;
   markdown: string;
 }
 
@@ -24,7 +24,7 @@ export interface IContent {
    * Get a blog's content given its slug name
    * @returns blog content
    */
-  getContent: (slug: string) => Promise<Blog>;
+  getContent: (slug: string) => Promise<Blog | null>;
   /**
    * Get all blogs available
    * @returns all blogs
