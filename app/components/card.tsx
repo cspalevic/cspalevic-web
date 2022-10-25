@@ -1,8 +1,6 @@
 import { Link } from "@remix-run/react";
 import Image from "./image";
 
-import type { FC } from "react";
-
 interface Props {
   to: string;
   imagePath: string;
@@ -13,7 +11,7 @@ interface Props {
 
 // Extra card styles are applied as tailwindcss custom components
 // found in styles/custom.js
-const Card: FC<Props> = ({ to, imagePath, alt, title, subTitle }) => (
+const Card: React.FC<Props> = ({ to, imagePath, alt, title, subTitle }) => (
   <Link to={to} className="card flex flex-col max-w-[450px]">
     <Image
       path={imagePath}

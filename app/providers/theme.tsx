@@ -1,8 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import { THEME_COOKIE, setCookie } from "~/utils/cookies";
 import { Theme } from "~/models/session/types";
-
-import type { FC, ReactNode } from "react";
+import { THEME_COOKIE, setCookie } from "~/utils/cookies";
 
 type Context = {
   value: Theme;
@@ -13,13 +11,13 @@ const ThemeContext = createContext<Context | undefined>(undefined);
 
 interface Props {
   theme?: Theme;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const getDefaultValue = (theme?: Theme) =>
   theme === Theme.Dark ? Theme.Dark : Theme.Light;
 
-const ThemeProvider: FC<Props> = ({ theme, children }) => {
+const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
   const [value, setValue] = useState(getDefaultValue(theme));
 
   const toggleTheme = () => {

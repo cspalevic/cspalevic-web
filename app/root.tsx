@@ -1,21 +1,19 @@
-import { Links, Outlet } from "@remix-run/react";
-import { json } from "@remix-run/node";
-import { withSentry } from "@sentry/remix";
-import { getSessionValues } from "./models/session/session.server";
-import NotFound from "./components/notFound";
-import Error from "./components/error";
-import Base from "./base";
-
-import baseStyles from "./styles/base.css";
-import highLightStyles from "./styles/materialdark.css";
-import fontStyles from "./styles/fonts.css";
-import lightboxStyles from "react-18-image-lightbox/style.css";
-
 import type {
   MetaFunction,
   LinksFunction,
   LoaderFunction,
 } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { Links, Outlet } from "@remix-run/react";
+import { withSentry } from "@sentry/remix";
+import lightboxStyles from "react-18-image-lightbox/style.css";
+import Base from "./base";
+import Error from "./components/error";
+import NotFound from "./components/notFound";
+import { getSessionValues } from "./models/session/session.server";
+import baseStyles from "./styles/base.css";
+import fontStyles from "./styles/fonts.css";
+import highLightStyles from "./styles/materialdark.css";
 
 export const ErrorBoundary = ({ error }) => (
   <html lang="en" className="h-full">

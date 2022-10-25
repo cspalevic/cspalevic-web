@@ -1,13 +1,11 @@
 import { workExperiences, skills } from "./data";
 
-import type { ReactNode, FC } from "react";
-
 interface SectionProps {
   header: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const Section: FC<SectionProps> = ({ header, children }) => (
+const Section: React.FC<SectionProps> = ({ header, children }) => (
   <>
     <h3 className="w-full bg-primary-blue p-2 text-center text-white">
       {header}
@@ -16,7 +14,7 @@ const Section: FC<SectionProps> = ({ header, children }) => (
   </>
 );
 
-const Resume: FC = () => {
+const Resume: React.FC = () => {
   return (
     <div id="resume" className="flex w-full flex-col">
       <div className="w-100 relative flex flex-col items-center justify-center pb-5">

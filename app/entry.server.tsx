@@ -1,13 +1,12 @@
-import { PassThrough } from "stream";
-import { renderToPipeableStream } from "react-dom/server";
-import { RemixServer } from "@remix-run/react";
+import type { EntryContext } from "@remix-run/node";
 import { Response } from "@remix-run/node";
+import { RemixServer } from "@remix-run/react";
 import { init } from "@sentry/remix";
 import isBot from "isbot";
+import { renderToPipeableStream } from "react-dom/server";
+import { PassThrough } from "stream";
 import logger from "./models/logger.server";
 import { otherRootRouteHandlers } from "./otherRoutes.server";
-
-import type { EntryContext } from "@remix-run/node";
 
 init({
   dsn: process.env.SENTRY_DSN,

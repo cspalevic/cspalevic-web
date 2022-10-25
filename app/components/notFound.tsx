@@ -1,4 +1,4 @@
-// Shout unDraw.co for the awesome ilustrations
+// Shoutout unDraw.co for the awesome ilustrations
 // https://undraw.co/illustrations
 const NotFound = () => (
   <div className="flex h-full w-full flex-1 flex-col items-center justify-center px-5">

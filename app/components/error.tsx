@@ -1,11 +1,9 @@
-import type { FC } from "react";
-
 interface Props {
   error?: Error;
 }
 // Shout unDraw.co for the awesome ilustrations
 // https://undraw.co/illustrations
-const ErrorReporter: FC<Props> = ({ error }) => {
+const ErrorReporter: React.FC<Props> = ({ error }) => {
   console.error("Error occurred");
   console.error(error.stack);
   return (

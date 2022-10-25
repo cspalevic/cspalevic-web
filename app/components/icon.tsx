@@ -15,8 +15,6 @@ import {
   ZoomOutIcon,
 } from "@heroicons/react/outline";
 
-import type { FC } from "react";
-
 const iconMap = {
   sun: SunIcon,
   moon: MoonIcon,
@@ -51,7 +49,7 @@ interface Props {
 
 const classes = "text-gray-800 dark:text-gray-50";
 
-const Icon: FC<Props> = ({ type, size = "sm", className, ...rest }) => {
+const Icon: React.FC<Props> = ({ type, size = "sm", className, ...rest }) => {
   if (!(type in iconMap)) return null;
 
   const Component = iconMap[type];

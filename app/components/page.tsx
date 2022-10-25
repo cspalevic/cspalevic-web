@@ -1,3 +1,4 @@
+import type { SessionData } from "~/models/session/types";
 import {
   Links,
   LiveReload,
@@ -6,20 +7,17 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import Header from "./header";
-import { useTheme } from "~/providers/theme";
 import { Theme } from "~/models/session/types";
-
-import type { SessionData } from "~/models/session/types";
-import type { FC, ReactNode } from "react";
+import { useTheme } from "~/providers/theme";
+import Header from "./header";
 
 interface Props {
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const classes = "h-full";
 
-const Page: FC<Props> = ({ children }) => {
+const Page: React.FC<Props> = ({ children }) => {
   const data = useLoaderData<SessionData>();
   const theme = useTheme();
 

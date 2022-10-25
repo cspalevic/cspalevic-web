@@ -1,11 +1,10 @@
+import type { Blog, BlogMetadata, MarkdownContent } from "./types";
 import frontmatter from "@github-docs/frontmatter";
 import {
   getRepositoryFileContent,
   getRepositoryFolderContent,
 } from "~/services/github.server";
 import { convertToHtml } from "~/utils/markdown";
-
-import type { Blog, BlogMetadata, MarkdownContent } from "./types";
 
 export const extractData = (markdown: string): MarkdownContent => {
   const { data, content } = frontmatter(markdown);

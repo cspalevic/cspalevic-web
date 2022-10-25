@@ -1,9 +1,10 @@
+import type { RestEndpointMethodTypes } from "@octokit/rest";
 import { Octokit } from "@octokit/rest";
 
-import type { RestEndpointMethodTypes } from "@octokit/rest";
+const { OCTOKIT_API_KEY } = process.env;
 
 const octokit = new Octokit({
-  auth: process.env.OCTOKIT_API_KEY,
+  auth: OCTOKIT_API_KEY,
   userAgent: "cedomir.tech OctoKit API Key",
   timeZone: "America/Chicago",
 });

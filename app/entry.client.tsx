@@ -1,8 +1,8 @@
-import { hydrateRoot } from "react-dom/client";
-import { startTransition, useEffect } from "react";
 import { RemixBrowser, useMatches, useLocation } from "@remix-run/react";
 import { init, remixRouterInstrumentation } from "@sentry/remix";
 import { BrowserTracing } from "@sentry/tracing";
+import { startTransition, useEffect } from "react";
+import { hydrateRoot } from "react-dom/client";
 
 init({
   dsn: window.ENV?.SENTRY_DSN,

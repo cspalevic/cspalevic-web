@@ -1,19 +1,23 @@
+import type { IContent } from "./types";
 import {
   getFileContents,
   getDirectoryContents,
   isDirectory,
+  doesExist,
 } from "~/services/fs.server";
-import { extractData } from "./utils";
-
-import type { IContent } from "./types";
 import { convertToHtml } from "~/utils/markdown";
+import { extractData } from "./utils";
 
 const BASE_PATH = "./content/blog";
 
-const readFile = (folderName: string) =>
-  getFileContents(`${BASE_PATH}/${folderName}/index.md`);
+const buildPath = (folderName: string) => `${BASE_PATH}/${folderName}/index.md`;
+
+const readFile = (folderName: string) => getFileContents(buildPath(folderName));
 
 const getContent: IContent["getContent"] = async (folderName: string) => {
+  const fileExists = doesExist(buildPath(folderName));
+  if (!fileExists) return null;
+
   const fileContent = await readFile(folderName);
   const { metadata, markdown } = extractData(fileContent);
   const html = convertToHtml(markdown);

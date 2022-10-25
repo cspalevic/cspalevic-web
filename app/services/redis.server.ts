@@ -1,12 +1,14 @@
 import * as redis from "redis";
 import logger from "~/models/logger.server";
 
+const { REDIS_HOST, REDIS_PORT, REDIS_PASSWORD } = process.env;
+
 const client = redis.createClient({
   socket: {
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT, 10),
+    host: REDIS_HOST,
+    port: parseInt(REDIS_PORT, 10),
   },
-  password: process.env.REDIS_PASSWORD,
+  password: REDIS_PASSWORD,
 });
 client.connect();
 

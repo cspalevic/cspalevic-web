@@ -1,7 +1,6 @@
+import type { SessionData } from "./types";
 import { getCookie } from "../../utils/cookies";
 import { Theme } from "./types";
-
-import type { SessionData } from "./types";
 
 export const getSessionValues = (request: Request): SessionData => {
   const cookies = request.headers.get("Cookie");
