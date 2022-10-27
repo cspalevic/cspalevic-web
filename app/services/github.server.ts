@@ -41,6 +41,9 @@ const getRepositoryContent = async <T>(
   return data as T;
 };
 
-export const getRepositoryFolderContent: typeof getRepositoryContent<RepositoryContent[]> = getRepositoryContent;
+export const getRepositoryFolderContent: typeof getRepositoryContent<
+  RepositoryContent[]
+> = getRepositoryContent;
 
-export const getRepositoryFileContent: typeof getRepositoryContent<RepositoryContent> = getRepositoryContent;
+export const getRepositoryFileContent: typeof getRepositoryContent<RepositoryContent> =
+  getRepositoryContent;

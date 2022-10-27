@@ -23,13 +23,16 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
 const BASE_URL = "https://cedomir.mo.cloudinary.net/assets";
 const ERROR_IMAGE = "error.png";
 
-const buildImageUrl = (path: string, {
-  quality = "auto",
-  format = "auto",
-  crop = false,
-  width = "",
-  height = "",
-}: Transformations = {}) => {
+const buildImageUrl = (
+  path: string,
+  {
+    quality = "auto",
+    format = "auto",
+    crop = false,
+    width = "",
+    height = "",
+  }: Transformations = {}
+) => {
   if (path.startsWith("/")) path = path.substring(1);
 
   let txQuery = `tx=q_${quality},f_${format}`;

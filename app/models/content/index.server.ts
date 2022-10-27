@@ -5,14 +5,12 @@ import RedisContentServer from "./redis.server";
 
 let contentServer: IContent;
 
-if(process.env.NODE_ENV === "development") {
-    contentServer = new FileSystemContentServer();
-}
-else if(process.env.VERCEL_ENV === "preview") {
-    contentServer = new GithubContentServer();
-}
-else {
-    contentServer = new RedisContentServer();
+if (process.env.NODE_ENV === "development") {
+  contentServer = new FileSystemContentServer();
+} else if (process.env.VERCEL_ENV === "preview") {
+  contentServer = new GithubContentServer();
+} else {
+  contentServer = new RedisContentServer();
 }
 
 export default contentServer;

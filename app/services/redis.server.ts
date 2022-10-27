@@ -16,7 +16,10 @@ client.on("error", (error) => {
   logger.error("Redis error: ", error);
 });
 
-export const cacheGetSetWrapper = async <T>(key: string, fn: () => Promise<T>) => {
+export const cacheGetSetWrapper = async <T>(
+  key: string,
+  fn: () => Promise<T>
+) => {
   const hit = await client.get(key);
   if (hit) return JSON.parse(hit) as T;
   const result = await fn();

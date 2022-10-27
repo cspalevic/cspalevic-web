@@ -12,7 +12,7 @@ class RedisContentServer extends GithubContentServer implements IContent {
   async getAllContent() {
     return cacheGetSetWrapper("all", () => {
       return super.getAllContent();
-    })
+    });
   }
 }
 

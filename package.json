@@ -2,13 +2,14 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm-run-all build:css lint typecheck --parallel build:app",
+    "build": "npm-run-all build:css lint format:check typecheck --parallel build:app",
     "build:app": "remix build",
     "build:css": "tailwindcss -c ./styles/tailwind.config.js -o ./app/styles/base.css --minify",
     "dev": "run-p dev:*",
     "dev:app": "remix dev",
     "dev:css": "tailwindcss -c ./styles/tailwind.config.js -o ./app/styles/base.css --watch",
     "format": "prettier --write app/ content/ styles/",
+    "format:check": "prettier --check app/ content/ styles/",
     "lint": "eslint app/ content/ styles/ --no-error-on-unmatched-pattern",
     "typecheck": "tsc",
     "prepare": "husky install"
