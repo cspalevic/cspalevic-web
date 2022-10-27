@@ -1,10 +1,10 @@
-
+import type { IContent } from "./types";
 import {
   getRepositoryFileContent,
   getRepositoryFolderContent,
 } from "~/services/github.server";
 import { convertToHtml } from "~/utils/markdown";
-import { extractData } from "./utils";import type { IContent } from "./types";
+import { extractData } from "./utils";
 
 class GithubContentServer implements IContent {
   private PATH_PREFIX: string = "content/blog";
