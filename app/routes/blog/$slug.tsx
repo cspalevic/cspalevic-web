@@ -4,7 +4,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import Lightbox from "react-18-image-lightbox";
-import contentServer from "~/models/content/content.server";
+import contentServer from "~/models/content/index.server";
 
 interface LoaderData {
   blog: Blog;
