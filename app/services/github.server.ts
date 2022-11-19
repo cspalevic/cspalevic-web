@@ -1,4 +1,5 @@
 import type { RestEndpointMethodTypes } from "@octokit/rest";
+import { RequestError } from "@octokit/request-error";
 import { Octokit } from "@octokit/rest";
 
 const { OCTOKIT_API_KEY } = process.env;
@@ -45,5 +46,16 @@ export const getRepositoryFolderContent: typeof getRepositoryContent<
   RepositoryContent[]
 > = getRepositoryContent;
 
-export const getRepositoryFileContent: typeof getRepositoryContent<RepositoryContent> =
-  getRepositoryContent;
+// Only when requesting a single file will we handle specific 404 errors
+export const getRepositoryFileContent: typeof getRepositoryContent<
+  RepositoryContent | null
+> = async (params) => {
+  try {
+    return await getRepositoryContent(params);
+  } catch (error) {
+    if (error instanceof RequestError && error?.status === 404) {
+      return null;
+    }
+    throw error;
+  }
+};

@@ -13,10 +13,12 @@ interface LoaderData {
 export const loader: LoaderFunction = async ({ params }) => {
   const blog = await contentServer.getContent(params?.slug ?? "");
 
-  // TODO: Still not working :/
-  // Running the below gives me: TypeError: body used already for:
   // https://remix.run/docs/en/v1/guides/not-found
-  // if (!blog) throw new Response("Not found", { status: 404 });
+  if (!blog) {
+    throw new Response("Not found", {
+      status: 404,
+    });
+  }
 
   return json<LoaderData>({ blog });
 };

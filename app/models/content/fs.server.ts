@@ -29,7 +29,7 @@ class FileSystemContentServer implements IContent {
     return {
       metadata: {
         ...metadata,
-        slug: slug,
+        slug,
       },
       html,
     };
