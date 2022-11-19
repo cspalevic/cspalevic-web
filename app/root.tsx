@@ -5,7 +5,6 @@ import type {
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Links, Outlet } from "@remix-run/react";
-import { withSentry } from "@sentry/remix";
 import lightboxStyles from "react-18-image-lightbox/style.css";
 import Base from "./base";
 import Error from "./components/error";
@@ -79,4 +78,4 @@ const App: React.FC = () => (
   </Base>
 );
 
-export default withSentry(App);
+export default App;

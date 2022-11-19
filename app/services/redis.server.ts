@@ -23,6 +23,9 @@ export const cacheGetSetWrapper = async <T>(
   const hit = await client.get(key);
   if (hit) return JSON.parse(hit) as T;
   const result = await fn();
-  await client.set(key, JSON.stringify(result));
+  // Only cache if we have a proper value
+  if (result) {
+    await client.set(key, JSON.stringify(result));
+  }
   return result;
 };

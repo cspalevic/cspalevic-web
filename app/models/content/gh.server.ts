@@ -1,4 +1,4 @@
-import type { IContent } from "./types";
+import type { BlogMetadata, IContent } from "./types";
 import {
   getRepositoryFileContent,
   getRepositoryFolderContent,
@@ -16,24 +16,19 @@ class GithubContentServer implements IContent {
   private REPO_BRANCH: string = process.env.VERCEL_GIT_COMMIT_REF ?? "";
 
   private async getFileContent(folderName: string) {
-    try {
-      const response = await getRepositoryFileContent({
-        owner: this.REPO_OWNER,
-        repo: this.REPO_NAME,
-        ref: this.REPO_BRANCH,
-        path: `${this.PATH_PREFIX}/${folderName}/${this.BLOG_FILENAME}`,
-      });
-      return Buffer.from(response?.content ?? "", "base64").toString();
-    } catch (error) {
-      // TODO
-      // 404 Handling - return null to indicate that we should show a not found page
-      // if (error.name === "HttpError" && error.status === 404) return null;
-      throw error;
-    }
+    const response = await getRepositoryFileContent({
+      owner: this.REPO_OWNER,
+      repo: this.REPO_NAME,
+      ref: this.REPO_BRANCH,
+      path: `${this.PATH_PREFIX}/${folderName}/${this.BLOG_FILENAME}`,
+    });
+    if (!response) return null;
+    return Buffer.from(response?.content ?? "", "base64").toString();
   }
 
   public async getContent(slug: string) {
     const fileContent = await this.getFileContent(slug);
+    if (!fileContent) return null;
     const { metadata, markdown } = extractData(fileContent);
     const html = convertToHtml(markdown);
     return {
@@ -46,23 +41,24 @@ class GithubContentServer implements IContent {
   }
 
   public async getAllContent() {
-    const folderContent = await getRepositoryFolderContent({
+    const blogDirectoryContent = await getRepositoryFolderContent({
       owner: this.REPO_OWNER,
       repo: this.REPO_NAME,
       ref: this.REPO_BRANCH,
       path: this.PATH_PREFIX,
     });
-    const blogContents = folderContent
-      .filter(({ type }) => type === "dir")
-      .map(async ({ name }) => {
-        const fileContent = await this.getFileContent(name);
-        const { metadata } = extractData(fileContent);
-        return {
-          ...metadata,
-          slug: name,
-        };
+    const blogs: BlogMetadata[] = [];
+    for (const { type, name } of blogDirectoryContent) {
+      if (type !== "dir") continue;
+      const fileContent = await this.getFileContent(name);
+      if (fileContent === null) continue;
+      const { metadata } = extractData(fileContent);
+      blogs.push({
+        ...metadata,
+        slug: name,
       });
-    return Promise.all(blogContents);
+    }
+    return blogs;
   }
 }
 
