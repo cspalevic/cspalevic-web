@@ -1,5 +1,5 @@
-import * as redis from "redis";
 import * as dotenv from "dotenv";
+import * as redis from "redis";
 
 dotenv.config({
   override: false,
@@ -39,6 +39,8 @@ const invalidateCache = async (changedFiles: string[] = []) => {
   if (blogsChanged.length > 0) {
     const res = await client.del("all");
     console.log(`Invalidated cache for all: ${res ? "OK" : "FAIL"}`);
+  } else {
+    console.log("No blog changes detected");
   }
   await client.disconnect();
 };
