@@ -11,9 +11,9 @@ class GithubContentServer implements IContent {
   private BLOG_FILENAME: string = "index.md";
 
   // https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables
-  private REPO_OWNER: string = process.env.VERCEL_GIT_REPO_OWNER;
-  private REPO_NAME: string = process.env.VERCEL_GIT_REPO_SLUG;
-  private REPO_BRANCH: string = process.env.VERCEL_GIT_COMMIT_REF;
+  private REPO_OWNER: string = process.env.VERCEL_GIT_REPO_OWNER ?? "";
+  private REPO_NAME: string = process.env.VERCEL_GIT_REPO_SLUG ?? "";
+  private REPO_BRANCH: string = process.env.VERCEL_GIT_COMMIT_REF ?? "";
 
   private async getFileContent(folderName: string) {
     try {
@@ -23,7 +23,7 @@ class GithubContentServer implements IContent {
         ref: this.REPO_BRANCH,
         path: `${this.PATH_PREFIX}/${folderName}/${this.BLOG_FILENAME}`,
       });
-      return Buffer.from(response.content, "base64").toString();
+      return Buffer.from(response?.content ?? "", "base64").toString();
     } catch (error) {
       // TODO
       // 404 Handling - return null to indicate that we should show a not found page

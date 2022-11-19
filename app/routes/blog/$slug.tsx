@@ -7,11 +7,11 @@ import Lightbox from "react-18-image-lightbox";
 import contentServer from "~/models/content/index.server";
 
 interface LoaderData {
-  blog: Blog;
+  blog: Maybe<Blog>;
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const blog = await contentServer.getContent(params.slug);
+  const blog = await contentServer.getContent(params?.slug ?? "");
 
   // TODO: Still not working :/
   // Running the below gives me: TypeError: body used already for:
@@ -22,12 +22,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 const BlogSlug: React.FC = () => {
-  const {
-    blog: {
-      metadata: { title, date },
-      html,
-    },
-  } = useLoaderData<LoaderData>();
+  const { blog } = useLoaderData<LoaderData>();
   const [lightboxImageSrc, setLightboxImageSrc] = useState<string | null>(null);
 
   const lightboxClickListener: React.MouseEventHandler<HTMLDivElement> = (
@@ -54,12 +49,12 @@ const BlogSlug: React.FC = () => {
       onClick={lightboxClickListener}
       className="flex w-full h-full flex-col"
     >
-      <h1 className="md:text-center">{title}</h1>
-      <h4 className="md:text-center">{date}</h4>
+      <h1 className="md:text-center">{blog?.metadata?.title}</h1>
+      <h4 className="md:text-center">{blog?.metadata?.date}</h4>
       <div
         className="mt-5 grid grid-rows-1 gap-y-6 w-full flex-col md-content"
         dangerouslySetInnerHTML={{
-          __html: html,
+          __html: blog?.html ?? "",
         }}
       />
       {!!lightboxImageSrc && (

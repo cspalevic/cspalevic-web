@@ -1,11 +1,11 @@
 interface Props {
-  error?: Error;
+  error: Maybe<Error>;
 }
 // Shout unDraw.co for the awesome ilustrations
 // https://undraw.co/illustrations
 const ErrorReporter: React.FC<Props> = ({ error }) => {
   console.error("Error occurred");
-  console.error(error.stack);
+  console.error(error?.stack);
   return (
     <div className="flex h-full w-full flex-1 flex-col items-center justify-center px-5">
       <h2 className="mb-5 text-center">Whoops, something went wrong.</h2>
