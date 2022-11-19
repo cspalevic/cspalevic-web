@@ -44,7 +44,7 @@ const buildImageUrl = (
 
 const Image: React.FC<Props> = ({
   src,
-  path,
+  path = "",
   hideOnError = false,
   alt = "",
   transformations = {},

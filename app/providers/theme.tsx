@@ -34,7 +34,10 @@ const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
 };
 
 export const useTheme = (): Context => {
-  const theme = useContext<Context>(ThemeContext);
+  const theme = useContext(ThemeContext);
+  if (theme === undefined) {
+    throw new Error("useTheme() must be inside a Provider with a value");
+  }
   return theme;
 };
 
