@@ -5,7 +5,7 @@ import {
   isDirectory,
   doesExist,
 } from "~/services/fs.server";
-import { convertToHtml } from "~/utils/markdown";
+import { convertToHtml } from "~/services/markdown.server";
 import { extractData } from "./utils";
 
 class FileSystemContentServer implements IContent {

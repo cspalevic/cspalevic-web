@@ -1,7 +1,9 @@
 import type { SessionData } from "~/models/session/types";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useLocation } from "@remix-run/react";
+import { useEffect } from "react";
 import Page from "./components/page";
 import ThemeProvider from "./providers/theme";
+import { collectWebVitalMetrics } from "./utils/webVitals";
 
 interface Props {
   children?: React.ReactNode;
@@ -9,6 +11,12 @@ interface Props {
 
 const Base: React.FC<Props> = ({ children }) => {
   const data = useLoaderData<SessionData>();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    collectWebVitalMetrics();
+  }, [pathname]);
+
   return (
     <ThemeProvider theme={data?.theme}>
       <Page>{children}</Page>
