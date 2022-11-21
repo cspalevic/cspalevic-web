@@ -11,9 +11,12 @@ export const action: ActionFunction = async ({ request }) => {
       405
     );
   }
-
+  const url = new URL(request.url);
   const params = await request.json();
-  await reportVitals(params);
+  await reportVitals({
+    ...params,
+    origin: url.origin,
+  });
 
   return json({ success: true }, 200);
 };

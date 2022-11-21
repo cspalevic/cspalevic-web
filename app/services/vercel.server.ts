@@ -2,7 +2,7 @@ import { fetch } from "@remix-run/node";
 import logger from "~/models/logger.server";
 
 const BASE_PATH = "https://vitals.vercel-analytics.com/v1";
-const { VERCEL_URL, VERCEL_ANALYTICS_ID } = process.env;
+const { VERCEL_ANALYTICS_ID } = process.env;
 
 type VitalParams = {
   id: string;
@@ -10,13 +10,14 @@ type VitalParams = {
   path: string;
   speed: string;
   value: number;
+  origin: string;
 };
 
 // https://vercel.com/docs/concepts/analytics/api
 export const reportVitals = async (params: Maybe<VitalParams>) => {
   const body: Record<string, string> = {
     dsn: VERCEL_ANALYTICS_ID ?? "",
-    href: VERCEL_URL?.concat(params?.path ?? "") ?? "",
+    href: `${params?.origin}/${params?.path}`,
     event_name: params?.name ?? "",
     id: params?.id ?? "",
     page: params?.path ?? "",
