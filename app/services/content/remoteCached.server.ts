@@ -1,8 +1,11 @@
 import type { IContent } from "./types";
 import { cacheGetSetWrapper } from "~/services/redis.server";
-import GithubContentServer from "./gh.server";
+import GithubContentServer from "./remote.server";
 
-class RedisContentServer extends GithubContentServer implements IContent {
+class RemoteCachedContentServer
+  extends GithubContentServer
+  implements IContent
+{
   async getContent(slug: string) {
     return cacheGetSetWrapper(slug, () => {
       return super.getContent(slug);
@@ -16,4 +19,4 @@ class RedisContentServer extends GithubContentServer implements IContent {
   }
 }
 
-export default RedisContentServer;
+export default RemoteCachedContentServer;

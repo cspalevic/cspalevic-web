@@ -1,5 +1,4 @@
 import { Link } from "@remix-run/react";
-import { Theme } from "~/models/session/types";
 import { useTheme } from "~/providers/theme";
 import Icon from "./icon";
 
@@ -26,10 +25,10 @@ const Header: React.FC = () => {
       <div className="flex items-center">
         <button aria-label="Change theme" onClick={() => theme?.toggleTheme()}>
           <Icon
-            type={theme?.value === Theme.Dark ? "sun" : "moon"}
+            type={theme?.isDarkMode ? "sun" : "moon"}
             size="lg"
             className={
-              theme?.value === Theme.Dark
+              theme?.isDarkMode
                 ? "transition dark:hover:text-yellow-600"
                 : "transition hover:text-gray-400"
             }

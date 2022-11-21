@@ -1,9 +1,7 @@
 import { createContext, useContext, useState } from "react";
-import { Theme } from "~/models/session/types";
-import { THEME_COOKIE, setCookie } from "~/utils/cookies";
 
 type Context = {
-  value: Theme;
+  isDarkMode: boolean;
   toggleTheme: Function;
 };
 
@@ -14,20 +12,18 @@ interface Props {
   children: React.ReactNode;
 }
 
-const getDefaultValue = (theme?: Theme) =>
-  theme === Theme.Dark ? Theme.Dark : Theme.Light;
-
 const ThemeProvider: React.FC<Props> = ({ theme, children }) => {
-  const [value, setValue] = useState(getDefaultValue(theme));
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(theme === "dark");
 
   const toggleTheme = () => {
-    const newTheme = value === Theme.Dark ? Theme.Light : Theme.Dark;
-    setCookie(THEME_COOKIE, newTheme);
-    setValue(newTheme);
+    setIsDarkMode(!isDarkMode);
+    fetch("/actions/theme", {
+      method: "POST",
+    });
   };
 
   return (
-    <ThemeContext.Provider value={{ value, toggleTheme }}>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
