@@ -3,7 +3,7 @@ import {
   getRepositoryFileContent,
   getRepositoryFolderContent,
 } from "~/services/github.server";
-import { convertToHtml } from "~/utils/markdown";
+import { convertToHtml } from "~/services/markdown.server";
 import { extractData } from "./utils";
 
 class GithubContentServer implements IContent {
