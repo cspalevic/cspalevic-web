@@ -17,7 +17,7 @@ type VitalParams = {
 export const reportVitals = async (params: Maybe<VitalParams>) => {
   const body: Record<string, string> = {
     dsn: VERCEL_ANALYTICS_ID ?? "",
-    href: `${params?.origin}/${params?.path}`,
+    href: params?.origin?.concat(params?.path) ?? "",
     event_name: params?.name ?? "",
     id: params?.id ?? "",
     page: params?.path ?? "",
