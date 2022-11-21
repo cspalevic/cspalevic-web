@@ -4,7 +4,7 @@ export enum Theme {
 }
 
 export interface ENV {
-  SENTRY_DSN: string;
+  VERCEL_ANALYTICS_ID: string;
   NODE_ENV: NodeJS.ProcessEnv["NODE_ENV"];
 }
 
