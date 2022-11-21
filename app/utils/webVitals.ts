@@ -2,7 +2,7 @@ import type { Metric } from "web-vitals";
 import { onCLS, onFCP, onFID, onINP, onLCP, onTTFB } from "web-vitals";
 
 const sendMetric = (metric: Metric) => {
-  fetch("/actions/log", {
+  fetch("/actions/vitals", {
     method: "POST",
     body: JSON.stringify({
       id: metric.id,

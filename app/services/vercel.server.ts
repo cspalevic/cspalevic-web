@@ -1,7 +1,7 @@
 import { fetch } from "@remix-run/node";
 
 const BASE_PATH = "https://api.vercel.com/v1";
-const { VERCEL_URL, VERCEL_API_KEY, VERCEL_ANALYTICS_ID } = process.env;
+const { VERCEL_URL, VERCEL_ANALYTICS_ID } = process.env;
 
 type VitalParams = {
   id: string;
@@ -17,15 +17,12 @@ export const reportVitals = async (params: VitalParams) => {
     method: "POST",
     body: JSON.stringify({
       dsn: VERCEL_ANALYTICS_ID,
-      href: VERCEL_URL,
+      href: VERCEL_URL?.concat(params.path),
       event_name: params.name,
       id: params.id,
       page: params.path,
       speed: params.speed,
       value: params.value,
     }),
-    headers: {
-      Authorization: `Bearer ${VERCEL_API_KEY}`,
-    },
   });
 };
