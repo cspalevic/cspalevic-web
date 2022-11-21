@@ -4,8 +4,8 @@ import { RemixServer } from "@remix-run/react";
 import isBot from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { PassThrough } from "stream";
-import logger from "./models/logger.server";
 import { otherRootRouteHandlers } from "./otherRoutes.server";
+import logger from "./services/logger.server";
 
 const ABORT_DELAY = 5000;
 

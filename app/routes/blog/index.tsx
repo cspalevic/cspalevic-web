@@ -1,9 +1,9 @@
 import type { LoaderFunction } from "@remix-run/server-runtime";
-import type { BlogMetadata } from "~/models/content/types";
+import type { BlogMetadata } from "~/services/content/types";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Card from "~/components/card";
-import contentServer from "~/models/content/index.server";
+import contentServer from "~/services/content/index.server";
 import { parseAndFormat } from "~/utils/date";
 
 interface LoaderData {

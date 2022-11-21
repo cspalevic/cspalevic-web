@@ -1,10 +1,10 @@
 import type { LoaderFunction } from "@remix-run/server-runtime";
-import type { Blog } from "~/models/content/types";
+import type { Blog } from "~/services/content/types";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import Lightbox from "react-18-image-lightbox";
-import contentServer from "~/models/content/index.server";
+import contentServer from "~/services/content/index.server";
 
 interface LoaderData {
   blog: Maybe<Blog>;

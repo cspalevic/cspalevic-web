@@ -1,5 +1,5 @@
 import * as redis from "redis";
-import logger from "~/models/logger.server";
+import logger from "~/services/logger.server";
 
 const { REDIS_HOST, REDIS_PORT, REDIS_PASSWORD } = process.env;
 

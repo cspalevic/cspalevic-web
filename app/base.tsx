@@ -1,4 +1,3 @@
-import type { SessionData } from "~/models/session/types";
 import { useLoaderData, useLocation } from "@remix-run/react";
 import { useEffect } from "react";
 import Page from "./components/page";
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const Base: React.FC<Props> = ({ children }) => {
-  const data = useLoaderData<SessionData>();
+  const data = useLoaderData<RootData>();
   const { pathname } = useLocation();
 
   useEffect(() => {

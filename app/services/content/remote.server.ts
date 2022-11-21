@@ -6,7 +6,7 @@ import {
 import { convertToHtml } from "~/services/markdown.server";
 import { extractData } from "./utils";
 
-class GithubContentServer implements IContent {
+class RemoteContentServer implements IContent {
   private PATH_PREFIX: string = "content/blog";
   private BLOG_FILENAME: string = "index.md";
 
@@ -62,4 +62,4 @@ class GithubContentServer implements IContent {
   }
 }
 
-export default GithubContentServer;
+export default RemoteContentServer;

@@ -9,27 +9,10 @@ import lightboxStyles from "react-18-image-lightbox/style.css";
 import Base from "./base";
 import Error from "./components/error";
 import NotFound from "./components/notFound";
-import { getSessionValues } from "./models/session/session.server";
+import ThemeController from "./services/theme.server";
 import baseStyles from "./styles/base.css";
 import fontStyles from "./styles/fonts.css";
 import highLightStyles from "./styles/materialdark.css";
-
-export const ErrorBoundary = ({ error }) => (
-  <html lang="en" className="h-full">
-    <head>
-      <Links />
-    </head>
-    <body className="flex h-full justify-center text-gray-800 dark:text-gray-50 bg-neutral-50 dark:bg-neutral-900">
-      <Error error={error} />
-    </body>
-  </html>
-);
-
-export const CatchBoundary = () => (
-  <Base>
-    <NotFound />
-  </Base>
-);
 
 export const links: LinksFunction = () => {
   return [
@@ -67,9 +50,35 @@ export const meta: MetaFunction = () => ({
   description: "Charlie Spalevic's personal website",
 });
 
+export const ErrorBoundary = ({ error }) => (
+  <html lang="en" className="h-full">
+    <head>
+      <Links />
+    </head>
+    <body className="flex h-full justify-center text-gray-800 dark:text-gray-50 bg-neutral-50 dark:bg-neutral-900">
+      <Error error={error} />
+    </body>
+  </html>
+);
+
+export const CatchBoundary = () => (
+  <Base>
+    <NotFound />
+  </Base>
+);
+
 export const loader: LoaderFunction = async ({ request }) => {
-  const data = getSessionValues(request);
-  return json(data);
+  const themeController = await ThemeController.getSession(request);
+  const theme = themeController.getTheme();
+  const responseHeaders = await themeController.save();
+  const data = {
+    theme,
+    env: {
+      VERCEL_ANALYTICS_ID: process.env.VERCEL_ANALYTICS_ID ?? "",
+      NODE_ENV: process.env.NODE_ENV ?? "",
+    },
+  };
+  return json(data, responseHeaders);
 };
 
 const App: React.FC = () => (

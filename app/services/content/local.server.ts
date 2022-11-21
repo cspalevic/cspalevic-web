@@ -8,7 +8,7 @@ import {
 import { convertToHtml } from "~/services/markdown.server";
 import { extractData } from "./utils";
 
-class FileSystemContentServer implements IContent {
+class LocalContentServer implements IContent {
   private BASE_PATH: string = "./content/blog";
 
   private buildPath(folderName: string) {
@@ -51,4 +51,4 @@ class FileSystemContentServer implements IContent {
   }
 }
 
-export default FileSystemContentServer;
+export default LocalContentServer;

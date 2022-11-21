@@ -1,4 +1,3 @@
-import type { SessionData } from "~/models/session/types";
 import {
   Links,
   LiveReload,
@@ -7,7 +6,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { Theme } from "~/models/session/types";
 import { useTheme } from "~/providers/theme";
 import Header from "./header";
 
@@ -18,13 +16,13 @@ interface Props {
 const classes = "h-full";
 
 const Page: React.FC<Props> = ({ children }) => {
-  const data = useLoaderData<SessionData>();
+  const data = useLoaderData<RootData>();
   const theme = useTheme();
 
   // Adding dark mode class to toggle dark mode for tailwindcss
   // https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
   let className = classes;
-  if (theme?.value === Theme.Dark) className += " dark";
+  if (theme?.isDarkMode) className += " dark";
 
   return (
     <html lang="en" className={className}>
