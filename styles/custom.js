@@ -79,6 +79,32 @@ const custom = () => {
           cursor: "pointer",
         },
       },
+      ".dark table": {
+        thead: {
+          backgroundColor: theme("colors.gray[800]"),
+        },
+      },
+      table: {
+        thead: {
+          backgroundColor: theme("colors.gray[200]"),
+          borderRadius: "5px",
+        },
+        th: {
+          textAlign: "left",
+          padding: "5px",
+        },
+        "th:first-child": {
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px",
+        },
+        "th:last-child": {
+          borderTopRightRadius: "5px",
+          borderBottomRightRadius: "5px",
+        },
+        td: {
+          padding: "5px",
+        },
+      },
       // Tailwind seems to break down when you want to apply
       // styles to child elements during an event
       ".card": {
