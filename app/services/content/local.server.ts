@@ -1,4 +1,4 @@
-import type { IContent } from "./types";
+import type { BlogMetadata, IContent } from "./types";
 import {
   getFileContents,
   getDirectoryContents,
@@ -36,18 +36,23 @@ class LocalContentServer implements IContent {
   }
 
   public async getAllContent() {
-    const directoryContents = await getDirectoryContents(this.BASE_PATH);
-    const blogContents = directoryContents
-      .filter((folderName) => isDirectory(`${this.BASE_PATH}/${folderName}`))
-      .map(async (folderName) => {
-        const fileContent = await this.readFile(folderName);
-        const { metadata } = extractData(fileContent);
-        return {
-          ...metadata,
-          slug: folderName,
-        };
+    const blogDirectoryContent = await getDirectoryContents(this.BASE_PATH);
+    const blogs: BlogMetadata[] = [];
+    for (const folderName of blogDirectoryContent) {
+      if (!isDirectory(`${this.BASE_PATH}/${folderName}`)) continue;
+      const fileContent = await this.readFile(folderName);
+      const { metadata } = extractData(fileContent);
+      blogs.push({
+        ...metadata,
+        slug: folderName,
       });
-    return Promise.all(blogContents);
+    }
+    const sortedBlogs = blogs.sort((a, b) => {
+      const firstBlogCreateTime = new Date(a.date).getTime();
+      const secondBlogCreateTime = new Date(b.date).getTime();
+      return firstBlogCreateTime > secondBlogCreateTime ? -1 : 1;
+    });
+    return sortedBlogs;
   }
 }
 

@@ -58,7 +58,12 @@ class RemoteContentServer implements IContent {
         slug: name,
       });
     }
-    return blogs;
+    const sortedBlogs = blogs.sort((a, b) => {
+      const firstBlogCreateTime = new Date(a.date).getTime();
+      const secondBlogCreateTime = new Date(b.date).getTime();
+      return firstBlogCreateTime > secondBlogCreateTime ? -1 : 1;
+    });
+    return sortedBlogs;
   }
 }
 
