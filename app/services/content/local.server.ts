@@ -6,7 +6,7 @@ import {
   doesExist,
 } from "~/services/fs.server";
 import { convertToHtml } from "~/services/markdown.server";
-import { extractData } from "./utils";
+import { extractData, sortBlogs } from "./utils";
 
 class LocalContentServer implements IContent {
   private BASE_PATH: string = "./content/blog";
@@ -47,12 +47,7 @@ class LocalContentServer implements IContent {
         slug: folderName,
       });
     }
-    const sortedBlogs = blogs.sort((a, b) => {
-      const firstBlogCreateTime = new Date(a.date).getTime();
-      const secondBlogCreateTime = new Date(b.date).getTime();
-      return firstBlogCreateTime > secondBlogCreateTime ? -1 : 1;
-    });
-    return sortedBlogs;
+    return sortBlogs(blogs);
   }
 }
 

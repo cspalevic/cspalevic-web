@@ -4,7 +4,7 @@ import {
   getRepositoryFolderContent,
 } from "~/services/github.server";
 import { convertToHtml } from "~/services/markdown.server";
-import { extractData } from "./utils";
+import { extractData, sortBlogs } from "./utils";
 
 class RemoteContentServer implements IContent {
   private PATH_PREFIX: string = "content/blog";
@@ -58,12 +58,7 @@ class RemoteContentServer implements IContent {
         slug: name,
       });
     }
-    const sortedBlogs = blogs.sort((a, b) => {
-      const firstBlogCreateTime = new Date(a.date).getTime();
-      const secondBlogCreateTime = new Date(b.date).getTime();
-      return firstBlogCreateTime > secondBlogCreateTime ? -1 : 1;
-    });
-    return sortedBlogs;
+    return sortBlogs(blogs);
   }
 }
 
