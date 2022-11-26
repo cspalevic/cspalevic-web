@@ -7,9 +7,9 @@ alt: <alt text of the image you placed in cloudinary>
 
 ## Introduction
 
-I've been hearing all the fuss about QUIC and HTTP/3 and how it will make the web faster. So, I wanted to dig in and learn some of this myself.
+I've been hearing all the fuss about QUIC and HTTP/3 and how they will make the web faster. So, I wanted to dig in and learn some of this myself.
 
-I'm going to be showing you:
+I'll be sharing with you what I've learned so far, like:
 
 - The difference between QUIC and HTTP/3
 - Why is this expected to be so much faster
@@ -18,32 +18,29 @@ I'm going to be showing you:
 
 ## QUIC vs HTTP/3
 
-Before we dive into the differences between the two, we need to take a step back and understand some of the foundations to internet networking.
+I quickly learned that QUIC and HTTP/3 are not the same things. To explain this, let's dive a bit deeper into computer networking.
 
-In order to connect to the magic of the internet, a computer must implement the below 7 layers.
+To power the magic of the internet, a computer must be able to send information to another computer. To do this, it must follow 4 steps (better known as layers):
 | Order | Name | Description |
-| ----- | ------------------ | ----------- |
-| 7 | Application Layer | // TODO |
-| 6 | Presentation Layer | // TODO |
-| 5 | Session Layer | // TODO |
-| 4 | Transport Layer | // TODO |
-| 3 | Network Layer | // TODO |
-| 2 | Datalink Layer | // TODO |
-| 1 | Physical Layer | // TODO |
+| ----- | ---- | ----------- |
+| 4 | Application Layer | // TODO |
+| 3 | Transport Layer | // TODO |
+| 2 | Internet Layer | // TODO |
+| 1 | Network Layer | // TODO |
 
-Together, this makes up the Open Systems Interconnection (OSI) Model. Which allows computers to communicate with each other using a set of standards that will be different for every layer.
+Together, this makes up the TCP/IP Model. This is a foundational networking model that defines how computers can communicate with each other.
 
-HTTP, the protocol which we all know and love, is used at layer 7 of the model. As developers, we are most likely going to use standards created for this layer for any applications that we create. Some of those are:
+HTTP, the protocol which we all know and love, is used at layer 4 of the model. As developers, we are most likely going to use standards created for this layer for any applications that we create. Some of those are:
 
 - HTTP
 - WebSocket
-- Server Sent Events
+- Server-Sent Events
 
 Under the hood of HTTP, it uses TCP. Any information we are sending over HTTP will be piggybacking on the TCP request to a different computer. TCP will be found at the transport layer of the OSI model.
 
 Now that we have some of that background information, we can explain the difference between QUIC and HTTP/3.
 
-HTTP/3 is the next version of the protocol. Under the hood, it will be using the QUIC protocol to actually send the request to different computers.
+HTTP/3 is the next version of the protocol. Under the hood, it will be using the QUIC protocol to send the request to different computers.
 
 ## Speed improvements with HTTP/3
 
