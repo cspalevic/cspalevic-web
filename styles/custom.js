@@ -101,6 +101,9 @@ const custom = () => {
           borderTopRightRadius: "5px",
           borderBottomRightRadius: "5px",
         },
+        tr: {
+          verticalAlign: "top",
+        },
         td: {
           padding: "5px",
         },
