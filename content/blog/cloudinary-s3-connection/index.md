@@ -15,12 +15,12 @@ Before jumping in, here's a bit of background:
 
 ## Set up
 
-In order to follow this tutorial, you need the following:
+To follow this tutorial, you need the following:
 
 - A [Cloudinary](https://cloudinary.com/) account
   - [Pricing note](https://cloudinary.com/pricing)\* - Cloudinary has an excellent free tier
 - An [AWS](https://aws.amazon.com/) account
-  - [Pricing note](https://aws.amazon.com/s3/pricing/)\* - for basic sites, S3 is basically nothing
+  - [Pricing note](https://aws.amazon.com/s3/pricing/)\* - for basic sites, S3 is almost nothing
 
 We will first go through the AWS setup materials and then move over to Cloudinary to finish the setup. Time to jump in!
 
