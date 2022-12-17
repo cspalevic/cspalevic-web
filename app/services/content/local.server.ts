@@ -1,4 +1,4 @@
-import type { IContent } from "./types";
+import type { BlogMetadata, IContent } from "./types";
 import {
   getFileContents,
   getDirectoryContents,
@@ -6,7 +6,7 @@ import {
   doesExist,
 } from "~/services/fs.server";
 import { convertToHtml } from "~/services/markdown.server";
-import { extractData } from "./utils";
+import { extractData, sortBlogs } from "./utils";
 
 class LocalContentServer implements IContent {
   private BASE_PATH: string = "./content/blog";
@@ -36,18 +36,18 @@ class LocalContentServer implements IContent {
   }
 
   public async getAllContent() {
-    const directoryContents = await getDirectoryContents(this.BASE_PATH);
-    const blogContents = directoryContents
-      .filter((folderName) => isDirectory(`${this.BASE_PATH}/${folderName}`))
-      .map(async (folderName) => {
-        const fileContent = await this.readFile(folderName);
-        const { metadata } = extractData(fileContent);
-        return {
-          ...metadata,
-          slug: folderName,
-        };
+    const blogDirectoryContent = await getDirectoryContents(this.BASE_PATH);
+    const blogs: BlogMetadata[] = [];
+    for (const folderName of blogDirectoryContent) {
+      if (!isDirectory(`${this.BASE_PATH}/${folderName}`)) continue;
+      const fileContent = await this.readFile(folderName);
+      const { metadata } = extractData(fileContent);
+      blogs.push({
+        ...metadata,
+        slug: folderName,
       });
-    return Promise.all(blogContents);
+    }
+    return sortBlogs(blogs);
   }
 }
 

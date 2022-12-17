@@ -76,6 +76,9 @@
     "importOrderTypeImportsToTop": true
   },
   "lint-staged": {
+    "*.md": [
+      "npm run format"
+    ],
     "*.{tsx,js,ts}": [
       "npm run format",
       "npm run lint"

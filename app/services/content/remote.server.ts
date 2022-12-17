@@ -4,7 +4,7 @@ import {
   getRepositoryFolderContent,
 } from "~/services/github.server";
 import { convertToHtml } from "~/services/markdown.server";
-import { extractData } from "./utils";
+import { extractData, sortBlogs } from "./utils";
 
 class RemoteContentServer implements IContent {
   private PATH_PREFIX: string = "content/blog";
@@ -58,7 +58,7 @@ class RemoteContentServer implements IContent {
         slug: name,
       });
     }
-    return blogs;
+    return sortBlogs(blogs);
   }
 }
 
