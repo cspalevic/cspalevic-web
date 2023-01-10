@@ -1,5 +1,7 @@
 import React, { forwardRef, useState } from "react";
 
+type CropMode = "crop" | "fill";
+
 interface Transformations {
   // https://cloudinary.com/documentation/media_optimizer_transformation_reference#q_quality
   quality?: "auto";
@@ -7,7 +9,8 @@ interface Transformations {
   format?: "auto" | "webm" | "gif" | "jpg" | "png";
   width?: string;
   height?: string;
-  crop?: boolean;
+  // https://cloudinary.com/documentation/transformation_reference#c_crop_resize
+  cropMode?: CropMode;
 }
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -28,15 +31,15 @@ const buildImageUrl = (
   {
     quality = "auto",
     format = "auto",
-    crop = false,
-    width = "",
-    height = "",
+    width,
+    height,
+    cropMode,
   }: Transformations = {}
 ) => {
   if (path.startsWith("/")) path = path.substring(1);
 
   let txQuery = `tx=q_${quality},f_${format}`;
-  if (crop) txQuery += `,c_crop`;
+  if (cropMode) txQuery = `tx=c_${cropMode}`;
   if (width) txQuery += `,w_${width}`;
   if (height) txQuery += `,h_${height}`;
   return `${BASE_URL}/${path}?${txQuery}`;

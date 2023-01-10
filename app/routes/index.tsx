@@ -25,7 +25,7 @@ const Index: React.FC = () => {
           path="me.jpg"
           alt="Me, smiling in Hawaii"
           transformations={{
-            crop: true,
+            cropMode: "crop",
             width: "325",
           }}
           className="max-w-325 h-auto w-[15rem] rounded-full border-2 border-sky-500"
