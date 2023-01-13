@@ -16,11 +16,6 @@ const Card: React.FC<Props> = ({ to, imagePath, alt, title, subTitle }) => (
     <Image
       path={imagePath}
       alt={alt}
-      transformations={{
-        cropMode: "fill",
-        width: "450",
-        height: "450",
-      }}
       className="card-img bg-gray-200 border-2 border-gray-200 rounded"
       width="450"
       height="450"

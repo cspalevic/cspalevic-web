@@ -1,7 +1,7 @@
 ---
 title: First Blog Post
 date: 07-16-2022
-image: first.jpg
+image: first.jpg?tx=q_auto,c_fill
 alt: A picture of the number one
 ---
 

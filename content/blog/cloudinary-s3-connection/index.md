@@ -1,7 +1,7 @@
 ---
 title: Set up Cloudinary to read from a private S3 Bucket
 date: 08-18-2022
-image: cloud.jpg
+image: cloud.jpg?tx=q_auto,c_fill,ar_1
 alt: something
 ---
 
