@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import { Analytics } from "@vercel/analytics/react";
 import { useTheme } from "~/providers/theme";
 import Header from "./header";
 
@@ -38,6 +39,7 @@ const Page: React.FC<Props> = ({ children }) => {
           </main>
         </div>
         <ScrollRestoration />
+        <Analytics />
         <Scripts />
         <script
           dangerouslySetInnerHTML={{
