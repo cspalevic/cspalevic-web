@@ -1,7 +1,7 @@
 ---
 title: HTTP/3 Deep Dive
 date: 12-17-2022
-image: fast.avif?tx=q_auto,c_fill,ar_1
+image: fast.avif?tx=q_auto,c_fill
 alt: A picture trying to emphasize that HTTP/3 will be fast
 ---
 

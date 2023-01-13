@@ -1,7 +1,7 @@
 ---
 title: Corepack Basics
 date: 01-06-2023
-image: package.avif?tx=q_auto,c_crop,g_south,ar_1
+image: package.avif?tx=q_auto,c_crop,g_south
 alt: A picture of a package
 ---
 
