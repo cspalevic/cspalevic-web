@@ -37,6 +37,7 @@ const buildImageUrl = (
   }: Transformations = {}
 ) => {
   if (path.startsWith("/")) path = path.substring(1);
+  if (path.includes("?")) return `${BASE_URL}/${path}`;
 
   let txQuery = `tx=q_${quality},f_${format}`;
   if (cropMode) txQuery = `tx=c_${cropMode}`;
