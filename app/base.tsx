@@ -1,8 +1,6 @@
-import { useLoaderData, useLocation } from "@remix-run/react";
-import { useEffect } from "react";
+import { useLoaderData } from "@remix-run/react";
 import Page from "./components/page";
 import ThemeProvider from "./providers/theme";
-import { collectWebVitalMetrics } from "./utils/webVitals";
 
 interface Props {
   children?: React.ReactNode;
@@ -10,11 +8,6 @@ interface Props {
 
 const Base: React.FC<Props> = ({ children }) => {
   const data = useLoaderData<RootData>();
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    collectWebVitalMetrics();
-  }, [pathname]);
 
   return (
     <ThemeProvider theme={data?.theme}>
