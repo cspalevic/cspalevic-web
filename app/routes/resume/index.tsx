@@ -1,4 +1,9 @@
+import type { MetaFunction } from "@remix-run/node";
 import { workExperiences, skills } from "./data";
+
+export const meta: MetaFunction = () => ({
+  title: "Resume",
+});
 
 interface SectionProps {
   header: string;

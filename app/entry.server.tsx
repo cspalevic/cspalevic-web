@@ -4,7 +4,6 @@ import { RemixServer } from "@remix-run/react";
 import isBot from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { PassThrough } from "stream";
-import { otherRootRouteHandlers } from "./otherRoutes.server";
 import logger from "./services/logger.server";
 
 const ABORT_DELAY = 5000;
@@ -15,11 +14,6 @@ const handleRequest = async (
   responseHeaders: Headers,
   remixContext: EntryContext
 ) => {
-  for (const handler of otherRootRouteHandlers) {
-    const otherRouteResponse = await handler(request, remixContext);
-    if (otherRouteResponse) return otherRouteResponse;
-  }
-
   const callbackName = isBot(request.headers.get("user-agent"))
     ? "onAllReady"
     : "onShellReady";
