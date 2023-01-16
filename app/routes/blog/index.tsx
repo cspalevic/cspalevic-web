@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/node";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { BlogMetadata } from "~/services/content/types";
 import { json } from "@remix-run/node";
@@ -14,6 +15,10 @@ export const loader: LoaderFunction = async () => {
   const contentList = await contentServer.getAllContent();
   return json<LoaderData>({ blogs: contentList });
 };
+
+export const meta: MetaFunction = () => ({
+  title: "Blog",
+});
 
 const BlogList: React.FC = () => {
   const { blogs } = useLoaderData<LoaderData>();
