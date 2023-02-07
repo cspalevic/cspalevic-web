@@ -12,9 +12,10 @@ export const workExperiences: WorkExperience[] = [
     jobTitle: "Software Engineer 2",
     timePeriod: "2021 - Present",
     summary:
-      "Began as an engineer a part of the Global Pay Later (GPL) team. GPL contains multiple products across the globe to provide consumer payment flexibility. Core contributor for acquisition and servicing flows for both web frontend and mid-tier applications. Scrum lead that worked with product, design, and managers to provide standard processes during sprints while ensuring we are continuously improving. Drove standups, groomings, plannings and retrospectives. Currently an engineer for Checkout member experiences.",
+      "Software Engineer working on core Checkout UI and experiences. Formerly a part of Global Pay Later (GPL) products. Contributor for frontend and backend applications. Worked with NIAB partners to design and implement new pages and experiences. Designed new GraphQL queries to support new features. Worked as a scrum master and improved processes to get new items to market faster.",
     accomplishments: [
-      "Triaged live issues affecting customer experiences and provided timely fixes",
+      "Designed and implemented a system to suggest normalized addresses to buyers in order to improve address quality and confidence in address mailability.",
+      "Created core components and foundational UI structure for a new GPL initiative - Pay Later to Go",
     ],
   },
   {
