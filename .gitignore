@@ -12,3 +12,5 @@ node_modules
 /api/_assets
 /app/styles/base.css
 /bin/
+
+*.pdf
