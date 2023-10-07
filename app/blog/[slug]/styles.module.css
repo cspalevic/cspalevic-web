@@ -1,0 +1,7 @@
+.markdownContent a {
+  color: theme(colors.blue.500);
+}
+
+.markdownContent img {
+  cursor: pointer;
+}

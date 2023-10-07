@@ -1,9 +1,9 @@
 {
-    "grammarly.selectors": [
-        {
-            "language": "markdown",
-            "scheme": "file",
-            "pattern": "content/blog/**/*.md"
-        }
-    ]
+  "grammarly.selectors": [
+    {
+      "language": "markdown",
+      "scheme": "file",
+      "pattern": "content/blog/**/*.md"
+    }
+  ]
 }

@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ul,
+ol {
+  padding: 0 20px;
+  margin: 0 20px;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li {
+  padding-top: 5px;
+}
+
+blockquote {
+  border-radius: 5px;
+  padding: 15px;
+  background-color: theme(colors.gray.200);
+}
+
+h1 {
+  font-size: theme("fontSize.4xl");
+}
+
+h2 {
+  font-size: theme("fontSize.3xl");
+}
+
+h3 {
+  font-size: theme("fontSize.2xl");
+}
+
+h4 {
+  font-size: theme("fontSize.xl");
+}
+
+a,
+table,
+p,
+b,
+i {
+  font-size: theme(fontSize.base);
+}
+
+span {
+  font-size: theme(fontSize.sm);
+}
+
+a {
+  outline: initial;
+}
+
+code {
+  background-color: theme(colors.gray.200);
+  color: theme(colors.pink.600);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+table thead {
+  background-color: theme(colors.gray.200);
+  border-radius: 5px;
+}
+
+table th {
+  text-align: left;
+  padding: 5px;
+}
+
+table th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radiu: 5px;
+}
+
+table th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+table tr {
+  vertical-align: top;
+}
+
+table td {
+  padding: 5px;
+}
+
+.dark code {
+  background-color: theme(colors.gray.800);
+  color: theme(colors.pink.400);
+}
+
+.dark blockquote {
+  background-color: theme(colors.gray.800);
+}
+
+.dark table thead {
+  background-color: theme(colors.gray.800);
+}
