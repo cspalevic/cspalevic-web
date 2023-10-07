@@ -12,7 +12,7 @@ export type Blog = {
 };
 
 export type MarkdownContent = {
-  metadata: Omit<BlogMetadata, "slug" | "lastModified">;
+  metadata: Omit<BlogMetadata, "slug">;
   markdown: string;
 };
 
