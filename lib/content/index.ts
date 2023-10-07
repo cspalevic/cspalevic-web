@@ -5,7 +5,7 @@ import RemoteContentServer from "./remote";
 let contentServer: IContent;
 
 if (process.env.NODE_ENV === "development") {
-  contentServer = new RemoteContentServer();
+  contentServer = new LocalContentServer();
 } else {
   contentServer = new RemoteContentServer();
 }
