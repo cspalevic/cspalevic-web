@@ -1,11 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { detectTheme } from "@/lib/theme/detection";
+import { Theme } from "@/types/theme";
 import { Analytics } from "@vercel/analytics/react";
 import { Noto_Sans } from "next/font/google";
 import React from "react";
-import { detectTheme } from "@/lib/theme";
-import { Theme } from "@/types/theme";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic",
@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   const theme = detectTheme();
   const rootClasses = [NotoSans.className];
-  if(theme === Theme.Dark) {
+  if (theme === Theme.Dark) {
     rootClasses.push("dark");
   }
   return (

@@ -4,7 +4,7 @@ import { ThemeToggle } from "./ThemeToggle";
 
 export type HeaderProps = {
   theme: Theme;
-}
+};
 
 export const Header = ({ theme }: HeaderProps) => {
   return (
