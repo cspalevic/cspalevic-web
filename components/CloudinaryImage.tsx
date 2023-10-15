@@ -81,6 +81,7 @@ export const CloudinaryImage = ({
       width={width}
       height={height}
       className={className}
+      priority
     />
   );
 };
