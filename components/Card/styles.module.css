@@ -1,0 +1,7 @@
+.card:hover img {
+  border-color: theme(colors.primary-blue);
+}
+
+.card:focus-visible div {
+  border-color: theme(colors.primary-blue);
+}
