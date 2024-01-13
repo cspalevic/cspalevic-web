@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { detectTheme } from "@/lib/theme/detection";
 import { Theme } from "@/types/theme";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Noto_Sans } from "next/font/google";
 import React from "react";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
             <div className="w-full h-full">{children}</div>
           </main>
         </div>
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
