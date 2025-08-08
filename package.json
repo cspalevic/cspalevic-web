@@ -18,7 +18,6 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/node": "^2.6.3",
     "@vercel/speed-insights": "^1.0.3",
-    "dayjs": "^1.11.3",
     "dompurify": "^2.4.7",
     "highlight.js": "^11.8.0",
     "jsdom": "^20.0.3",
