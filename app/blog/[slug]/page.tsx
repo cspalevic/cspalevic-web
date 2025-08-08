@@ -4,20 +4,21 @@ import { BlogMetadata } from "@/lib/content/types";
 import styles from "./styles.module.css";
 
 type BlogPostProps = {
-  params: BlogMetadata;
+  params: Promise<{ slug: string }>;
 };
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const blogs = await contentServer.getAllContent();
-  return blogs;
+  return blogs.map((blog) => ({ slug: blog.slug }));
 }
 
 export async function generateMetadata({ params }: BlogPostProps) {
   // Good to know: fetch requests are automatically memoized for the same data across generateMetadata,
   // generateStaticParams, Layouts, Pages, and Server Component
-  const blog = await contentServer.getContent(params.slug);
+  const { slug } = await params;
+  const blog = await contentServer.getContent(slug);
   const title = blog?.metadata.title;
   return {
     title: `Charlie Spalevic - ${title}`,
@@ -25,7 +26,8 @@ export async function generateMetadata({ params }: BlogPostProps) {
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const blog = await contentServer.getContent(params.slug);
+  const { slug } = await params;
+  const blog = await contentServer.getContent(slug);
 
   return (
     <div className="flex w-full h-full flex-col">

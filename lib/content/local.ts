@@ -22,7 +22,7 @@ class LocalContentServer implements IContent {
 
     const fileContent = await getFileContents(path);
     const { metadata, markdown } = extractData(fileContent);
-    const html = convertToHtml(markdown);
+    const html = await convertToHtml(markdown);
     return {
       metadata: {
         ...metadata,

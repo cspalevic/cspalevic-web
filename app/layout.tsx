@@ -10,8 +10,12 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic",
-  viewport: "width=device-width,initial-scale=1",
   description: "Charlie Spalevic's personal website",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 const NotoSans = Noto_Sans({
@@ -19,12 +23,12 @@ const NotoSans = Noto_Sans({
   weight: "500",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const theme = detectTheme();
+  const theme = await detectTheme();
   const rootClasses = [NotoSans.className];
   if (theme === Theme.Dark) {
     rootClasses.push("dark");
