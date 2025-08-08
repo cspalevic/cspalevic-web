@@ -1,7 +1,5 @@
 import { Lightbox } from "@/components/Lightbox";
 import { contentServer } from "@/lib/content/index";
-import { BlogMetadata } from "@/lib/content/types";
-import styles from "./styles.module.css";
 
 type BlogPostProps = {
   params: Promise<{ slug: string }>;
@@ -34,7 +32,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
       <h1 className="md:text-center">{blog?.metadata?.title}</h1>
       <h4 className="md:text-center">{blog?.metadata?.date}</h4>
       <div
-        className={`mt-5 grid grid-rows-1 gap-y-6 w-full flex-col ${styles.markdownContent}`}
+        className="mt-5 grid grid-rows-1 gap-y-6 w-full flex-col markdown-content"
         dangerouslySetInnerHTML={{
           __html: blog?.html ?? "",
         }}

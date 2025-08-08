@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Architecture
 
-This is Charlie Spalevic's personal website built with **Next.js 15** (App Router), **React 19**, TypeScript, and Tailwind CSS.
+This is Charlie Spalevic's personal website built with **Next.js 15** (App Router), **React 19**, TypeScript, and **Tailwind CSS v4**.
 
 ### Key Architectural Patterns
 

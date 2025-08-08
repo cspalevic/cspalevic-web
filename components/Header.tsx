@@ -1,12 +1,7 @@
-import { Theme } from "@/types/theme";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 
-export type HeaderProps = {
-  theme: Theme;
-};
-
-export const Header = ({ theme }: HeaderProps) => {
+export const Header = () => {
   return (
     <header className="flex min-h-[4rem] w-full flex-row items-center justify-between border-b border-b-neutral-300 dark:border-b-neutral-700">
       <nav className="flex items-center space-x-3">
@@ -24,7 +19,7 @@ export const Header = ({ theme }: HeaderProps) => {
           </Link>
         ))}
       </nav>
-      <ThemeToggle theme={theme} />
+      <ThemeToggle />
     </header>
   );
 };
