@@ -5,6 +5,16 @@ image: fast.avif?tx=q_auto,c_fill
 alt: A picture trying to emphasize that HTTP/3 will be fast
 ---
 
+import { BlogHeader } from "@/components/blog-header";
+
+export async function generateMetadata() {
+  return {
+    title: `Charlie Spalevic - HTTP/3 Deep Dive`,
+  };
+}
+
+<BlogHeader title="HTTP/3 Deep Dive" date="12-17-2022" />
+
 ## Introduction
 
 I've been hearing all the fuss about QUIC and HTTP/3 and how they will make the web faster. So, I wanted to dig in and learn some of this myself.
@@ -20,12 +30,13 @@ I'll be sharing with you what I've learned so far, like:
 I quickly learned that QUIC and HTTP/3 are not the same things. To explain this, let's dive a bit deeper into computer networking.
 
 To power the magic of the internet, a computer must be able to send information to another computer. To do this, it must follow 4 steps (better known as layers):
-| Order | Name | Description |
-| ----- | ---- | ----------- |
-| 4 | Application Layer | This layer is responsible for providing services to the user. It includes protocols such as HTTP, FTP, and SMTP, which are used to transfer data and communicate with servers and other devices. |
-| 3 | Transport Layer | This layer is responsible for establishing and maintaining end-to-end communication between devices. It handles issues such as error checking, flow control, and data retransmission. |
-| 2 | Internet Layer | This layer is responsible for routing data packets from one device to another. It uses IP addresses to identify the devices and determine the best route for the data. |
-| 1 | Network Layer | This layer is responsible for sending and receiving data across the physical connection between devices. It handles issues such as data transmission errors, flow control, and media access. |
+
+| Order | Name              | Description                                                                                                                                                                                      |
+| ----- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 4     | Application Layer | This layer is responsible for providing services to the user. It includes protocols such as HTTP, FTP, and SMTP, which are used to transfer data and communicate with servers and other devices. |
+| 3     | Transport Layer   | This layer is responsible for establishing and maintaining end-to-end communication between devices. It handles issues such as error checking, flow control, and data retransmission.            |
+| 2     | Internet Layer    | This layer is responsible for routing data packets from one device to another. It uses IP addresses to identify the devices and determine the best route for the data.                           |
+| 1     | Network Layer     | This layer is responsible for sending and receiving data across the physical connection between devices. It handles issues such as data transmission errors, flow control, and media access.     |
 
 Together, this makes up the TCP/IP Model. This is a foundational networking model that defines how computers can communicate with each other.
 

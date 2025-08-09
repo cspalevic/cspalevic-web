@@ -5,6 +5,16 @@ image: package.avif?tx=q_auto,c_crop,g_south
 alt: A picture of a package
 ---
 
+import { BlogHeader } from "@/components/blog-header";
+
+export async function generateMetadata() {
+  return {
+    title: `Charlie Spalevic - Corepack Basics`,
+  };
+}
+
+<BlogHeader title="Corepack Basics" date="01-06-2023" />
+
 ## Corepack
 
 Have you heard about `corepack` recently? Are you curious about what this thing is? Then this post is for you. `Corepack` is an experimental feature of Node that is meant to give you more control over the package manager versions used inside your Node projects. `Corepack` will help out with a couple of key developer workflows:

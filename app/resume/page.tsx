@@ -1,75 +1,173 @@
 import type { Metadata } from "next";
-import { workExperiences, skills } from "./data";
+import { CloudinaryImage } from "@/components/cloudinary-image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { workExperiences, skills, personalInfo } from "./_data";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic - Resume",
 };
 
-interface SectionProps {
-  header: string;
-  children: React.ReactNode;
-}
-
-const Section: React.FC<SectionProps> = ({ header, children }) => (
-  <>
-    <h3 className="w-full bg-primary-blue p-2 text-center text-white">
-      {header}
-    </h3>
-    <div className="p-5">{children}</div>
-  </>
-);
-
 export default function Resume() {
   return (
-    <div id="resume" className="flex w-full flex-col">
-      <div className="flex flex-col items-center justify-center pb-5 text-center">
-        <h1>Charlie Spalevic</h1>
-        <h3>Chicago, IL</h3>
-      </div>
-      <Section header="Summary">
-        <p>
-          Distinguished Software Engineer who excels at coding, testing, and
-          troubleshooting. Scrum lead that pushes for best practices and team
-          collaboration. Team player who is always willing to help guide
-          teammates to solve their problems and provide clean coding solutions.
-          Interested in building amazing customer experiences and designing
-          architectural solutions that scale.
-        </p>
-      </Section>
-      <Section header="Education">
-        <div className="flex flex-col items-center justify-center">
-          <b>BS in Computer Science</b>
-          <p>Illinois State University, Normal IL (2017)</p>
-        </div>
-      </Section>
-      <Section header="Work Experience">
-        {workExperiences.map((work, index) => (
-          <div key={index} className="flex flex-col justify-between">
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col">
-                <h4 className="underline underline-offset-4">{work.company}</h4>
-                <p className="py-1 font-bold">{work.jobTitle}</p>
+    <div
+      id="resume"
+      className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 space-y-6 sm:space-y-8"
+    >
+      {/* Header Section */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
+        <CardContent className="p-4 sm:p-6 lg:p-8">
+          <div className="flex flex-col items-center space-y-4 sm:space-y-6">
+            <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border-4 border-primary/20">
+              <AvatarImage asChild>
+                <CloudinaryImage
+                  path="me.jpg"
+                  alt="Me, smiling in Hawaii"
+                  transformations={{
+                    cropMode: "crop",
+                  }}
+                  width={325}
+                  height={325}
+                />
+              </AvatarImage>
+              <AvatarFallback className="text-xl sm:text-2xl font-bold bg-primary text-primary-foreground">
+                CS
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-center space-y-2">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+                {personalInfo.name}
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground">
+                {personalInfo.title}
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+                <span className="flex items-center justify-center gap-1">
+                  📧 {personalInfo.email}
+                </span>
+                <span className="flex items-center justify-center gap-1">
+                  📍 {personalInfo.location}
+                </span>
+                <span className="flex items-center justify-center gap-1">
+                  🎓 {personalInfo.education.degree},{" "}
+                  {personalInfo.education.year}
+                </span>
               </div>
-              <i>{work.timePeriod}</i>
-            </div>
-            <div className="mb-5 flex flex-col">
-              <p>{work.summary}</p>
-              {work.accomplishments && (
-                <ul className="mb-0 pb-0">
-                  {work.accomplishments.map((accomplishment, index) => (
-                    <li key={index}>{accomplishment}</li>
-                  ))}
-                </ul>
-              )}
             </div>
           </div>
-        ))}
-      </Section>
-      <Section header="Skills">
-        <div className="text-center">
-          <p>{skills.join(" | ")}</p>
-        </div>
-      </Section>
+        </CardContent>
+      </Card>
+      {/* Professional Summary */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight flex items-center justify-center gap-2">
+            <span>📝</span>
+            Professional Summary
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-center">
+            {personalInfo.summary}
+          </p>
+        </CardContent>
+      </Card>
+      {/* Professional Experience */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight flex items-center justify-center gap-2">
+            <span>💼</span>
+            Professional Experience
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8">
+          <div className="space-y-4 sm:space-y-6">
+            {workExperiences.map((work, index) => (
+              <div key={index} className="group">
+                <div className="flex flex-col space-y-3">
+                  <div className="flex flex-col gap-2 sm:gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2">
+                      <div className="space-y-1 flex-1">
+                        <h3 className="text-base sm:text-lg font-semibold text-primary group-hover:text-primary/80 transition-colors">
+                          {work.company}
+                        </h3>
+                        <p className="text-sm sm:text-base font-medium text-foreground">
+                          {work.jobTitle}
+                        </p>
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className="w-fit self-start text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1"
+                      >
+                        {work.timePeriod}
+                      </Badge>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {work.summary}
+                  </p>
+                  {work.accomplishments && (
+                    <div className="mt-3">
+                      <h4 className="text-xs sm:text-sm font-medium mb-2 text-foreground">
+                        Key Accomplishments:
+                      </h4>
+                      <ul className="space-y-1 text-xs sm:text-sm text-muted-foreground">
+                        {work.accomplishments.map(
+                          (accomplishment, accIndex) => (
+                            <li
+                              key={accIndex}
+                              className="flex items-start gap-2"
+                            >
+                              <span className="text-primary mt-0.5 sm:mt-1 text-xs flex-shrink-0">
+                                •
+                              </span>
+                              <span className="flex-1 leading-relaxed">
+                                {accomplishment}
+                              </span>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                {index < workExperiences.length - 1 && (
+                  <Separator className="my-4 sm:my-6" />
+                )}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+      {/* Technical Skills */}
+      <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl sm:text-2xl font-bold tracking-tight flex items-center justify-center gap-2">
+            <span>⚡</span>
+            Technical Skills
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8">
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+            {skills.map((skill, index) => (
+              <Badge
+                key={skill}
+                variant={
+                  index % 3 === 0
+                    ? "default"
+                    : index % 3 === 1
+                    ? "secondary"
+                    : "outline"
+                }
+                className="text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1 hover:scale-105 transition-transform cursor-default touch-manipulation"
+              >
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
