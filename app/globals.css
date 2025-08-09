@@ -129,7 +129,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-
 @layer components {
   .container {
     @apply mx-auto w-full px-4 sm:px-6 lg:px-8;
