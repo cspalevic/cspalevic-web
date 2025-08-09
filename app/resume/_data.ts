@@ -41,7 +41,7 @@ export const workExperiences: WorkExperience[] = [
     jobTitle: "Senior Software Engineer",
     timePeriod: "2021 - Present",
     summary:
-      "Lead engineer on PayPal’s Global Pay Later and Checkout products, delivering end-to-end solutions across frontend, backend, experimentation, and observability. Played a founding role in the Quantum Leap program to modernize PayPal Checkout with Next.js.",
+      "Started on PayPal’s Global Pay Later team, contributing to the development of new virtual card experiences, then transitioned to the core Checkout team where I grew into lead roles on major initiatives. Delivered end-to-end solutions across frontend, backend, experimentation, and observability, and played a founding role in the Quantum Leap program to modernize PayPal Checkout with Next.js.",
     accomplishments: [
       "Promoted to Senior Software Engineer for driving critical product and architecture initiatives across GPL and Checkout teams.",
       "Developed Pay Later Virtual Card application, including core UI components and backend service integrations.",
