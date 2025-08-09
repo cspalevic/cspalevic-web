@@ -1,11 +1,11 @@
-import "./globals.css";
 import type { Metadata } from "next";
-import { Header } from "@/components/Header";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "next-themes";
 import { Noto_Sans } from "next/font/google";
 import React from "react";
+import "./globals.css";
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic",
@@ -33,12 +33,12 @@ export default function RootLayout({
       className={`h-full ${NotoSans.className}`}
       suppressHydrationWarning
     >
-      <body className="flex justify-center h-full text-gray-800 dark:text-gray-50 bg-neutral-50 dark:bg-neutral-900">
-        <ThemeProvider>
-          <div className="flex h-full flex-col px-5 md:w-[72rem]">
+      <body className="min-h-screen bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="relative flex min-h-screen flex-col">
             <Header />
-            <main className="flex flex-row justify-center flex-1 w-full pt-10 pb-10">
-              <div className="w-full h-full">{children}</div>
+            <main className="flex-1">
+              <div className="container max-w-screen-2xl py-6">{children}</div>
             </main>
           </div>
         </ThemeProvider>

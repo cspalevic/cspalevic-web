@@ -1,4 +1,4 @@
-import { Lightbox } from "@/components/Lightbox";
+import { Lightbox } from "@/components/lightbox";
 import { contentServer } from "@/lib/content/index";
 
 type BlogPostProps = {
