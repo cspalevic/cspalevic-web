@@ -5,6 +5,16 @@ image: cloud.jpg?tx=q_auto,c_fill,ar_1
 alt: something
 ---
 
+import { BlogHeader } from "@/components/blog-header";
+
+export async function generateMetadata() {
+  return {
+    title: `Charlie Spalevic - Set up Cloudinary to read from a private S3 Bucket`,
+  }
+}
+
+<BlogHeader title="Set up Cloudinary to read from a private S3 Bucket" date="08-18-2022" />
+
 ## Introduction
 
 As for all sites, you need a way to serve your images, videos, etc. I heard good things about Cloudinary, so I wanted to try using it for this site. As I was setting it up, I felt the directions for connecting to an AWS S3 media source were a bit confusing, so I wanted to share clearer directions on how to get the connection to work.

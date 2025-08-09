@@ -1,123 +1,24 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-primary-blue: #0078d4;
 }
 
 @layer base {
-  ul,
-  ol {
-    padding: 0 20px;
-    margin: 0 20px;
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 
-  ul {
-    list-style: disc;
-  }
-
-  ol {
-    list-style: decimal;
-  }
-
-  li {
-    padding-top: 5px;
-  }
-
-  blockquote {
-    border-radius: 5px;
-    padding: 15px;
-    background-color: var(--color-gray-200);
-  }
-
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: 1.875rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  h4 {
-    font-size: 1.25rem;
-  }
-
-  a,
-  table,
-  p,
-  b,
-  i {
-    font-size: 1rem;
-  }
-
-  span {
-    font-size: 0.875rem;
-  }
-
-  a {
-    outline: initial;
-  }
-
-  code {
-    background-color: var(--color-gray-200);
-    color: var(--color-pink-600);
-    border-radius: 2px;
-    padding: 0 2px;
-  }
-
-  table thead {
-    background-color: var(--color-gray-200);
-    border-radius: 5px;
-  }
-
-  table th {
-    text-align: left;
-    padding: 5px;
-  }
-
-  table th:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  table th:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-
-  table tr {
-    vertical-align: top;
-  }
-
-  table td {
-    padding: 5px;
-  }
-
-  .markdown-content a {
-    color: var(--color-blue-500);
-  }
-
-  .markdown-content img {
+  /* Custom styles that work with prose classes */
+  .prose img {
     cursor: pointer;
-  }
-
-  :root[data-theme="dark"] code {
-    background-color: var(--color-gray-800);
-    color: var(--color-pink-400);
-  }
-
-  :root[data-theme="dark"] blockquote {
-    background-color: var(--color-gray-800);
-  }
-
-  :root[data-theme="dark"] table thead {
-    background-color: var(--color-gray-800);
   }
 }
 
@@ -228,14 +129,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
 
 @layer components {
   .container {

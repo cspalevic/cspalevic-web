@@ -45,6 +45,7 @@ export default function WebGPUEarth() {
   const rendererRef = useRef<THREE.WebGPURenderer | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const clockRef = useRef<THREE.Clock | null>(null);
+  const controlsRef = useRef<OrbitControls | null>(null);
 
   function animate() {
     if (
@@ -58,7 +59,7 @@ export default function WebGPUEarth() {
     // Animate pin flashing if it exists
     if (flashUniformRef.current) {
       const time = clockRef.current.getElapsedTime();
-      const flashIntensity = (Math.sin(time * 0.8) + 1) * 0.5; // Slow flash from 0 to 1
+      const flashIntensity = (Math.sin(time * 0.6) + 1) * 0.5; // Slower flash from 0 to 1
 
       flashUniformRef.current.value = flashIntensity;
     }
@@ -80,17 +81,23 @@ export default function WebGPUEarth() {
       const container = containerRef.current;
       if (!container) return;
 
+      // Check WebGPU support
+      if (!navigator.gpu) {
+        setError("WebGPU is not supported in this browser.");
+        return;
+      }
+
       try {
         clock = new THREE.Clock();
         clockRef.current = clock;
 
         camera = new THREE.PerspectiveCamera(
-          25,
+          45,
           window.innerWidth / window.innerHeight,
           0.1,
           100
         );
-        camera.position.set(4.5, 2, 3);
+        camera.position.set(0, 0, 3.5);
         cameraRef.current = camera;
 
         scene = new THREE.Scene();
@@ -195,16 +202,23 @@ export default function WebGPUEarth() {
         scene.add(atmosphere);
 
         renderer = new THREE.WebGPURenderer();
+        await renderer.init();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setAnimationLoop(() => animate());
         rendererRef.current = renderer;
+
+        // Clear any existing content before appending
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
         container.appendChild(renderer.domElement);
 
         controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.minDistance = 0.1;
-        controls.maxDistance = 50;
+        controls.minDistance = 2.5;
+        controls.maxDistance = 10;
+        controlsRef.current = controls;
 
         window.addEventListener("resize", onWindowResize);
       } catch (err) {
@@ -227,10 +241,29 @@ export default function WebGPUEarth() {
 
     return () => {
       // Cleanup function
+      window.removeEventListener("resize", onWindowResize);
+
       if (userPinpointRef.current && sceneRef.current) {
         sceneRef.current.remove(userPinpointRef.current);
+        userPinpointRef.current = null;
       }
-      renderer?.dispose();
+
+      if (controlsRef.current) {
+        controlsRef.current.dispose();
+      }
+
+      if (rendererRef.current) {
+        rendererRef.current.setAnimationLoop(null);
+        rendererRef.current.dispose();
+      }
+
+      // Clear refs
+      sceneRef.current = null;
+      rendererRef.current = null;
+      cameraRef.current = null;
+      clockRef.current = null;
+      controlsRef.current = null;
+      flashUniformRef.current = null;
     };
   }, []);
 
@@ -251,11 +284,10 @@ export default function WebGPUEarth() {
           const flashUniform = uniform(1.0);
           flashUniformRef.current = flashUniform;
 
-          // Animate from bright red to dim red with opacity
-          const dimColor = color("#cc0000");
-          const brightColor = color("#ff3333");
-          dotMaterial.colorNode = mix(dimColor, brightColor, flashUniform);
-          dotMaterial.opacityNode = flashUniform.mul(0.6).add(0.4); // Opacity from 0.4 to 1.0
+          // Animate from dark red to completely invisible
+          const darkRedColor = color("#8b0000");
+          dotMaterial.colorNode = darkRedColor;
+          dotMaterial.opacityNode = flashUniform; // Opacity from 0 (invisible) to 1 (fully visible)
 
           const dot = new THREE.Mesh(dotGeometry, dotMaterial);
 
@@ -277,14 +309,11 @@ export default function WebGPUEarth() {
     }
   }, []);
 
-  // best effort
-  if (error) return null;
+  // Best effort
+  if (error) {
+    console.error(`Error rendering earth`, error);
+    return null;
+  }
 
-  return (
-    <div
-      ref={containerRef}
-      className="w-full h-screen relative bg-black overflow-hidden"
-      style={{ position: "fixed", top: 0, left: 0, zIndex: -1 }}
-    />
-  );
+  return <div ref={containerRef} className="w-full h-screen overflow-hidden" />;
 }

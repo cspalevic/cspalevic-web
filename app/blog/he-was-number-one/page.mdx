@@ -5,12 +5,20 @@ image: first.jpg?tx=q_auto,c_fill
 alt: A picture of the number one
 ---
 
+import { BlogHeader } from "@/components/blog-header";
+
+export async function generateMetadata() {
+  return {
+    title: `Charlie Spalevic - First Blog Post`,
+  }
+}
+
+<BlogHeader title="First Blog Post" date="07-16-2022" />
+
 The obligatory first blog post!
 
 I plan to add blogs based on the cool stuff I learn, very specific problems I solve, and my own experiences. I hope you find some of this useful.
 
 The obligatory quote at the end of a post:
 
-```
-"You can endure anything your mind can make endurable" - Marcus Aurelius
-```
+> 'You can endure anything your mind can make endurable' - Marcus Aurelius

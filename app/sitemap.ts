@@ -1,8 +1,8 @@
-import { contentServer } from "@/lib/content/index";
+import { getAllBlogMetadata } from "@/lib/blog-metadata";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogs = await contentServer.getAllContent();
+  const blogs = await getAllBlogMetadata();
 
   const url = process.env.VERCEL_URL ?? "https://cspalevic.com";
   return [

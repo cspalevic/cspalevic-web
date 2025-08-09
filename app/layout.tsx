@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ThemeProvider } from "next-themes";
 import { Noto_Sans } from "next/font/google";
 import React from "react";
 import "./globals.css";
@@ -30,18 +29,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full ${NotoSans.className}`}
+      className={`h-full dark ${NotoSans.className}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">
-              <div className="container max-w-screen-2xl py-6">{children}</div>
-            </main>
-          </div>
-        </ThemeProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            <div className="py-6">{children}</div>
+          </main>
+        </div>
         <SpeedInsights />
         <Analytics />
       </body>
