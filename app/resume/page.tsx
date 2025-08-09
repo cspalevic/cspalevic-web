@@ -22,7 +22,7 @@ const Section: React.FC<SectionProps> = ({ header, children }) => (
 export default function Resume() {
   return (
     <div id="resume" className="flex w-full flex-col">
-      <div className="w-100 relative flex flex-col items-center justify-center pb-5">
+      <div className="flex flex-col items-center justify-center pb-5 text-center">
         <h1>Charlie Spalevic</h1>
         <h3>Chicago, IL</h3>
       </div>

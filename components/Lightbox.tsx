@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { default as ImageLightbox } from "react-18-image-lightbox";
-import "react-18-image-lightbox/style.css";
+import ImageLightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 export const Lightbox = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -32,5 +32,11 @@ export const Lightbox = () => {
   }, []);
 
   if (!imageSrc) return null;
-  return <ImageLightbox mainSrc={imageSrc} onCloseRequest={closeLightbox} />;
+  return (
+    <ImageLightbox
+      open={!!imageSrc}
+      close={closeLightbox}
+      slides={[{ src: imageSrc }]}
+    />
+  );
 };

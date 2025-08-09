@@ -17,8 +17,8 @@ renderer.link = (href: string, title: string, text: string) => {
 
 marked.use({ renderer, async: true });
 
-export const convertToHtml = (markdown: string) => {
-  const html = marked.parse(markdown);
+export const convertToHtml = async (markdown: string) => {
+  const html = await marked.parse(markdown);
   const window = new JSDOM("").window;
   const purify = DOMPurify(window);
   return purify.sanitize(html);

@@ -1,38 +1,28 @@
 "use client";
 
-import { toggleTheme } from "@/lib/theme/toggle";
-import { Theme } from "@/types/theme";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Icon } from "./Icon";
 
-export type ThemeToggleProps = {
-  theme: Theme;
-};
-
-export const ThemeToggle = ({
-  theme: serverDetectedTheme,
-}: ThemeToggleProps) => {
-  const [showToggle, setShowToggle] = useState(false);
-  const [theme, setTheme] = useState(serverDetectedTheme);
-
-  const isDarkMode = theme === Theme.Dark;
-
-  const changeTheme = () => {
-    const toggledTheme = toggleTheme();
-    if (toggledTheme === Theme.Dark)
-      document.body.parentElement?.classList.add("dark");
-    else document.body.parentElement?.classList.remove("dark");
-    setTheme(toggledTheme);
-  };
+export const ThemeToggle = () => {
+  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
-    if (navigator.cookieEnabled) setShowToggle(true);
+    setMounted(true);
   }, []);
 
-  if (!showToggle) return null;
+  if (!mounted) return null;
+
+  const isDarkMode = resolvedTheme === "dark";
+
+  const changeTheme = () => {
+    setTheme(isDarkMode ? "light" : "dark");
+  };
+
   return (
     <div className="flex items-center">
-      <button aria-label="Change theme" onClick={() => changeTheme()}>
+      <button aria-label="Change theme" onClick={changeTheme}>
         <Icon
           type={isDarkMode ? "sun" : "moon"}
           size="lg"
