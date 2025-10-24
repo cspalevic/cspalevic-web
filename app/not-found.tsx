@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Charlie Spalevic - not found",
 };
 
-// Shoutout unDraw.co for the awesome ilustrations
+// Shout out unDraw.co for the awesome illustrations
 // https://undraw.co/illustrations
 export default function NotFound() {
   return (

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CloudinaryImage } from "@/components/cloudinary-image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -20,22 +19,17 @@ export default function Resume() {
       <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
         <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="flex flex-col items-center space-y-4 sm:space-y-6">
-            <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border-4 border-primary/20">
-              <AvatarImage asChild>
-                <CloudinaryImage
-                  path="me.jpg"
-                  alt="Me, smiling in Hawaii"
-                  transformations={{
-                    cropMode: "crop",
-                  }}
-                  width={325}
-                  height={325}
-                />
-              </AvatarImage>
-              <AvatarFallback className="text-xl sm:text-2xl font-bold bg-primary text-primary-foreground">
-                CS
-              </AvatarFallback>
-            </Avatar>
+            <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden">
+              <CloudinaryImage
+                path="me.jpg"
+                alt="Me, smiling in Hawaii"
+                transformations={{
+                  cropMode: "crop",
+                }}
+                width={325}
+                height={325}
+              />
+            </div>
             <div className="text-center space-y-2">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
                 {personalInfo.name}
