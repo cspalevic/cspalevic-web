@@ -62,7 +62,7 @@ export default function Resume() {
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8">
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-center">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-left">
             {personalInfo.summary}
           </p>
         </CardContent>
