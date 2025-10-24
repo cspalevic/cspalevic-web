@@ -1,14 +1,14 @@
 {
-    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-    "version": "0.2",
-    "files": ["**/*.{ts,tsx,js,jsx,md,mdx}"],
-    "ignorePaths": ["node_modules", ".next"],
-    "dictionaryDefinitions": [
-        {
-            "name": "project-words",
-            "path": "./project-words.txt",
-            "addWords": true
-        }
-    ],
-    "dictionaries": ["project-words"]
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "files": ["**/*.{ts,tsx,js,jsx,md,mdx}"],
+  "ignorePaths": ["node_modules", ".next"],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./project-words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["project-words"]
 }
