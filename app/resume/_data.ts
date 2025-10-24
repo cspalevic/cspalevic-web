@@ -25,7 +25,7 @@ export const personalInfo: PersonalInfo = {
   location: "Chicago, IL",
   email: "hey@cspalevic.com",
   summary:
-    "Senior Software Engineer with a proven record of delivering high-impact products and driving modernization of large-scale systems. Led key initiatives at PayPal including Pay Later virtual card launches, high-conversion A/B experiments, and the Quantum Leap rebuild of Checkout into a Next.js platform. Skilled in architecting scalable frontend and backend systems, enhancing observability with Datadog, and building AI-driven tools to accelerate debugging and analysis. Passionate about crafting seamless customer experiences, optimizing performance, and building solutions that scale globally.",
+    "Senior Software Engineer with a proven record of delivering high-impact products and driving modernization of large-scale systems. Led key initiatives at PayPal including Pay Later virtual card launches, high-conversion A/B experiments, and the Quantum Leap rebuild of Checkout into a Next.js platform. Skilled in scalable frontend architecture and backend systems, enhancing observability with Datadog, and building AI-driven tools to accelerate debugging and analysis. Passionate about crafting seamless customer experiences, optimizing performance, and building solutions that scale globally.",
   education: {
     degree: "BS in Computer Science",
     school: "Illinois State University, Normal IL",
