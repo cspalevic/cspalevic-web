@@ -81,14 +81,25 @@ export default function HomePage() {
         </button>
       )}
 
-      {/* Scroll down — bottom center */}
-      {currentIndex < TOTAL_SECTIONS - 1 && (
+      {/* Scroll down — bottom center (hidden on hero) */}
+      {currentIndex > 0 && currentIndex < TOTAL_SECTIONS - 1 && (
         <button
           onClick={() => scrollTo(currentIndex + 1)}
           className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
           aria-label="Scroll down"
         >
           <ChevronDown className="h-5 w-5" />
+        </button>
+      )}
+
+      {/* Scroll to top — on last section */}
+      {currentIndex === TOTAL_SECTIONS - 1 && (
+        <button
+          onClick={() => scrollTo(0)}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-5 py-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all text-sm tracking-wide"
+          aria-label="Scroll to top"
+        >
+          ↑ Scroll to top
         </button>
       )}
     </div>
