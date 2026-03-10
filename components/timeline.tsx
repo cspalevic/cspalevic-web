@@ -13,6 +13,8 @@ type Milestone = {
   description: string;
 };
 
+export const MILESTONE_COUNT = 13;
+
 const milestones: Milestone[] = [
   {
     lottie: "/lottie/born.json",
@@ -185,9 +187,7 @@ function MilestoneCard({
           : "scale(0.92) translateY(40px)",
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
-      className={`h-screen flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto ${
-        isAlt ? "bg-zinc-900" : "bg-black"
-      }`}
+      className="h-screen flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto bg-black"
     >
       <MilestoneIcon milestone={milestone} />
       <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
