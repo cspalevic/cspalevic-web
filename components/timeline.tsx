@@ -85,7 +85,7 @@ const milestones: Milestone[] = [
       "Moved to Spraying Systems Co. as a Software Engineer. Kept learning, kept building.",
   },
   {
-    lottie: "/lottie/paypal.json",
+    lottie: "/lottie/trophy.json",
     date: "April 2021",
     title: "Joined PayPal.",
     description:
