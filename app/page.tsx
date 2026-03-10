@@ -12,10 +12,9 @@ export default function HomePage() {
           <CloudinaryImage
             path="me.jpg"
             alt="Charlie Spalevic"
-            transformations={{ cropMode: "crop" }}
             width={112}
             height={112}
-            className="object-cover w-full h-full"
+            className="object-contain w-full h-full"
           />
         </div>
 
