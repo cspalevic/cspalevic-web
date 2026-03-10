@@ -17,3 +17,4 @@ node_modules
 # *.pdf — resume is committed intentionally
 # *.pdf
 *.tsbuildinfo.brv/
+.brv/
