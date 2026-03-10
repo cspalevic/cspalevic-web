@@ -187,7 +187,7 @@ function MilestoneCard({
           : "scale(0.92) translateY(40px)",
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
-      className="h-screen flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto bg-black"
+      className="h-[calc(100vh-3.5rem)] flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto bg-black"
     >
       <MilestoneIcon milestone={milestone} />
       <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">

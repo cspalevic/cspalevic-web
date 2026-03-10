@@ -37,10 +37,10 @@ export default function HomePage() {
       {/* Scroll snap container */}
       <div
         ref={containerRef}
-        className="h-screen overflow-y-scroll snap-y snap-mandatory bg-black text-white"
+        className="h-[calc(100vh-3.5rem)] overflow-y-scroll snap-y snap-mandatory bg-black text-white"
       >
         {/* Hero Section */}
-        <section className="h-screen snap-start flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-black">
+        <section className="h-[calc(100vh-3.5rem)] snap-start flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-black">
           <div className="h-28 w-28 rounded-full overflow-hidden mb-6 ring-2 ring-zinc-700">
             <CloudinaryImage
               path="me.jpg"
@@ -58,12 +58,15 @@ export default function HomePage() {
             Engineer. Builder. Curious human trying to decode how the world works.
           </p>
 
-          <div className="flex flex-col items-center gap-2 text-zinc-500">
+          <button
+            onClick={() => scrollTo(1)}
+            className="flex flex-col items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer group"
+          >
             <span className="text-sm tracking-widest uppercase">
               Scroll down to get a glimpse of my journey
             </span>
             <ChevronDown className="h-5 w-5 animate-bounce" />
-          </div>
+          </button>
         </section>
 
         {/* Timeline Section */}
