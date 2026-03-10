@@ -115,7 +115,7 @@ export function Timeline({ slides }: TimelineProps) {
       {currentIndex > 0 && (
         <button
           onClick={() => goTo(currentIndex - 1)}
-          className="fixed top-20 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
+          className="fixed top-20 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
           aria-label="Go up"
         >
           <ChevronUp className="h-5 w-5" />
@@ -126,7 +126,7 @@ export function Timeline({ slides }: TimelineProps) {
       {currentIndex > 0 && currentIndex < total - 1 && (
         <button
           onClick={() => goTo(currentIndex + 1)}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
           aria-label="Go down"
         >
           <ChevronDown className="h-5 w-5" />
