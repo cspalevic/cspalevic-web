@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -59,31 +58,7 @@ export function Header() {
           <div className="w-full flex-1 md:w-auto md:flex-none">
             {/* Space for future search or other elements */}
           </div>
-          <nav className="flex items-center gap-1">
-              <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-                <a
-                  href="https://github.com/cspalevic"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <Github className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-                <a
-                  href="https://twitter.com/cspalevic"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/resume">Resume</Link>
-              </Button>
-            </nav>
+          <nav className="flex items-center"></nav>
         </div>
       </div>
     </header>

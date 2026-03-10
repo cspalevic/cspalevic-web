@@ -1,4 +1,3 @@
-import { Timeline } from "@/components/timeline";
 import WebGPUEarth from "@/components/web-gpu-earth";
 
 export default function HomePage() {
@@ -14,11 +13,6 @@ export default function HomePage() {
         </div>
       </div>
       <WebGPUEarth />
-
-      <section className="container max-w-screen-2xl py-16">
-        <h2 className="text-2xl font-bold text-center mb-4">The Journey</h2>
-        <Timeline />
-      </section>
     </div>
   );
 }
