@@ -70,43 +70,27 @@ export default function HomePage() {
         <Timeline />
       </div>
 
-      {/* Scroll indicators */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-50 pointer-events-none">
-        {currentIndex > 0 && (
-          <button
-            onClick={() => scrollTo(currentIndex - 1)}
-            className="pointer-events-auto p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
-            aria-label="Scroll up"
-          >
-            <ChevronUp className="h-5 w-5" />
-          </button>
-        )}
-        {currentIndex < TOTAL_SECTIONS - 1 && (
-          <button
-            onClick={() => scrollTo(currentIndex + 1)}
-            className="pointer-events-auto p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
-            aria-label="Scroll down"
-          >
-            <ChevronDown className="h-5 w-5" />
-          </button>
-        )}
-      </div>
+      {/* Scroll up — top center */}
+      {currentIndex > 0 && (
+        <button
+          onClick={() => scrollTo(currentIndex - 1)}
+          className="fixed top-20 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
+          aria-label="Scroll up"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </button>
+      )}
 
-      {/* Section dots — right side */}
-      <div className="fixed right-5 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
-        {Array.from({ length: TOTAL_SECTIONS }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollTo(i)}
-            aria-label={`Go to section ${i + 1}`}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === currentIndex
-                ? "bg-white scale-125"
-                : "bg-zinc-600 hover:bg-zinc-400"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Scroll down — bottom center */}
+      {currentIndex < TOTAL_SECTIONS - 1 && (
+        <button
+          onClick={() => scrollTo(currentIndex + 1)}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all animate-bounce"
+          aria-label="Scroll down"
+        >
+          <ChevronDown className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 }
