@@ -185,7 +185,7 @@ function MilestoneCard({
           : "scale(0.92) translateY(40px)",
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
-      className={`flex flex-col items-center justify-center px-6 py-24 text-center ${
+      className={`h-screen flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto ${
         isAlt ? "bg-zinc-900" : "bg-black"
       }`}
     >
