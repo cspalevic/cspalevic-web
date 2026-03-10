@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const milestones = [
   {
@@ -87,6 +87,13 @@ const milestones = [
     description:
       "Released Chavo on the App Store. An AI-powered fitness app built entirely on my own.",
   },
+  {
+    emoji: "🌅",
+    date: "Today",
+    title: "Enjoying the ride. Awaiting the singularity.",
+    description:
+      "Life is good. I build things I care about, spend time with people I love, and watch the future arrive faster than anyone expected. The singularity is coming — I plan to be ready.",
+  },
 ];
 
 function MilestoneCard({
@@ -97,6 +104,7 @@ function MilestoneCard({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -104,13 +112,9 @@ function MilestoneCard({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("opacity-100", "translate-y-0");
-          el.classList.remove("opacity-0", "translate-y-10");
-          observer.unobserve(el);
-        }
+        setVisible(entry.isIntersecting);
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
 
     observer.observe(el);
@@ -122,7 +126,12 @@ function MilestoneCard({
   return (
     <section
       ref={ref}
-      className={`flex flex-col items-center justify-center px-6 py-24 text-center opacity-0 translate-y-10 transition-all duration-700 ease-out ${
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "scale(1) translateY(0)" : "scale(0.92) translateY(40px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+      }}
+      className={`flex flex-col items-center justify-center px-6 py-24 text-center ${
         isAlt ? "bg-zinc-900" : "bg-black"
       }`}
     >
