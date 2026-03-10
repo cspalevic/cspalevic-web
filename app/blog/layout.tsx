@@ -3,5 +3,5 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="container text-left">{children}</div>;
+  return <div className="container py-6 text-left">{children}</div>;
 }

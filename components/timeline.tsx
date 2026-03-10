@@ -74,7 +74,8 @@ export function Timeline({ slides }: TimelineProps) {
     <>
       {/* Sliding container */}
       <div
-        style={{
+        className="scrollbar-hide"
+      style={{
           transform: `translateY(calc(-${currentIndex} * (100vh - 3.5rem)))`,
           transition: "transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)",
           willChange: "transform",
