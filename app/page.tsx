@@ -130,7 +130,7 @@ const slides = [
 export default function HomePage() {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden scrollbar-hide"
       style={{ height: "calc(100vh - 3.5rem)" }}
     >
       <Timeline slides={slides} />

@@ -35,9 +35,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground">
         <div className="relative flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1">
-            <div className="py-6">{children}</div>
-          </main>
+          <main className="flex-1">{children}</main>
         </div>
         <SpeedInsights />
         <Analytics />
