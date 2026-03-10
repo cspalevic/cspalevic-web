@@ -1,155 +1,153 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 const milestones = [
   {
+    emoji: "🍼",
     date: "May 27, 1995",
-    title: "Born",
-    description: "",
+    title: "Hello, World.",
+    description:
+      "Born and raised in the Midwest. The beginning of a story I had no idea I was writing.",
   },
   {
+    emoji: "🎓",
     date: "2013",
-    title: "Started at Illinois State University",
+    title: "A CS major who had never written code.",
     description:
-      "Began as a Computer Science major — never having written a single line of code before.",
+      "Enrolled at Illinois State University as a Computer Science major — despite having zero coding experience. What could go wrong?",
   },
   {
+    emoji: "💥",
     date: "December 2013",
-    title: "Failed my first CS class",
-    description: "A wake up call.",
+    title: "I failed my first CS class.",
+    description:
+      "Turns out, showing up and hoping for the best is not a strategy. This was the moment I realized I actually had to try.",
   },
   {
+    emoji: "🔥",
     date: "January 2014",
-    title: "Locked in",
+    title: "Wait... this is actually fun.",
     description:
-      "Realized I actually liked coding — and it was fun.",
+      "Something clicked. I started coding for hours, not because I had to, but because I wanted to. It stopped feeling like work.",
   },
   {
+    emoji: "📚",
     date: "2016",
-    title: "Teaching & Research Assistant",
+    title: "From student to TA.",
     description:
-      "Took a job as Teaching Assistant, which led to a Research Assistant role.",
+      "Took a job as a Teaching Assistant, which led to a Research Assistant role. Teaching others turned out to be one of the best ways to learn.",
   },
   {
+    emoji: "🌐",
     date: "2017",
-    title: "First web projects",
-    description: "Started building WordPress and PHP sites.",
-  },
-  {
-    date: "December 2017",
-    title: "Graduated",
-    description: "Graduated from Illinois State University.",
-  },
-  {
-    date: "January 2018",
-    title: "Co-founded a startup",
-    description: "Learned a lot. Fast.",
-  },
-  {
-    date: "April 2018",
-    title: "Joined K-Rise Systems",
+    title: "WordPress, PHP, and figuring it out.",
     description:
-      "Realized I had no idea what I was doing and needed income. Joined K-Rise Systems as first full-time engineering job.",
+      "Started building real websites for real people. Scrappy, messy, and exactly what I needed.",
   },
   {
+    emoji: "🎉",
+    date: "December 2017",
+    title: "I made it.",
+    description:
+      "Graduated from Illinois State University with a degree in Computer Science. Four years, a lot of late nights, and one failed class.",
+  },
+  {
+    emoji: "🚀",
+    date: "January 2018",
+    title: "The startup attempt.",
+    description:
+      "Co-founded a startup right out of college. Learned a lot. Fast.",
+  },
+  {
+    emoji: "💼",
+    date: "April 2018",
+    title: "Time to get a real job.",
+    description:
+      "Realized I had no idea what I was doing and needed income. Joined K-Rise Systems as my first full-time engineering job.",
+  },
+  {
+    emoji: "🏭",
     date: "January 2019",
     title: "Spraying Systems Co.",
-    description: "Moved to Spraying Systems Co. as a Software Engineer.",
+    description:
+      "Moved to Spraying Systems Co. as a Software Engineer. Kept learning, kept building.",
   },
   {
+    emoji: "💳",
     date: "April 2021",
-    title: "Joined PayPal",
-    description: "Joined PayPal as a Software Engineer.",
+    title: "Joined PayPal.",
+    description:
+      "Joined PayPal as a Software Engineer. Big company, big scale, big lessons.",
   },
   {
+    emoji: "🤖",
     date: "2025",
-    title: "Released Chavo",
+    title: "Released Chavo.",
     description:
       "Released Chavo on the App Store. An AI-powered fitness app built entirely on my own.",
   },
 ];
 
-export function Timeline() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+function MilestoneCard({
+  milestone,
+  index,
+}: {
+  milestone: (typeof milestones)[number];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
 
-  const toggle = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("opacity-100", "translate-y-0");
+          el.classList.remove("opacity-0", "translate-y-10");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const isAlt = index % 2 === 1;
 
   return (
-    <div className="relative mx-auto max-w-3xl px-4 py-12">
-      {/* Vertical line */}
-      <div className="absolute left-6 top-0 bottom-0 w-px bg-border md:left-1/2 md:-translate-x-px" />
+    <section
+      ref={ref}
+      className={`flex flex-col items-center justify-center px-6 py-24 text-center opacity-0 translate-y-10 transition-all duration-700 ease-out ${
+        isAlt ? "bg-zinc-900" : "bg-black"
+      }`}
+    >
+      <span className="text-[6rem] leading-none mb-6 animate-bounce-slow">
+        {milestone.emoji}
+      </span>
+      <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
+        {milestone.date}
+      </span>
+      <h3 className="text-2xl font-bold text-white mb-3 max-w-xl">
+        {milestone.title}
+      </h3>
+      <p className="text-zinc-400 max-w-lg leading-relaxed">
+        {milestone.description}
+      </p>
+    </section>
+  );
+}
 
-      <div className="space-y-8 md:space-y-12">
-        {milestones.map((milestone, index) => {
-          const isExpanded = expandedIndex === index;
-          const isLeft = index % 2 === 0;
-          const hasDescription = milestone.description.length > 0;
-
-          return (
-            <div
-              key={index}
-              className={`relative flex items-start ${
-                isLeft ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              {/* Dot */}
-              <div
-                className="absolute left-6 z-10 -translate-x-1/2 md:left-1/2"
-                style={{ top: "0.35rem" }}
-              >
-                <button
-                  onClick={() => hasDescription && toggle(index)}
-                  className={`h-3.5 w-3.5 rounded-full border-2 border-foreground/40 transition-colors ${
-                    isExpanded
-                      ? "bg-foreground"
-                      : "bg-background hover:bg-foreground/20"
-                  } ${hasDescription ? "cursor-pointer" : "cursor-default"}`}
-                />
-              </div>
-
-              {/* Content card */}
-              <div
-                className={`ml-12 w-full md:ml-0 md:w-[calc(50%-2rem)] ${
-                  isLeft ? "md:mr-auto md:pr-4 md:text-right" : "md:ml-auto md:pl-4 md:text-left"
-                }`}
-              >
-                <button
-                  onClick={() => hasDescription && toggle(index)}
-                  className={`w-full text-left ${isLeft ? "md:text-right" : "md:text-left"} ${
-                    hasDescription ? "cursor-pointer" : "cursor-default"
-                  }`}
-                >
-                  <span className="text-xs font-medium text-muted-foreground">
-                    {milestone.date}
-                  </span>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {milestone.title}
-                  </h3>
-                </button>
-
-                {hasDescription && (
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isExpanded ? "max-h-40 opacity-100 mt-1" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p
-                      className={`text-sm text-muted-foreground ${
-                        isLeft ? "md:text-right" : "md:text-left"
-                      }`}
-                    >
-                      {milestone.description}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+export function Timeline() {
+  return (
+    <div>
+      {milestones.map((milestone, index) => (
+        <MilestoneCard key={index} milestone={milestone} index={index} />
+      ))}
     </div>
   );
 }
