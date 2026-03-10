@@ -1,120 +1,17 @@
 "use client";
 
-import Image from "next/image";
-import Lottie from "lottie-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export type Milestone = {
-  lottie?: string;
-  emoji?: string;
-  image?: string;
-  component?: React.ReactNode;
-  date?: string;
-  title?: string;
-  description?: string;
+type TimelineProps = {
+  slides: React.ReactNode[];
 };
 
-export const MILESTONE_COUNT = 13;
-
-// ------- Icon renderer -------
-
-function MilestoneIcon({ milestone }: { milestone: Milestone }) {
-  const [animationData, setAnimationData] = useState<object | null>(null);
-
-  useEffect(() => {
-    if (!milestone.lottie) return;
-    fetch(milestone.lottie)
-      .then((r) => r.json())
-      .then(setAnimationData)
-      .catch(() => setAnimationData(null));
-  }, [milestone.lottie]);
-
-  if (milestone.image) {
-    return (
-      <div className="w-28 h-28 rounded-2xl overflow-hidden mb-6 shadow-lg">
-        <Image
-          src={milestone.image}
-          alt={milestone.title ?? ""}
-          width={112}
-          height={112}
-          className="w-full h-full object-cover"
-        />
-      </div>
-    );
-  }
-
-  if (milestone.lottie && animationData) {
-    return (
-      <div className="w-32 h-32 mb-6">
-        <Lottie animationData={animationData} loop autoplay />
-      </div>
-    );
-  }
-
-  return (
-    <span className="text-[6rem] leading-none mb-6 animate-bounce-slow block">
-      {milestone.emoji ?? "⭐"}
-    </span>
-  );
-}
-
-// ------- Milestone card -------
-
-function MilestoneCard({
-  milestone,
-  sectionIndex,
-  currentIndex,
-}: {
-  milestone: Milestone;
-  sectionIndex: number;
-  currentIndex: number;
-}) {
-  const visible = currentIndex === sectionIndex;
-
-  return (
-    <div
-      style={{
-        height: "calc(100vh - 3.5rem)",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "scale(1)" : "scale(0.92)",
-        transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
-      }}
-      className="flex flex-col items-center justify-center px-6 text-center bg-black"
-    >
-      {milestone.component ? (
-        milestone.component
-      ) : (
-        <>
-          <MilestoneIcon milestone={milestone} />
-          {milestone.date && (
-            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
-              {milestone.date}
-            </span>
-          )}
-          {milestone.title && (
-            <h3 className="text-2xl font-bold text-white mb-3 max-w-xl">
-              {milestone.title}
-            </h3>
-          )}
-          {milestone.description && (
-            <p className="text-zinc-400 max-w-lg leading-relaxed">
-              {milestone.description}
-            </p>
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-// ------- Timeline -------
-
-export function Timeline({ milestones }: { milestones: Milestone[] }) {
+export function Timeline({ slides }: TimelineProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isAnimating = useRef(false);
   const touchStartY = useRef<number | null>(null);
-  const total = milestones.length;
+  const total = slides.length;
 
   const goTo = useCallback(
     (index: number) => {
@@ -174,10 +71,7 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
   }, [currentIndex, goTo]);
 
   return (
-    <div
-      className="relative overflow-hidden bg-black text-white"
-      style={{ height: "calc(100vh - 3.5rem)" }}
-    >
+    <>
       {/* Sliding container */}
       <div
         style={{
@@ -186,13 +80,21 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
           willChange: "transform",
         }}
       >
-        {milestones.map((milestone, index) => (
-          <MilestoneCard
+        {slides.map((slide, index) => (
+          <div
             key={index}
-            milestone={milestone}
-            sectionIndex={index}
-            currentIndex={currentIndex}
-          />
+            style={{
+              height: "calc(100vh - 3.5rem)",
+              opacity: currentIndex === index ? 1 : 0,
+              transform:
+                currentIndex === index ? "scale(1)" : "scale(0.92)",
+              transition:
+                "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
+            }}
+            className="flex flex-col items-center justify-center px-6 text-center"
+          >
+            {slide}
+          </div>
         ))}
       </div>
 
@@ -240,6 +142,6 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
           ↑ Scroll to top
         </button>
       )}
-    </div>
+    </>
   );
 }
