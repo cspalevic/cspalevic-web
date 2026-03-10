@@ -2,13 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Github, Twitter } from "lucide-react";
+import { Github, Twitter, FileText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Resume", href: "/resume" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -80,12 +79,13 @@ export function Header() {
                   <Twitter className="h-4 w-4" />
                 </a>
               </Button>
-              <Button variant="ghost" size="sm" asChild>
+              <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
                 <a
                   href="/charlie-spalevic-resume.pdf"
                   download="Charlie-Spalevic-Resume.pdf"
+                  aria-label="Download Resume"
                 >
-                  Resume
+                  <FileText className="h-4 w-4" />
                 </a>
               </Button>
             </nav>
