@@ -180,6 +180,7 @@ function MilestoneCard({
   return (
     <section
       ref={ref}
+      data-section={index + 1}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible

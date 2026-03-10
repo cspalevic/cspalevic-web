@@ -27,9 +27,8 @@ export default function HomePage() {
   }, []);
 
   const scrollTo = useCallback((index: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.scrollTo({ top: index * el.clientHeight, behavior: "smooth" });
+    const el = containerRef.current?.querySelector(`[data-section="${index}"]`);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   return (
@@ -40,7 +39,7 @@ export default function HomePage() {
         className="h-[calc(100vh-3.5rem)] overflow-y-scroll snap-y snap-mandatory bg-black text-white"
       >
         {/* Hero Section */}
-        <section className="h-[calc(100vh-3.5rem)] snap-start flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-black">
+        <section data-section="0" className="h-[calc(100vh-3.5rem)] snap-start flex-shrink-0 flex flex-col items-center justify-center px-6 text-center bg-black">
           <div className="h-28 w-28 rounded-full overflow-hidden mb-6 ring-2 ring-zinc-700">
             <CloudinaryImage
               path="me.jpg"
