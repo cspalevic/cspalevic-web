@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Lottie from "lottie-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Milestone = {
   lottie?: string;   // path to /public/lottie/*.json
@@ -153,42 +153,25 @@ function MilestoneIcon({ milestone }: { milestone: Milestone }) {
 function MilestoneCard({
   milestone,
   index,
+  currentIndex,
 }: {
   milestone: Milestone;
   index: number;
+  currentIndex: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting);
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const isAlt = index % 2 === 1;
+  // Section index = milestone index + 1 (hero is 0)
+  const sectionIndex = index + 1;
+  const visible = currentIndex === sectionIndex;
 
   return (
     <section
-      ref={ref}
-      data-section={index + 1}
       style={{
+        height: "calc(100vh - 3.5rem)",
         opacity: visible ? 1 : 0,
-        transform: visible
-          ? "scale(1) translateY(0)"
-          : "scale(0.92) translateY(40px)",
-        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+        transform: visible ? "scale(1)" : "scale(0.92)",
+        transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
       }}
-      className="h-[calc(100vh-3.5rem)] flex-shrink-0 snap-start flex flex-col items-center justify-center px-6 text-center overflow-y-auto bg-black"
+      className="flex flex-col items-center justify-center px-6 text-center bg-black"
     >
       <MilestoneIcon milestone={milestone} />
       <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
@@ -204,11 +187,11 @@ function MilestoneCard({
   );
 }
 
-export function Timeline() {
+export function Timeline({ currentIndex }: { currentIndex: number }) {
   return (
     <div>
       {milestones.map((milestone, index) => (
-        <MilestoneCard key={index} milestone={milestone} index={index} />
+        <MilestoneCard key={index} milestone={milestone} index={index} currentIndex={currentIndex} />
       ))}
     </div>
   );
