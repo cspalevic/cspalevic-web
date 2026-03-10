@@ -81,7 +81,12 @@ export function Header() {
                 </a>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/resume">Resume</Link>
+                <a
+                  href="/charlie-spalevic-resume.pdf"
+                  download="Charlie-Spalevic-Resume.pdf"
+                >
+                  Resume
+                </a>
               </Button>
             </nav>
         </div>
