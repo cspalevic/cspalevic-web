@@ -1,8 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const milestones = [
+type Milestone = {
+  emoji?: string;
+  image?: string;
+  date: string;
+  title: string;
+  description: string;
+};
+
+const milestones: Milestone[] = [
   {
     emoji: "🍼",
     date: "May 27, 1995",
@@ -81,11 +90,11 @@ const milestones = [
       "Joined PayPal as a Software Engineer. Big company, big scale, big lessons.",
   },
   {
-    emoji: "🤖",
+    image: "/chavo-icon.jpg",
     date: "2025",
     title: "Released Chavo.",
     description:
-      "Released Chavo on the App Store. An AI-powered fitness app built entirely on my own.",
+      "I'd been using ChatGPT to plan my workouts for months — typing in my lifts, asking for progressions, building programs manually. It worked, but it was clunky. I wanted something that actually knew me, remembered my history, and could coach me in real time. So I started building it. Chavo is an AI-powered fitness app on the App Store — adaptive workouts, intelligent coaching, and a community. Built entirely on my own. This one means everything.",
   },
   {
     emoji: "🌅",
@@ -100,7 +109,7 @@ function MilestoneCard({
   milestone,
   index,
 }: {
-  milestone: (typeof milestones)[number];
+  milestone: Milestone;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -135,9 +144,21 @@ function MilestoneCard({
         isAlt ? "bg-zinc-900" : "bg-black"
       }`}
     >
-      <span className="text-[6rem] leading-none mb-6 animate-bounce-slow">
-        {milestone.emoji}
-      </span>
+      {milestone.image ? (
+        <div className="w-24 h-24 rounded-2xl overflow-hidden mb-6 shadow-lg">
+          <Image
+            src={milestone.image}
+            alt={milestone.title}
+            width={96}
+            height={96}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <span className="text-[6rem] leading-none mb-6 animate-bounce-slow">
+          {milestone.emoji}
+        </span>
+      )}
       <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
         {milestone.date}
       </span>
