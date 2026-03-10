@@ -96,7 +96,7 @@ const milestones: Milestone[] = [
     date: "2025",
     title: "Released Chavo.",
     description:
-      "I'd been using ChatGPT to plan my workouts for months — typing in my lifts, asking for progressions, building programs manually. It worked, but it was clunky. I wanted something that actually knew me, remembered my history, and could coach me in real time. So I started building it. Chavo is an AI-powered fitness app on the App Store — adaptive workouts, intelligent coaching, and a community. Built entirely on my own. This one means everything.",
+      "I'd been using ChatGPT to plan my workouts for months — typing in my lifts, asking for progressions, building programs manually. It worked, but it was clunky. I wanted something that actually knew me, remembered my history, and could coach me in real time. So I started building it.",
   },
   {
     lottie: "/lottie/sunrise.json",
