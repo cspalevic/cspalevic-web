@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Lottie from "lottie-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type MilestoneCardProps = {
@@ -72,7 +72,12 @@ export function MilestoneCard({
 }: MilestoneCardProps) {
   return (
     <>
-      <MilestoneIcon lottie={lottie} emoji={emoji} image={image} title={title} />
+      <MilestoneIcon
+        lottie={lottie}
+        emoji={emoji}
+        image={image}
+        title={title}
+      />
       {date && (
         <span className="text-xs font-medium uppercase tracking-widest text-zinc-500 mb-2">
           {date}

@@ -4,7 +4,10 @@ import { Timeline } from "@/components/timeline";
 
 const slides = [
   // Hero
-  <div key="hero" className="flex flex-col items-center justify-center text-center">
+  <div
+    key="hero"
+    className="flex flex-col items-center justify-center text-center"
+  >
     <div className="h-28 w-28 rounded-full overflow-hidden mb-6 ring-2 ring-zinc-700">
       <CloudinaryImage
         path="me.jpg"
