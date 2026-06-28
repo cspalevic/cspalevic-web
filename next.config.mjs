@@ -1,11 +1,7 @@
 import createMDX from "@next/mdx";
-import rehypeShiki from "rehype-shiki";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
@@ -20,10 +16,10 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    remarkPlugins: ["remark-frontmatter", "remark-gfm"],
     rehypePlugins: [
       [
-        rehypeShiki,
+        "rehype-shiki",
         {
           themes: {
             light: "github-light",
