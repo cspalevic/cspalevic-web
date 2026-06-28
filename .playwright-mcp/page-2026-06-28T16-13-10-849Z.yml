@@ -1,0 +1,57 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - navigation [ref=e5]:
+          - link "Home" [ref=e6] [cursor=pointer]:
+            - /url: /
+          - link "Blog" [ref=e7] [cursor=pointer]:
+            - /url: /blog
+        - navigation [ref=e8]:
+          - button "Explore ⌘ E" [ref=e9]:
+            - generic [ref=e10]: Explore
+            - generic:
+              - generic: ⌘
+              - text: E
+          - button "Close" [ref=e46]:
+            - img
+          - link "GitHub" [ref=e11] [cursor=pointer]:
+            - /url: https://github.com/cspalevic
+            - img
+          - link "Twitter" [ref=e12] [cursor=pointer]:
+            - /url: https://twitter.com/cspalevic
+            - img
+          - link "Download Resume" [ref=e13] [cursor=pointer]:
+            - /url: /CharlieSpalevic_Resume.pdf
+            - img
+    - main [ref=e14]:
+      - article [ref=e17]:
+        - generic [ref=e18]:
+          - img [ref=e20]
+          - heading "About" [level=1] [ref=e21]
+        - paragraph [ref=e22]: Hello, I'm Charlie Spalevic - a senior software engineer based in Chicago with about a decade of experience. I consider myself as a generalist. I'm equally interested in building web apps, mobile apps, and AI agents.
+        - paragraph [ref=e23]:
+          - text: I studied Computer Science at
+          - link "Illinois State University" [ref=e24] [cursor=pointer]:
+            - /url: https://illinoisstate.edu
+          - text: ", where I also worked as a TA and as a research assistant on a social media data collection program. I built pipelines around the Twitter API, Google Maps API, and Stanford CoreNLP for semantic analysis."
+        - paragraph [ref=e25]: After college I took a swing at starting my own company. It didn't quite work, and I also quickly realized I didn't really know what I was doing yet. I decided I needed real-world experience before I could build something meaningful on my own.
+        - paragraph [ref=e26]:
+          - text: I gained a ton of experience at a manufacturing company called
+          - link "Spraying Systems" [ref=e27] [cursor=pointer]:
+            - /url: https://www.spray.com
+          - text: . It was a small team that shipped a ton of software around internal DAM, ERP and CRM systems. I worked with .NET, Azure, and SQL Server.
+        - paragraph [ref=e28]:
+          - text: From there I joined
+          - link "PayPal" [ref=e29] [cursor=pointer]:
+            - /url: https://www.paypal.com
+          - text: ", where I'm now a Senior Software Engineer on Checkout. I started on the Global Pay Later team building virtual card experiences. Then moved to Checkout and grew into lead roles on some of its larger initiatives. I helped modernize PayPal Checkout onto Next.js — a surface that handles millions of transactions globally. Along the way I've spent a lot of time on A/B experimentation, performance, observability with Datadog, and more recently building AI-powered agents that analyze and debug user sessions to cut down time-to-resolution on production issues."
+        - paragraph [ref=e30]:
+          - text: Outside of my day job I've been working on
+          - link "Chavo" [ref=e31] [cursor=pointer]:
+            - /url: https://chavo.app/
+          - text: . The basic idea is to have a personal trainer in my pocket. Previously, I would have Claude/ChatGPT to build my workout plans and I wanted to have an all-in-one app to help build, track and analyze my workouts.
+        - paragraph [ref=e32]: Outside of code, I spend a lot of my time on health and fitness, following sports, reading, and tinkering with whatever new tool or idea has my attention that week.
+  - button "Open Next.js Dev Tools" [ref=e38] [cursor=pointer]:
+    - img [ref=e39]
+  - alert [ref=e42]

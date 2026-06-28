@@ -1,5 +1,6 @@
 "use client";
 
+import { ExploreButton } from "@/components/explore-button";
 import { Button } from "@/components/ui/button";
 import { cn } from "cnfast";
 import { Github, Twitter, FileText } from "lucide-react";
@@ -37,6 +38,7 @@ export function Header() {
 
         {/* Right — social icons */}
         <nav className="flex items-center gap-1">
+          <ExploreButton />
           <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
             <a
               href="https://github.com/cspalevic"
