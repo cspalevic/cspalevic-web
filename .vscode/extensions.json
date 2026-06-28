@@ -1,6 +1,6 @@
 {
   "recommendations": [
     "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries",
-    "esbenp.prettier-vscode"
+    "oxc.oxc-vscode"
   ]
 }

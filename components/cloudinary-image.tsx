@@ -10,7 +10,7 @@ const buildImageUrl = (
   path: string,
   { quality = "auto", format = "auto", cropMode }: Transformations = {},
   width?: number,
-  height?: number
+  height?: number,
 ) => {
   if (path.startsWith("/")) path = path.substring(1);
   if (path.includes("?")) {
@@ -60,7 +60,7 @@ export const CloudinaryImage = ({
 }: CloudinaryImageProps) => {
   const [hidden, setHidden] = useState<boolean>(false);
   const [image, setImage] = useState<string>(
-    buildImageUrl(path, transformations, width, height)
+    buildImageUrl(path, transformations, width, height),
   );
 
   const onError = () => {

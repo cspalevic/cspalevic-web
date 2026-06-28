@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "importOrder": [
+    "@<THIRD_PARTY_MODULES>",
+    "<THIRD_PARTY_MODULES>",
+    "~/(.*)$",
+    "^[./]"
+  ],
+  "importOrderMergeDuplicateImports": true,
+  "importOrderTypeImportsToTop": true,
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "ignorePatterns": ["public/", ".next/"]
+}
