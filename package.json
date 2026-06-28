@@ -41,6 +41,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@types/dompurify": "^3.0.3",
     "@types/mdx": "^2.0.13",
+    "@types/node": "^26.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.179.0",
