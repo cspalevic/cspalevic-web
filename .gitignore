@@ -15,4 +15,5 @@ node_modules
 /bin/
 
 *.pdf
+!public/CharlieSpalevic_Resume.pdf
 *.tsbuildinfo
