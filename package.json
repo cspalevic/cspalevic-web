@@ -23,7 +23,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.3",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
+    "cnfast": "^0.0.8",
     "lucide-react": "^0.539.0",
     "next": "^16.2.9",
     "react": "^19.2.7",
@@ -31,7 +31,6 @@
     "rehype-shiki": "^0.0.9",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "tailwind-merge": "^3.3.1",
     "three": "^0.179.1",
     "yet-another-react-lightbox": "^3.21.6",
     "zod": "^4.0.17"
