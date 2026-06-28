@@ -2,12 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Github, Twitter, FileText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Resume", href: "/resume" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -16,50 +16,57 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
-        <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2"></Link>
-          <nav className="flex items-center gap-4 text-sm lg:gap-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === item.href
-                    ? "text-foreground"
-                    : "text-foreground/60"
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
+      <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+        {/* Left — nav links */}
+        <nav className="flex items-center gap-4 text-sm lg:gap-6">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "transition-colors hover:text-foreground/80",
+                pathname === item.href
+                  ? "text-foreground"
+                  : "text-foreground/60"
+              )}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Mobile navigation */}
-        <div className="flex flex-1 items-center justify-between space-x-2 md:hidden">
-          <Link href="/" className="flex items-center space-x-2"></Link>
-          <nav className="flex items-center gap-2">
-            {navigation.map((item) => (
-              <Button
-                key={item.href}
-                variant={pathname === item.href ? "secondary" : "ghost"}
-                size="sm"
-                asChild
-              >
-                <Link href={item.href}>{item.name}</Link>
-              </Button>
-            ))}
-          </nav>
-        </div>
-
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* Space for future search or other elements */}
-          </div>
-          <nav className="flex items-center"></nav>
-        </div>
+        {/* Right — social icons */}
+        <nav className="flex items-center gap-1">
+          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+            <a
+              href="https://github.com/cspalevic"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+            <a
+              href="https://twitter.com/cspalevic"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <Twitter className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+            <a
+              href="/CharlieSpalevic_Resume.pdf"
+              download="CharlieSpalevic_Resume.pdf"
+              aria-label="Download Resume"
+            >
+              <FileText className="h-4 w-4" />
+            </a>
+          </Button>
+        </nav>
       </div>
     </header>
   );
