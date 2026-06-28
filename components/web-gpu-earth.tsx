@@ -24,7 +24,7 @@ import * as THREE from "three/webgpu";
 function latLngTo3D(
   lat: number,
   lng: number,
-  radius: number = 1.05
+  radius: number = 1.05,
 ): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lng + 180) * (Math.PI / 180);
@@ -95,7 +95,7 @@ export default function WebGPUEarth() {
           45,
           window.innerWidth / window.innerHeight,
           0.1,
-          100
+          100,
         );
         camera.position.set(0, 0, 3.5);
         cameraRef.current = camera;
@@ -123,7 +123,7 @@ export default function WebGPUEarth() {
         nightTexture.anisotropy = 8;
 
         const bumpRoughnessCloudsTexture = textureLoader.load(
-          "earth_bump_roughness_clouds_4096.jpg"
+          "earth_bump_roughness_clouds_4096.jpg",
         );
         bumpRoughnessCloudsTexture.anisotropy = 8;
 
@@ -141,29 +141,29 @@ export default function WebGPUEarth() {
         const atmosphereColor = mix(
           atmosphereTwilightColor,
           atmosphereDayColor,
-          sunOrientation.smoothstep(-0.25, 0.75)
+          sunOrientation.smoothstep(-0.25, 0.75),
         );
 
         const globeMaterial = new THREE.MeshStandardNodeMaterial();
         const cloudsStrength = texture(
           bumpRoughnessCloudsTexture,
-          uv()
+          uv(),
         ).b.smoothstep(0.2, 1);
         globeMaterial.colorNode = mix(
           texture(dayTexture),
           vec3(1),
-          cloudsStrength.mul(2)
+          cloudsStrength.mul(2),
         );
 
         const roughness = max(
           texture(bumpRoughnessCloudsTexture).g,
-          step(0.01, cloudsStrength)
+          step(0.01, cloudsStrength),
         );
         globeMaterial.roughnessNode = roughness.remap(
           0,
           1,
           roughnessLow,
-          roughnessHigh
+          roughnessHigh,
         );
 
         const night = texture(nightTexture);
@@ -181,7 +181,7 @@ export default function WebGPUEarth() {
 
         const bumpElevation = max(
           texture(bumpRoughnessCloudsTexture).r,
-          cloudsStrength
+          cloudsStrength,
         );
         globeMaterial.normalNode = bumpMap(bumpElevation);
 
@@ -224,7 +224,7 @@ export default function WebGPUEarth() {
       } catch (err) {
         console.error("Failed to initialize Earth:", err);
         setError(
-          "Failed to initialize Earth animation. Please check if all textures are loaded correctly."
+          "Failed to initialize Earth animation. Please check if all textures are loaded correctly.",
         );
         throw err;
       }
@@ -304,7 +304,7 @@ export default function WebGPUEarth() {
           enableHighAccuracy: true,
           timeout: 10000,
           maximumAge: 300000, // 5 minutes
-        }
+        },
       );
     }
   }, []);

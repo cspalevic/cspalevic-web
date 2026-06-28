@@ -5,11 +5,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write ./",
+    "format": "oxfmt",
     "lint": "eslint .",
     "check:types": "tsc",
     "check:spelling": "cspell",
-    "check:formatting": "prettier --check ./"
+    "check:formatting": "oxfmt --check"
   },
   "dependencies": {
     "@github-docs/frontmatter": "^1.3.1",
@@ -36,7 +36,6 @@
     "zod": "^4.0.17"
   },
   "devDependencies": {
-    "@serverless-guru/prettier-plugin-import-order": "^0.2.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/dompurify": "^3.0.3",
     "@types/mdx": "^2.0.13",
@@ -49,23 +48,13 @@
     "dotenv": "^16.0.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.9",
+    "oxfmt": "^0.56.0",
     "postcss": "^8.4.31",
-    "prettier": "^2.6.1",
     "tailwindcss": "^4.0.0",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5.2.2"
   },
   "engines": {
     "node": ">=22"
-  },
-  "prettier": {
-    "importOrder": [
-      "@<THIRD_PARTY_MODULES>",
-      "<THIRD_PARTY_MODULES>",
-      "~/(.*)$",
-      "^[./]"
-    ],
-    "importOrderMergeDuplicateImports": true,
-    "importOrderTypeImportsToTop": true
   }
 }

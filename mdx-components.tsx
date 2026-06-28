@@ -42,7 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <TableHead
         className={cn(
           "[&[align=center]]:text-center [&[align=right]]:text-right",
-          className
+          className,
         )}
         {...props}
       />
@@ -54,7 +54,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <TableCell
         className={cn(
           "[&[align=center]]:text-center [&[align=right]]:text-right",
-          className
+          className,
         )}
         {...props}
       />
