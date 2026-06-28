@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import { Header } from "@/components/header";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Noto_Sans } from "next/font/google";
 import React from "react";
 import "./globals.css";
-import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic",
