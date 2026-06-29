@@ -8,7 +8,7 @@ const blogMetadataSchema = z.object({
   title: z.string(),
   alt: z.string(),
   date: z.string(),
-  image: z.string().optional(),
+  image: z.string(),
 });
 
 export type BlogMetadata = z.infer<typeof blogMetadataSchema>;
@@ -22,7 +22,8 @@ export async function getAllBlogMetadata(): Promise<
 
   for (const folderName of blogDirectoryContent) {
     const fullFolderPath = join(blogPath, folderName);
-    if (!lstatSync(fullFolderPath).isDirectory()) continue;
+    if (!lstatSync(fullFolderPath).isDirectory() || folderName.startsWith("_"))
+      continue;
 
     const pagePath = join(fullFolderPath, "page.mdx");
     const fileContent = await readFileSync(pagePath, "utf-8");

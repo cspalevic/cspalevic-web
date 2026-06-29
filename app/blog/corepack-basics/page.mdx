@@ -5,7 +5,7 @@ image: package.avif?tx=q_auto,c_crop,g_south
 alt: A picture of a package
 ---
 
-import { BlogHeader } from "@/components/blog-header";
+import { BlogHeader } from "../_components/blog-header";
 
 export async function generateMetadata() {
   return {
@@ -13,7 +13,15 @@ export async function generateMetadata() {
   };
 }
 
-<BlogHeader title="Corepack Basics" date="01-06-2023" />
+<BlogHeader
+  title="Corepack Basics"
+  date="01-06-2023"
+  slug="corepack-basics"
+  image={{
+    path: "/corepack-basics/package.avif?tx=q_auto,c_crop,g_south",
+    alt: "A picture of a package",
+  }}
+/>
 
 ## Corepack
 

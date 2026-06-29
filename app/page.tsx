@@ -15,12 +15,15 @@ function StyledLink({ text, href }: { text: string; href: string }) {
 }
 
 export default function HomePage() {
+  const reveal =
+    "animate-in fade-in slide-in-from-bottom-3 duration-700 fill-mode-both";
+
   return (
     <>
       <WebGPUFeatures />
       <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
         <article className="space-y-6 text-base leading-relaxed text-secondary-foreground">
-          <div className="flex items-center gap-4">
+          <div className={`flex items-center gap-4 ${reveal}`}>
             <div className="h-20 w-20 overflow-hidden rounded-full">
               <CloudinaryImage
                 path="me.jpg"
@@ -32,14 +35,14 @@ export default function HomePage() {
             <h1 className="text-2xl font-bold text-foreground">About</h1>
           </div>
 
-          <p>
+          <p className={reveal}>
             Hello, I'm Charlie Spalevic - a senior software engineer based in
             Chicago with about a decade of experience. I consider myself as a
             generalist. I'm equally interested in building web apps, mobile
             apps, and AI agents.
           </p>
 
-          <p>
+          <p className={reveal}>
             I studied Computer Science at{" "}
             <StyledLink
               text="Illinois State University"
@@ -51,21 +54,21 @@ export default function HomePage() {
             analysis.
           </p>
 
-          <p>
+          <p className={reveal}>
             After college I took a swing at starting my own company. It didn't
             quite work, and I also quickly realized I didn't really know what I
             was doing yet. I decided I needed real-world experience before I
             could build something meaningful on my own.
           </p>
 
-          <p>
+          <p className={reveal}>
             I gained a ton of experience at a manufacturing company called{" "}
             <StyledLink text="Spraying Systems" href="https://www.spray.com" />.
             It was a small team that shipped a ton of software around internal
             DAM, ERP and CRM systems. I worked with .NET, Azure, and SQL Server.
           </p>
 
-          <p>
+          <p className={reveal}>
             From there I joined{" "}
             <StyledLink text="PayPal" href="https://www.paypal.com" />, where
             I'm now a Senior Software Engineer on Checkout. I started on the
@@ -79,7 +82,7 @@ export default function HomePage() {
             time-to-resolution on production issues.
           </p>
 
-          <p>
+          <p className={reveal}>
             Outside of my day job I've been working on{" "}
             <StyledLink text="Chavo" href="https://chavo.app/" />. The basic
             idea is to have a personal trainer in my pocket. Previously, I would
@@ -87,7 +90,7 @@ export default function HomePage() {
             an all-in-one app to help build, track and analyze my workouts.
           </p>
 
-          <p>
+          <p className={reveal}>
             Outside of code, I spend a lot of my time on health and fitness,
             following sports, reading, and tinkering with whatever new tool or
             idea has my attention that week.

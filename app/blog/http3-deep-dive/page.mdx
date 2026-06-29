@@ -5,7 +5,7 @@ image: fast.avif?tx=q_auto,c_fill
 alt: A picture trying to emphasize that HTTP/3 will be fast
 ---
 
-import { BlogHeader } from "@/components/blog-header";
+import { BlogHeader } from "../_components/blog-header";
 
 export async function generateMetadata() {
   return {
@@ -13,7 +13,15 @@ export async function generateMetadata() {
   };
 }
 
-<BlogHeader title="HTTP/3 Deep Dive" date="12-17-2022" />
+<BlogHeader
+  title="HTTP/3 Deep Dive"
+  date="12-17-2022"
+  slug="http3-deep-dive"
+  image={{
+    path: "/http3-deep-dive/fast.avif?tx=q_auto,c_fill",
+    alt: "A picture trying to emphasize that HTTP/3 will be fast",
+  }}
+/>
 
 ## Introduction
 
