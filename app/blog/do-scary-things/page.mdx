@@ -5,7 +5,7 @@ image: alps.png?tx=q_auto,c_fill
 alt: A picture of people (me) paragliding in the Swiss Alps
 ---
 
-import { BlogHeader } from "@/components/blog-header";
+import { BlogHeader } from "../_components/blog-header";
 
 export async function generateMetadata() {
   return {
@@ -13,7 +13,15 @@ export async function generateMetadata() {
   };
 }
 
-<BlogHeader title="Do Scary Things" date="10-24-2025" />
+<BlogHeader
+  title="Do Scary Things"
+  date="10-24-2025"
+  slug="do-scary-things"
+  image={{
+    path: "/do-scary-things/alps.png?tx=q_auto,c_fill",
+    alt: "A picture of people (me) paragliding in the Swiss Alps",
+  }}
+/>
 
 > Fear - an unpleasant, often strong emotion caused by anticipation or awareness of danger
 

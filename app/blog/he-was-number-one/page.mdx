@@ -5,7 +5,7 @@ image: first.jpg?tx=q_auto,c_fill
 alt: A picture of the number one
 ---
 
-import { BlogHeader } from "@/components/blog-header";
+import { BlogHeader } from "../_components/blog-header";
 
 export async function generateMetadata() {
   return {
@@ -13,7 +13,15 @@ export async function generateMetadata() {
   };
 }
 
-<BlogHeader title="First Blog Post" date="07-16-2022" />
+<BlogHeader
+  title="First Blog Post"
+  date="07-16-2022"
+  slug="he-was-number-one"
+  image={{
+    path: "/he-was-number-one/first.jpg?tx=q_auto,c_fill",
+    alt: "A picture of the number one",
+  }}
+/>
 
 The obligatory first blog post!
 
