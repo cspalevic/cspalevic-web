@@ -23,9 +23,7 @@ export default function HomePage() {
       <WebGPUFeatures />
       <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
         <article className="space-y-6 text-base leading-relaxed text-secondary-foreground">
-          <div
-            className={`flex items-center gap-4 ${reveal}`}
-          >
+          <div className={`flex items-center gap-4 ${reveal}`}>
             <div className="h-20 w-20 overflow-hidden rounded-full">
               <CloudinaryImage
                 path="me.jpg"
