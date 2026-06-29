@@ -14,7 +14,11 @@ const getSnapshot = () => !!navigator.gpu;
 const getServerSnapshot = () => false;
 
 export function WebGPUFeatures() {
-  const isWebGPUSupported = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const isWebGPUSupported = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   if (!isWebGPUSupported) return null;
   return (
