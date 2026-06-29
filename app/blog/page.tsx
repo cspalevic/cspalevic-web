@@ -20,7 +20,7 @@ export default async function Blog() {
         <Link
           key={blog.slug}
           href={`/blog/${blog.slug}`}
-          className="group block"
+          className="group block animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both ease-out"
         >
           <div className="relative overflow-hidden rounded-xl aspect-[16/9]">
             <ViewTransition name={`blog-image-${blog.slug}`}>
