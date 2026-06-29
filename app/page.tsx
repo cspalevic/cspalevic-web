@@ -32,14 +32,14 @@ export default function HomePage() {
                 height={160}
               />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">About</h1>
+            <h1 className="text-2xl font-bold text-foreground">About Me</h1>
           </div>
 
           <p className={reveal}>
-            Hello, I'm Charlie Spalevic - a senior software engineer based in
-            Chicago with about a decade of experience. I consider myself as a
-            generalist. I'm equally interested in building web apps, mobile
-            apps, and AI agents.
+            Hello, I'm Charlie Spalevic. I'm a senior software engineer based in
+            Chicago with about a decade of experience. I consider myself a
+            generalist - I'm equally interested in building web apps, mobile
+            apps, AI agents, and more.
           </p>
 
           <p className={reveal}>
@@ -57,8 +57,8 @@ export default function HomePage() {
           <p className={reveal}>
             After college I took a swing at starting my own company. It didn't
             quite work, and I also quickly realized I didn't really know what I
-            was doing yet. I decided I needed real-world experience before I
-            could build something meaningful on my own.
+            was doing. I decided I needed real-world experience before I could
+            build something meaningful on my own.
           </p>
 
           <p className={reveal}>
@@ -71,15 +71,16 @@ export default function HomePage() {
           <p className={reveal}>
             From there I joined{" "}
             <StyledLink text="PayPal" href="https://www.paypal.com" />, where
-            I'm now a Senior Software Engineer on Checkout. I started on the
-            Global Pay Later team building virtual card experiences. Then moved
+            I'm now a Senior Software Engineer on Checkout - a surface that
+            handles millions of transactions globally. I started on the Global
+            Pay Later team building virtual card experiences. I was then moved
             to Checkout and grew into lead roles on some of its larger
-            initiatives. I helped modernize PayPal Checkout onto Next.js — a
-            surface that handles millions of transactions globally. Along the
-            way I've spent a lot of time on A/B experimentation, performance,
-            observability with Datadog, and more recently building AI-powered
-            agents that analyze and debug user sessions to cut down
-            time-to-resolution on production issues.
+            initiatives. I helped migrate PayPal Checkout onto a modern tech
+            stack with Next.js, Tailwind, TypeScript, and Playwright. Along the
+            way I've spent a ton of time on A/B experimentation, observability
+            with Datadog, and more recently building AI-powered agents that
+            analyze and debug user sessions to cut down time-to-resolution on
+            production issues.
           </p>
 
           <p className={reveal}>
@@ -91,9 +92,9 @@ export default function HomePage() {
           </p>
 
           <p className={reveal}>
-            Outside of code, I spend a lot of my time on health and fitness,
-            following sports, reading, and tinkering with whatever new tool or
-            idea has my attention that week.
+            Outside of my nerdy pursuits, I focus a lot of my time on lifting,
+            running, following sports, reading, and hanging out with friends and
+            family.
           </p>
         </article>
       </div>
