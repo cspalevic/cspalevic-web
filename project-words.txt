@@ -1,9 +1,13 @@
 Chavo
 cnfast
+fract
 Frontmatter
+highp
 Innov8tek
 johnbielskilaw
 lightbox
 shadcn
 Spalevic
+tris
+trisn
 webgpu
