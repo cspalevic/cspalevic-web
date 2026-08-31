@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "files": ["**/*.{ts,tsx,js,jsx,md,mdx}"],
-  "ignorePaths": ["node_modules", ".next"],
+  "ignorePaths": ["node_modules", ".next", "next-env.d.ts"],
   "dictionaryDefinitions": [
     {
       "name": "project-words",

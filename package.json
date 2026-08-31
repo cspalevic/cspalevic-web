@@ -6,8 +6,8 @@
     "build": "next build",
     "start": "next start",
     "format": "oxfmt",
-    "lint": "eslint .",
-    "check:types": "tsc",
+    "lint": "oxlint",
+    "check:types": "next typegen && tsc",
     "check:spelling": "cspell",
     "check:formatting": "oxfmt --check"
   },
@@ -15,7 +15,7 @@
     "@github-docs/frontmatter": "^1.3.1",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^16.2.9",
+    "@next/mdx": "^16.3.3",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
@@ -24,7 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "cnfast": "^0.0.8",
     "lucide-react": "^0.539.0",
-    "next": "^16.2.9",
+    "next": "^16.3.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "rehype-shiki": "^0.0.9",
@@ -44,19 +44,20 @@
     "autoprefixer": "^10.4.16",
     "cspell": "^9.2.2",
     "dotenv": "^16.0.3",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.9",
     "oxfmt": "^0.56.0",
+    "oxlint": "^1.80.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^4.0.0",
     "tw-animate-css": "^1.3.6",
-    "typescript": "^5.2.2"
+    "typescript": "^7.0.2"
   },
   "engines": {
     "node": ">=24"
   },
   "optionalDependencies": {
+    "@oxlint/binding-linux-x64-gnu": "1.80.0",
     "@tailwindcss/oxide-linux-x64-gnu": "^4.1.11",
+    "@typescript/typescript-linux-x64": "7.0.2",
     "lightningcss-linux-x64-gnu": "^1.30.1"
   }
 }

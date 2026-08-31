@@ -6,6 +6,7 @@ highp
 Innov8tek
 johnbielskilaw
 lightbox
+oxlint
 shadcn
 Spalevic
 tris
