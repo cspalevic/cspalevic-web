@@ -9,7 +9,8 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic - Blog",
-  description: "Writing on software, engineering, and things I learn along the way.",
+  description:
+    "Writing on software, engineering, and things I learn along the way.",
   openGraph: {
     type: "website",
     siteName: "Charlie Spalevic",
