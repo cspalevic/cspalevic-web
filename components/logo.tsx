@@ -12,8 +12,8 @@ export function Logo({ className }: { className?: string }) {
         r="31"
         fill="#000000"
         stroke="#ffffff"
-        strokeOpacity="0.18"
-        strokeWidth="1.5"
+        strokeOpacity="0.4"
+        strokeWidth="2"
       />
       <path
         d="M 41.619 42.819 A 15.3 15.3 0 1 1 41.619 21.181"

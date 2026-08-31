@@ -24,7 +24,7 @@ export function Header() {
             aria-label="Charlie Spalevic — home"
             className="rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
           >
-            <Logo className="size-7" />
+            <Logo className="size-8" />
           </Link>
           <nav className="flex items-center gap-4 text-sm lg:gap-6">
             {navigation.map((item) => (
