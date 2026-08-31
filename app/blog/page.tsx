@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CloudinaryImage } from "@/components/cloudinary-image";
-import { getAllBlogMetadata } from "@/lib/blog-metadata";
+import { getAllBlogMetadata } from "@/lib/blog";
 import { parseAndFormat } from "@/lib/date";
 import Link from "next/link";
 import { ViewTransition } from "react";

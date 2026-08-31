@@ -1,17 +1,12 @@
 ---
 title: First Blog Post
+description: An introduction to this blog — notes on what I learn, problems I solve, and experiences along the way.
 date: 07-16-2022
 image: first.jpg?tx=q_auto,c_fill
 alt: A picture of the number one
 ---
 
-import { BlogHeader } from "../_components/blog-header";
-
-export async function generateMetadata() {
-  return {
-    title: `Charlie Spalevic - First Blog Post`,
-  };
-}
+import { BlogHeader } from "@/app/blog/_components/blog-header";
 
 <BlogHeader
   title="First Blog Post"
