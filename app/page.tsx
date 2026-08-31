@@ -1,5 +1,7 @@
 import { CloudinaryImage } from "@/components/cloudinary-image";
 
+export const dynamic = "force-static";
+
 function StyledLink({ text, href }: { text: string; href: string }) {
   return (
     <a

@@ -2,10 +2,12 @@ import frontmatter from "@github-docs/frontmatter";
 import { lstatSync, readFileSync } from "fs";
 import { readdir } from "fs/promises";
 import { join } from "path";
+import { cache } from "react";
 import { z } from "zod/v4";
 
 const blogMetadataSchema = z.object({
   title: z.string(),
+  description: z.string(),
   alt: z.string(),
   date: z.string(),
   image: z.string(),
@@ -13,20 +15,19 @@ const blogMetadataSchema = z.object({
 
 export type BlogMetadata = z.infer<typeof blogMetadataSchema>;
 
-export async function getAllBlogMetadata(): Promise<
-  (BlogMetadata & { slug: string })[]
-> {
-  const blogPath = join(process.cwd(), "app/blog");
-  const blogDirectoryContent = await readdir(blogPath);
-  const blogs: (BlogMetadata & { slug: string })[] = [];
+export type BlogPost = BlogMetadata & { slug: string };
 
-  for (const folderName of blogDirectoryContent) {
-    const fullFolderPath = join(blogPath, folderName);
-    if (!lstatSync(fullFolderPath).isDirectory() || folderName.startsWith("_"))
-      continue;
+export const getAllBlogMetadata = cache(async (): Promise<BlogPost[]> => {
+  const postsPath = join(process.cwd(), "posts");
+  const postsDirectoryContent = await readdir(postsPath);
+  const blogs: BlogPost[] = [];
+
+  for (const folderName of postsDirectoryContent) {
+    const fullFolderPath = join(postsPath, folderName);
+    if (!lstatSync(fullFolderPath).isDirectory()) continue;
 
     const pagePath = join(fullFolderPath, "page.mdx");
-    const fileContent = await readFileSync(pagePath, "utf-8");
+    const fileContent = readFileSync(pagePath, "utf-8");
     const { data } = frontmatter(fileContent);
     const metadata = blogMetadataSchema.parse(data);
     blogs.push({
@@ -41,4 +42,11 @@ export async function getAllBlogMetadata(): Promise<
     const secondBlogCreateTime = new Date(b.date).getTime();
     return firstBlogCreateTime > secondBlogCreateTime ? -1 : 1;
   });
+});
+
+export async function getBlogMetadata(
+  slug: string,
+): Promise<BlogPost | undefined> {
+  const blogs = await getAllBlogMetadata();
+  return blogs.find((blog) => blog.slug === slug);
 }
