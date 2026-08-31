@@ -27,7 +27,6 @@
     "next": "^16.3.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "rehype-shiki": "^0.0.9",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "yet-another-react-lightbox": "^3.21.6",
