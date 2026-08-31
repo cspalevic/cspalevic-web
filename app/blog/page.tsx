@@ -9,6 +9,23 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Charlie Spalevic - Blog",
+  description:
+    "Writing on software, engineering, and things I learn along the way.",
+  openGraph: {
+    type: "website",
+    siteName: "Charlie Spalevic",
+    title: "Blog",
+    description:
+      "Writing on software, engineering, and things I learn along the way.",
+    url: "/blog",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Charlie Spalevic - Blog",
+    description:
+      "Writing on software, engineering, and things I learn along the way.",
+  },
 };
 
 export default async function Blog() {

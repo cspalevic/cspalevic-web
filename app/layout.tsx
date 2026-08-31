@@ -7,8 +7,22 @@ import React from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cspalevic.com"),
   title: "Charlie Spalevic",
   description: "Charlie Spalevic's personal website",
+  openGraph: {
+    type: "website",
+    siteName: "Charlie Spalevic",
+    title: "Charlie Spalevic",
+    description: "Charlie Spalevic's personal website",
+    url: "/",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Charlie Spalevic",
+    description: "Charlie Spalevic's personal website",
+  },
 };
 
 export const viewport = {
