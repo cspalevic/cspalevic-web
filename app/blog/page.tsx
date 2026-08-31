@@ -15,7 +15,7 @@ export default async function Blog() {
   const blogs = await getAllBlogMetadata();
 
   return (
-    <div className="grid gap-y-10 grid-cols-1 md:gap-10 md:grid-cols-2 lg:gap-20 py-5">
+    <div className="grid gap-y-10 grid-cols-1 md:gap-10 md:grid-cols-2 lg:gap-20">
       {blogs.map((blog) => (
         <Link
           key={blog.slug}

@@ -31,7 +31,6 @@
     "rehype-shiki": "^0.0.9",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "three": "^0.179.1",
     "yet-another-react-lightbox": "^3.21.6",
     "zod": "^4.0.17"
   },
@@ -42,7 +41,6 @@
     "@types/node": "^26.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@types/three": "^0.179.0",
     "@webgpu/types": "^0.1.71",
     "autoprefixer": "^10.4.16",
     "cspell": "^9.2.2",
@@ -56,6 +54,10 @@
     "typescript": "^5.2.2"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
+  },
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.1.11",
+    "lightningcss-linux-x64-gnu": "^1.30.1"
   }
 }
