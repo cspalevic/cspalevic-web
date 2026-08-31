@@ -7,7 +7,7 @@
     "start": "next start",
     "format": "oxfmt",
     "lint": "oxlint",
-    "check:types": "tsc",
+    "check:types": "next typegen && tsc",
     "check:spelling": "cspell",
     "check:formatting": "oxfmt --check"
   },
