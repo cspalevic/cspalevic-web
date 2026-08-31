@@ -14,7 +14,7 @@ interface BlogHeaderProps {
 
 export function BlogHeader({ slug, title, date, image }: BlogHeaderProps) {
   return (
-    <header className="mb-8">
+    <div className="flex flex-col gap-6">
       {image && (
         <ViewTransition name={`blog-image-${slug}`}>
           <div className="w-full flex justify-center">
@@ -33,16 +33,18 @@ export function BlogHeader({ slug, title, date, image }: BlogHeaderProps) {
           </div>
         </ViewTransition>
       )}
-      <ViewTransition name={`blog-title-${slug}`}>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-          {title}
-        </h1>
-      </ViewTransition>
-      <ViewTransition name={`blog-date-${slug}`}>
-        <time className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-          {parseAndFormat(date)}
-        </time>
-      </ViewTransition>
-    </header>
+      <div className="flex flex-col gap-2">
+        <ViewTransition name={`blog-title-${slug}`}>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+            {title}
+          </h1>
+        </ViewTransition>
+        <ViewTransition name={`blog-date-${slug}`}>
+          <time className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+            {parseAndFormat(date)}
+          </time>
+        </ViewTransition>
+      </div>
+    </div>
   );
 }
