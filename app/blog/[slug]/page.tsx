@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getAllBlogMetadata, getBlogMetadata } from "@/lib/blog";
+import { parse } from "@/lib/date";
 
 export const dynamicParams = false;
 
@@ -21,9 +22,31 @@ export async function generateMetadata({
     return {};
   }
 
+  const title = `Charlie Spalevic - ${post.title}`;
+  const url = `/blog/${slug}`;
+  const publishedTime = parse(post.date).toISOString();
+
   return {
-    title: `Charlie Spalevic - ${post.title}`,
+    title,
     description: post.description,
+    openGraph: {
+      type: "article",
+      siteName: "Charlie Spalevic",
+      title: post.title,
+      description: post.description,
+      url,
+      locale: "en_US",
+      publishedTime,
+      authors: ["Charlie Spalevic"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+    alternates: {
+      canonical: url,
+    },
   };
 }
 
