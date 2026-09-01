@@ -7,6 +7,7 @@ highp
 Innov8tek
 johnbielskilaw
 lightbox
+nums
 oxlint
 shadcn
 Spalevic

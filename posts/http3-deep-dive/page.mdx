@@ -2,21 +2,10 @@
 title: HTTP/3 Deep Dive
 description: How HTTP/3 differs from QUIC, why UDP helps avoid head-of-line blocking, and where support stands.
 date: 12-17-2022
-image: fast.avif?tx=q_auto,c_fill
-alt: A picture trying to emphasize that HTTP/3 will be fast
 ---
 
-import { BlogHeader } from "@/app/blog/_components/blog-header";
-
-<BlogHeader
-  title="HTTP/3 Deep Dive"
-  date="12-17-2022"
-  slug="http3-deep-dive"
-  image={{
-    path: "/http3-deep-dive/fast.avif?tx=q_auto,c_fill",
-    alt: "A picture trying to emphasize that HTTP/3 will be fast",
-  }}
-/>
+import { Lightbox } from "@/components/lightbox";
+import Http2TcpDiagram from "./http2-tcp-diagram.png";
 
 ## Introduction
 
@@ -63,7 +52,11 @@ As we learned above, HTTP/3 is an application layer protocol and QUIC is a trans
 
 When you make an HTTP/2 request, information still needs to get passed down the layers. Under the hood, HTTP/2 uses a transport layer protocol (TCP) to break down the information into smaller packets that can be transmitted to another computer. Here's a little diagram explaining what I mean:
 
-![HTTP/2 TCP Diagram](https://cedomir.mo.cloudinary.net/assets/http3-deep-dive/http2-tcp-diagram.png?tx=q_auto,f_auto)
+<Lightbox
+  src={Http2TcpDiagram}
+  alt="HTTP/2 TCP Diagram"
+  className="h-auto w-full rounded-md mt-6"
+/>
 
 TCP was designed to provide accurate delivery of information, rather than quick delivery. It guarantees that all bytes received will be identical and in the same order as when it was sent. However, when one packet of information was lost in transmission, TCP is designed to **wait** for this packet to get retransmitted and get to its destination. This will block the destination computer from processing any other requests that are in the queue. This is called head-of-line (HOL) blocking.
 
