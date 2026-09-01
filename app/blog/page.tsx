@@ -1,7 +1,6 @@
+import { getAllBlogMetadata, type BlogPost } from "@/lib/blog";
+import { parse } from "@/lib/date";
 import type { Metadata } from "next";
-import { CloudinaryImage } from "@/components/cloudinary-image";
-import { getAllBlogMetadata } from "@/lib/blog";
-import { parseAndFormat } from "@/lib/date";
 import Link from "next/link";
 import { ViewTransition } from "react";
 
@@ -28,44 +27,49 @@ export const metadata: Metadata = {
   },
 };
 
+export function BlogPreview({ blog }: { blog: BlogPost }) {
+  const date = parse(blog.date);
+  const monthDay = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+  const year = date.getFullYear();
+
+  return (
+    <Link
+      href={`/blog/${blog.slug}`}
+      className="group grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-4 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both ease-out"
+    >
+      <ViewTransition name={`blog-date-${blog.slug}`}>
+        <time
+          dateTime={`${year}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`}
+          className="flex flex-col pt-0.5 text-sm leading-tight text-muted-foreground tabular-nums"
+        >
+          <span>{monthDay}</span>
+          <span>{year}</span>
+        </time>
+      </ViewTransition>
+      <div className="flex min-w-0 flex-col gap-1">
+        <ViewTransition name={`blog-title-${blog.slug}`}>
+          <h3 className="text-lg font-semibold text-foreground group-hover:underline underline-offset-4">
+            {blog.title}
+          </h3>
+        </ViewTransition>
+        <p className="text-sm text-secondary-foreground leading-relaxed">
+          {blog.description}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 export default async function Blog() {
   const blogs = await getAllBlogMetadata();
 
   return (
     <div className="flex flex-col gap-6">
       {blogs.map((blog) => (
-        <Link
-          key={blog.slug}
-          href={`/blog/${blog.slug}`}
-          className="group flex flex-row justify-start items-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700 fill-mode-both ease-out"
-        >
-          <ViewTransition name={`blog-image-${blog.slug}`}>
-            <CloudinaryImage
-              path={`/${blog.slug}/${blog.image}`}
-              alt={blog.alt}
-              className="h-16 w-28  rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
-              transformations={{
-                quality: "auto",
-                format: "auto",
-                cropMode: "fill",
-              }}
-              width={224}
-              height={128}
-            />
-          </ViewTransition>
-          <div className="min-w-0">
-            <ViewTransition name={`blog-title-${blog.slug}`}>
-              <h3 className="text-lg font-semibold text-foreground line-clamp-2 group-hover:underline underline-offset-4">
-                {blog.title}
-              </h3>
-            </ViewTransition>
-            <ViewTransition name={`blog-date-${blog.slug}`}>
-              <time className="text-sm text-muted-foreground">
-                {parseAndFormat(blog.date)}
-              </time>
-            </ViewTransition>
-          </div>
-        </Link>
+        <BlogPreview key={blog.slug} blog={blog} />
       ))}
     </div>
   );

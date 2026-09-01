@@ -1,4 +1,4 @@
-import { CloudinaryImage } from "@/components/cloudinary-image";
+import Image from "next/image";
 
 export const dynamic = "force-static";
 
@@ -23,11 +23,13 @@ export default function HomePage() {
     <article className="space-y-6 text-base leading-relaxed text-secondary-foreground">
       <div className={`flex items-center gap-4 ${reveal}`}>
         <div className="h-20 w-20 overflow-hidden rounded-full">
-          <CloudinaryImage
-            path="me.jpg"
+          <Image
+            src="/me.jpg"
             alt="Charlie Spalevic"
+            loading="eager"
             width={160}
             height={160}
+            priority
           />
         </div>
         <h1 className="text-2xl font-bold text-foreground">About Me</h1>

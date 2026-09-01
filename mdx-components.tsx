@@ -1,5 +1,3 @@
-import type { MDXComponents } from "mdx/types";
-import { Lightbox } from "@/components/lightbox";
 import { Separator } from "@/components/ui/separator";
 import {
   Table,
@@ -10,6 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "cnfast";
+import type { MDXComponents } from "mdx/types";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -82,10 +81,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     ul: ({ className, ...props }) => (
-      <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
+      <ul className={cn("my-4 ml-6 list-disc", className)} {...props} />
     ),
     ol: ({ className, ...props }) => (
-      <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />
+      <ol className={cn("my-4 ml-6 list-decimal", className)} {...props} />
     ),
     li: ({ className, ...props }) => (
       <li className={cn("mt-2", className)} {...props} />
@@ -179,17 +178,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }: React.ImgHTMLAttributes<HTMLImageElement>) => (
       // oxlint-disable-next-line nextjs/no-img-element
       <img
-        className={cn("rounded-md cursor-pointer", className)}
+        className={cn("rounded-md cursor-pointer mt-6", className)}
         alt={alt}
         {...props}
       />
-    ),
-    // Custom wrapper using Tailwind Typography
-    wrapper: ({ children }: { children: React.ReactNode }) => (
-      <>
-        {children}
-        <Lightbox />
-      </>
     ),
   };
 }

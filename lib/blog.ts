@@ -8,9 +8,7 @@ import { z } from "zod/v4";
 const blogMetadataSchema = z.object({
   title: z.string(),
   description: z.string(),
-  alt: z.string(),
   date: z.string(),
-  image: z.string(),
 });
 
 export type BlogMetadata = z.infer<typeof blogMetadataSchema>;

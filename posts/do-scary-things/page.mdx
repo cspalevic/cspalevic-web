@@ -2,21 +2,22 @@
 title: Do Scary Things
 description: Why doing things that scare you shrinks fear, grows your comfort zone, and shows you what you're capable of.
 date: 10-24-2025
-image: alps.png?tx=q_auto,c_fill
-alt: A picture of people (me) paragliding in the Swiss Alps
 ---
 
-import { BlogHeader } from "@/app/blog/_components/blog-header";
+import { Lightbox } from "@/components/lightbox";
+import Alps from "./alps.png";
 
-<BlogHeader
-  title="Do Scary Things"
-  date="10-24-2025"
-  slug="do-scary-things"
-  image={{
-    path: "/do-scary-things/alps.png?tx=q_auto,c_fill",
-    alt: "A picture of people (me) paragliding in the Swiss Alps",
-  }}
-/>
+<div className="relative w-full aspect-video overflow-hidden rounded-xl">
+  <Lightbox
+    src={Alps}
+    alt="A picture of people (me) paragliding in the Swiss Alps"
+    sizes="(min-width: 42rem) 42rem, 100vw"
+    className="object-cover object-center"
+    loading="eager"
+    priority
+    fill
+  />
+</div>
 
 > Fear - an unpleasant, often strong emotion caused by anticipation or awareness of danger
 
