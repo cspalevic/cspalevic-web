@@ -9,6 +9,7 @@
   "importOrderMergeDuplicateImports": true,
   "importOrderTypeImportsToTop": true,
   "printWidth": 80,
+  "proseWrap": "always",
   "sortPackageJson": false,
   "ignorePatterns": ["public/", ".next/"]
 }
