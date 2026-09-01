@@ -1,5 +1,6 @@
 "use client";
 
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "cnfast";
 import { Github, Twitter, FileText } from "lucide-react";
@@ -17,23 +18,31 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-2xl mx-auto px-6 flex h-14 items-center justify-between">
-        {/* Left — nav links */}
-        <nav className="flex items-center gap-4 text-sm lg:gap-6">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname === item.href
-                  ? "text-foreground"
-                  : "text-foreground/60",
-              )}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-4 lg:gap-5">
+          <Link
+            href="/"
+            aria-label="Charlie Spalevic — home"
+            className="rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          >
+            <Logo className="size-8" />
+          </Link>
+          <nav className="flex items-center gap-4 text-sm lg:gap-6">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "transition-colors hover:text-foreground/80",
+                  pathname === item.href
+                    ? "text-foreground"
+                    : "text-foreground/60",
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         {/* Right — social icons */}
         <nav className="flex items-center gap-1">
